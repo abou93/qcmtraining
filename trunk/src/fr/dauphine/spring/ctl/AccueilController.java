@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import fr.dauphine.spring.bo.Utilisateur;
+import fr.dauphine.spring.util.Constants;
 
 
 /**
@@ -30,6 +31,7 @@ public class AccueilController extends SimpleFormController {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("utilisateur", new Utilisateur());
+		request.getSession().setAttribute(Constants.PARAM_PAGE_CONTENT,Constants.PARAM_CONTENT_INDEX);
 		return mav;
 	}
 }
