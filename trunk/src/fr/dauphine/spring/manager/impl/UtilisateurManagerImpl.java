@@ -3,6 +3,8 @@
  */
 package fr.dauphine.spring.manager.impl;
 
+import java.util.Collection;
+
 import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.dao.UtilisateurDAO;
 import fr.dauphine.spring.manager.UtilisateurManager;
@@ -16,13 +18,12 @@ public class UtilisateurManagerImpl extends AbstractManagerImpl<Utilisateur> imp
 	/**
 	 * 
 	 */
+	private UtilisateurDAO utilisateurDAO;
+	
 	public UtilisateurManagerImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.dauphine.spring.manager.UtilisateurManager#verifLoginAndPassword(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public boolean verifLoginAndPassword(String login, String password){
 		return ((UtilisateurDAO)dao).verifLoginAndPassword(login, password);
@@ -32,6 +33,19 @@ public class UtilisateurManagerImpl extends AbstractManagerImpl<Utilisateur> imp
 	public Utilisateur readByEmail(String email) {
 		return ((UtilisateurDAO)dao).readByEmail(email);
 	}
+
+	@Override
+	public Collection<Utilisateur> loadAllUtilisateur() {
+		return utilisateurDAO.loadAll();
+	}
+
+	@Override
+	public Utilisateur saveUtilisateur(Utilisateur u) {
+		return utilisateurDAO.save(u);
+	}
 	
+	public void setUtilisateurDAO(UtilisateurDAO utilisateurDAO) {
+		this.utilisateurDAO = utilisateurDAO;
+	}
 	
 }
