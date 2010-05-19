@@ -32,6 +32,9 @@ public class DeconnexionController implements Controller {
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("index");
 		request.getSession().removeAttribute(Constants.PARAM_USER_SESSION);
+		request.getSession().setAttribute(Constants.PARAM_PAGE_CONTENT,Constants.PARAM_CONTENT_INDEX);
+		request.getSession().setAttribute(Constants.PARAM_ISLOGGED, false);
+		request.getSession().setAttribute(Constants.PARAM_ISADMIN, false);
 		return mav;
 	}
 
