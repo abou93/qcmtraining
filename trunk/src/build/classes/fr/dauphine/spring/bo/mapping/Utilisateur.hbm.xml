@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.dauphine.spring.bo">
+	<class name="Utilisateur" table="UTILISATEUR">
+		<!-- Clé générée automatiquement par Hibernate -->
+		<id name="id" type="string">
+			<column name="ID_UTILISATEUR" sql-type="char(32)" not-null="true" />
+			<generator class="uuid.hex" />
+		</id>
+		<timestamp name="version" column="VERSION" unsaved-value="null" />
+		<property name="nom">
+			<column name="NOM" length="50" not-null="true" />
+		</property>
+		<property name="prenom">
+			<column name="PRENOM" length="50" not-null="true" />
+		</property>
+		<property name="password">
+			<column name="PASSWORD" length="8" not-null="true" />
+		</property>
+		<property name="email">
+			<column name="EMAIL" length="100" not-null="true" />
+		</property>
+		<property name="photo" type="blob" column="PHOTO" />
+		<many-to-one name="profil" column="ID_PROFIL" class="fr.dauphine.spring.bo.Profil" cascade="none" lazy="false" />
+	</class>
+</hibernate-mapping>
