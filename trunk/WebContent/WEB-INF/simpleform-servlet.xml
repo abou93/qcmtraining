@@ -28,6 +28,9 @@
 		<property name="dao">
 			<ref bean="utilisateurDAO" />
 		</property>
+		<property name="utilisateurDAO">
+			<ref bean="utilisateurDAO" />
+		</property>
 	</bean>
 	<bean id="sujetManagerTarget" class="fr.dauphine.spring.manager.impl.SujetManagerImpl">
 		<property name="dao" ref="sujetDAO" />
@@ -35,8 +38,14 @@
 
 	<!-- Controllers -->
 	<bean name="AccueilController" class="fr.dauphine.spring.ctl.AccueilController" />
+	<bean name="AdminAccueilController" class="fr.dauphine.spring.ctl.AdminAccueilController" />
 	<bean name="DeconnexionController" class="fr.dauphine.spring.ctl.DeconnexionController" />
 	<bean name="LoginController" class="fr.dauphine.spring.ctl.LoginController" />
+	<bean name="CreerUserController" class="fr.dauphine.spring.ctl.CreerUserController">
+		<property name="utilisateurManager">
+			<ref bean="utilisateurManager" />
+		</property>
+	</bean>
 	<bean name="UtilisateurListController" class="fr.dauphine.spring.ctl.DefautListController">
 		<property name="manager">
 			<ref bean="utilisateurManager" />
@@ -53,6 +62,12 @@
 		<property name="nameOfList" value="sujetList"/>
 	</bean>
 	<!-- bean name="CreationEmployeController" class="fr.dauphine.spring.ctl.CreationEmployeController">
+		<property name="repertoireManager">
+			<ref bean="repertoireManager" />
+		</property>
+	</bean-->
+	
+	<!-- bean name="CreationSocieteController" class="fr.dauphine.spring.ctl.CreationSocieteController">
 		<property name="repertoireManager">
 			<ref bean="repertoireManager" />
 		</property>
@@ -129,6 +144,8 @@
 	<!-- Validators -->
 	
 	<bean id="sujetValidator" class="fr.dauphine.spring.bo.validator.SujetValidator" />
+	<bean id="employeValidator" class="fr.dauphine.spring.bo.validator.EmployeValidator" />
+	<bean id="societeValidator" class="fr.dauphine.spring.bo.validator.SocieteValidator" />
 	<bean id="loginValidator" class="fr.dauphine.spring.bo.validator.LoginValidator" >
 		<property name="utilisateurManager">
 			<ref bean="utilisateurManager" />
@@ -142,7 +159,9 @@
 		<property name="mappings">
 			<props>
 				<prop key="/accueil.do">AccueilController</prop>
+				<prop key="/adminAccueil.do">AdminAccueilController</prop>
 				<prop key="/validationLogin.do">ValidationLoginController</prop>
+				<prop key="/creerUser.do">CreerUserController</prop>
 				<prop key="/login.do">LoginController</prop>
 				<prop key="/deconnexion.do">DeconnexionController</prop>
 				<prop key="/utilisateur/list.do">UtilisateurListController</prop>
@@ -212,7 +231,6 @@
 		</property>
 	</bean>
 	
-
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory">
