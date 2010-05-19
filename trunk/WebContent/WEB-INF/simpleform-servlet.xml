@@ -29,7 +29,7 @@
 			<ref bean="utilisateurDAO" />
 		</property>
 	</bean>
-	<bean id="sujetManagerTarget" class="fr.dauphine.spring.manager.impl.AbstractManagerImpl">
+	<bean id="sujetManagerTarget" class="fr.dauphine.spring.manager.impl.SujetManagerImpl">
 		<property name="dao" ref="sujetDAO" />
 	</bean>
 
@@ -84,6 +84,27 @@
 		</property>
 	</bean>
 	
+	<bean name="ValidationSujetController" class="fr.dauphine.spring.ctl.ValidationSujetController">
+		<property name="commandClass">
+			<value>fr.dauphine.spring.bo.Sujet</value>
+		</property>
+		<property name="commandName">
+			<value>sujetForm</value>
+		</property>
+		<property name="formView">
+			<value>../jsp/sujet/create</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="validator">
+			<ref bean="sujetValidator" />
+		</property>
+		<property name="manager">
+			<ref bean="sujetManager" />
+		</property>
+	</bean>
+	
 	<!-- bean name="ValidationSocieteController" class="fr.dauphine.spring.ctl.ValidationSocieteController">
 		<property name="commandClass">
 			<value>fr.dauphine.spring.bo.Societe</value>
@@ -107,8 +128,7 @@
 	
 	<!-- Validators -->
 	
-	<bean id="employeValidator" class="fr.dauphine.spring.bo.validator.EmployeValidator" />
-	<bean id="societeValidator" class="fr.dauphine.spring.bo.validator.SocieteValidator" />
+	<bean id="sujetValidator" class="fr.dauphine.spring.bo.validator.SujetValidator" />
 	<bean id="loginValidator" class="fr.dauphine.spring.bo.validator.LoginValidator" >
 		<property name="utilisateurManager">
 			<ref bean="utilisateurManager" />
@@ -128,6 +148,7 @@
 				<prop key="/utilisateur/list.do">UtilisateurListController</prop>
 				<prop key="/sujet/list.do">SujetListController</prop>
 				<prop key="/sujet/create.do">CreationSujetController</prop>
+				<prop key="/sujet/validationCreate.do">ValidationSujetController</prop>
 			</props>
 		</property>
 		<property name="interceptors">

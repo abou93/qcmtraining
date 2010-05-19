@@ -22,20 +22,61 @@
 			<div class="post" style="padding-top: 57px;">
 				<h2 class="title">Création d'un nouveau sujet</h2>
 				<div class="entry">
-					<form:form commandName="sujetForm" action="validationSujet.do"
+				
+					<form:form commandName="sujetForm" action="validationCreate.do"
 						method="post">
 						<form:errors path="*" cssStyle="color:red;" />
-						<label for="titre" class="adroite">Titre : </label>
-						<form:input path="titre" /><br />
-						<label for="description" class="adroite">Description :</label>
-						<form:textarea path="description" /><br />
-						<c:forEach var="aQuestion" items="${sujetForm.listQuestion}" varStatus="statut1" >
-						<spring:bind path="listQuestion[${statut1.index}].libelle">
-							<label for="${status.expression}" class="adroite">Libellé de la question : </label>
-							<input  type="text" name="${status.expression}"/>
-						</spring:bind>
-						</c:forEach>
-						<input type="submit" value="Créer" />
+						<table width="100%">
+							<tr>
+								<td style="width:50%;" />
+								<td style="width:50%;" />
+							</tr>
+							<tr>
+								<td><label for="titre" class="adroite">Titre : </label></td>
+								<td><form:input path="titre" /></td>
+							</tr>
+							<tr>
+								<td><label for="description" class="adroite">Description :</label></td>
+								<td><form:textarea path="description" /></td>
+							</tr>
+							<c:forEach var="aQuestion" items="${sujetForm.listQuestion}" varStatus="questionStatut" >
+							<tr>
+								<td colspan="2" >
+								<fieldset> <legend>Question n°<c:out value="${questionStatut.index + 1}" /></legend>
+									<spring:bind path="listQuestion[${questionStatut.index}].libelle">
+										<table width="100%">
+											<tr>
+												<td style="width:48%;" />
+												<td style="width:48%;" />
+												<td style="width:4%;" />
+											</tr>
+											<tr>
+												<td><label for="${status.expression}" class="adroite">Libellé de la question : </label></td>
+												<td><input  type="text" name="${status.expression}"/></td>
+											</tr>
+											<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
+											
+												<tr>
+													<spring:bind path="listQuestion[${questionStatut.index}].listResponse[${reponseStatut.index}].libelle">
+														<td><label for="${status.expression}" class="adroite">Réponse n°<c:out value="${reponseStatut.index + 1}" />: </label></td>
+														<td><input  type="text" name="${status.expression}"/></td>
+													</spring:bind>
+													<spring:bind path="listQuestion[${questionStatut.index}].listResponse[${reponseStatut.index}].goodResponse">
+														<td><input  type="checkbox" name="${status.expression}"/></td>
+													</spring:bind>
+												</tr>
+											
+											</c:forEach>
+										</table>
+									</spring:bind>
+									</fieldset>
+								</td>
+							</tr>
+							</c:forEach>
+							<tr>
+								<td colspan="2"><input type="submit" value="Créer" /></td>
+							</tr>
+						</table>
 					</form:form>
 				</div>
 			</div>
