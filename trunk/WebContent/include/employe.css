@@ -1,0 +1,72 @@
+body { 
+	background-color: white;
+	font-family: Arial; 
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#bandeausup { 
+	background-color: LightPink;
+	text-align: center;
+	margin: 20px;
+}
+
+#bandeausup h1 { 
+	color: white; 
+	font-weight: bold; 
+	font-size: 30px;
+	padding: 10px;
+}
+
+#bandeausup img {
+	float: left;	
+}
+
+#contenu {
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 10px;
+	text-align: center;	
+	margin: 20px;
+	border-style: solid;
+	border-width: thin; 
+	border-color: #71A417; 
+}
+
+#contenu fieldset {
+	text-align: left;
+	width: 300px;
+}
+
+#contenu label.adroite {
+    width: 80px;
+    padding-right: 2px;
+    text-align: right;
+    display: block;
+    float: left;
+}
+
+#contenu input.decale {
+	margin-left: 80px;
+}
+
+#contenu textarea {
+	width: 250px;	
+}
+
+table {
+	margin-top: 15px;	
+	margin-bottom: 15px;	
+}
+
+table td {
+	border: 1px solid #000000;
+	margin: 0px;
+}
+
+span.important {
+	color: red;	
+	font-weight: bold;
+}
