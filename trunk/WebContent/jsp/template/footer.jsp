@@ -1,1 +1,0 @@
-<p>(c) 2010 QCMTraining.com. All rights reserved.</p>
