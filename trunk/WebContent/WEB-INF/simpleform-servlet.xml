@@ -32,6 +32,7 @@
 			<ref bean="utilisateurDAO" />
 		</property>
 	</bean>
+	
 	<bean id="sujetManagerTarget" class="fr.dauphine.spring.manager.impl.SujetManagerImpl">
 		<property name="dao" ref="sujetDAO" />
 	</bean>
@@ -213,6 +214,7 @@
 			</props>
 		</property>
 	</bean>
+	
 	<bean id="sujetManager"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
