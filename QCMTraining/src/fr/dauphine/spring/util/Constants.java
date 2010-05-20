@@ -22,5 +22,5 @@ public final class Constants {
 	public static final String PARAM_CONTENT_INDEXADMIN = "/jsp/content/indexAdmin.jsp";
 	public static final String PARAM_CONTENT_INDEXUSER = "/jsp/content/indexUser.jsp";
 	public static final String PARAM_CONTENT_CREERUSER = "/jsp/content/creerUser.jsp";
-
+	
 }
