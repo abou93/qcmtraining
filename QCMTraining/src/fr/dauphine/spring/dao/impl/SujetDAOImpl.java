@@ -31,6 +31,9 @@ public class SujetDAOImpl extends AbstractDAOImpl<Sujet> implements SujetDAO {
 	 */
 	@Override
 	public Sujet save(Sujet entity) {
+		if(entity.getId() != null) {
+			
+		}
 		return super.save(entity);
 	}
 

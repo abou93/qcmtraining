@@ -43,6 +43,9 @@ public class Sujet extends BO {
 			number --;
 		}
 	}
+	public void addOneNewQuestion() {
+		this.addNewQuestion((short)1);
+	}
 	/**
 	 * @return the dateStart
 	 */

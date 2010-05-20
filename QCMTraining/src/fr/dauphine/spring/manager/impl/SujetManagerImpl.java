@@ -19,5 +19,6 @@ public class SujetManagerImpl extends AbstractManagerImpl<Sujet> implements
 	public SujetManagerImpl() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }

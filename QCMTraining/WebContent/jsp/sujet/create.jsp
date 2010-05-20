@@ -3,6 +3,7 @@
 	<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%> 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
 
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -25,6 +26,8 @@
 				
 					<form:form commandName="sujetForm" action="validationCreate.do"
 						method="post">
+						<input type="hidden" name="subAction" />
+						<input type="hidden" name="indexQuestion" />
 						<form:errors path="*" cssStyle="color:red;" />
 						<table width="100%">
 							<tr>
@@ -37,11 +40,11 @@
 							</tr>
 							<tr>
 								<td><label for="dateStart" class="adroite">Date de lancement : </label></td>
-								<td><form:input path="dateStart" size="10" /></td>
+								<td><input  type="text" name="dateStart" size="10" id="dateStart" value="<fmt:formatDate value="${sujetForm.dateStart}" pattern="dd/MM/yyyy" />" /></td>
 							</tr>
 							<tr>
 								<td><label for="dateEnd" class="adroite">Date de fin : </label></td>
-								<td><form:input path="dateEnd" size="10" /></td>
+								<td><input  type="text" name="dateEnd" id="dateEnd" size="10" value="<fmt:formatDate value="${sujetForm.dateEnd}" pattern="dd/MM/yyyy" />" /></td>
 							</tr>
 							<tr>
 								<td><label for="description" class="adroite">Description :</label></td>
@@ -60,21 +63,25 @@
 											</tr>
 											<tr>
 												<td><label for="${status.expression}" class="adroite">Libellé de la question : </label></td>
-												<td><input  type="text" name="${status.expression}"/></td>
+												<td><input  type="text" name="${status.expression}" id="${status.expression}" value="${aQuestion.libelle}"/></td>
 											</tr>
 											<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
 											
 												<tr>
 													<spring:bind path="listQuestion[${questionStatut.index}].listResponse[${reponseStatut.index}].libelle">
 														<td><label for="${status.expression}" class="adroite">Réponse n°<c:out value="${reponseStatut.index + 1}" />: </label></td>
-														<td><input  type="text" name="${status.expression}"/></td>
+														<td><input  type="text" name="${status.expression}" id="${status.expression}" value="${aReponse.libelle}" /></td>
 													</spring:bind>
-													<spring:bind path="listQuestion[${questionStatut.index}].listResponse[${reponseStatut.index}].goodResponse">
-														<td><input  type="checkbox" name="${status.expression}"/></td>
+													<spring:bind path="listQuestion[${questionStatut.index}].indexResponseTrue">
+														<td><input type="radio" <c:if test="${aQuestion.indexResponseTrue eq reponseStatut.index}">checked="checked"</c:if> name="${status.expression}" id="${status.expression}" value="${reponseStatut.index}" /></td>
 													</spring:bind>
 												</tr>
-											
 											</c:forEach>
+											<tr>
+												<td colspan="3">
+												<input type="submit" onclick="this.form.subAction.value='removeQuestion'; 
+													this.form.indexQuestion.value='${questionStatut.index}';" value="Supprimer la question"/></td>
+											</tr>
 										</table>
 									</spring:bind>
 									</fieldset>
@@ -82,7 +89,13 @@
 							</tr>
 							</c:forEach>
 							<tr>
-								<td colspan="2"><input type="submit" value="Créer" /></td>
+								<td colspan="2"><input type="submit" onclick="this.form.subAction.value='addQuestion'" value="Ajouter une question" /></td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:right;" >
+									<input type="submit" value="Créer" /> 
+									<input type="button" value="Annuler" onclick="window.location.href='<c:url value="/sujet/list.do" />';"/>
+								</td>
 							</tr>
 						</table>
 					</form:form>

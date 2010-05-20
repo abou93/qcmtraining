@@ -100,6 +100,8 @@
 		<property name="validator">
 			<ref bean="sujetValidator" />
 		</property>
+		<property name="nameOfView" value="../jsp/sujet/create" />
+		<property name="nameOfObject" value="sujetForm" />
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>

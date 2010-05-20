@@ -25,7 +25,7 @@ public abstract class AbstractDAOImpl<T> extends HibernateDaoSupport implements 
 	 * @see fr.dauphine.spring.dao.AbstractDAO#read(java.lang.String)
 	 */
 	@Override
-	public T read(String id) {
+	public T read(Long id) {
 		Criteria crit = getSession().createCriteria(getTemplateClass());
 		crit.add(Restrictions.eq("id", id));
 		return (T)crit.uniqueResult();

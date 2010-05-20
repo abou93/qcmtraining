@@ -8,5 +8,5 @@ public interface AbstractDAO<T> {
 	
 	T save(T entity);
 	
-	T read(String id);
+	T read(Long id);
 }

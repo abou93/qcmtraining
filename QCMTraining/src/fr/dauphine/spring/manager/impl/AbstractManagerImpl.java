@@ -50,7 +50,7 @@ public class AbstractManagerImpl<T extends BO> implements AbstractManager<T> {
 	}
 
 	@Override
-	public T read(String id) {
+	public T read(Long id) {
 		return dao.read(id);
 	}
 

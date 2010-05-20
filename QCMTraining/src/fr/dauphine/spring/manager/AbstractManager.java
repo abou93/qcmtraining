@@ -15,6 +15,6 @@ public interface AbstractManager<T extends BO> {
 
 	Collection<T> list();
 	T save(T entity);
-	T read(String id);
+	T read(Long id);
 	
 }
