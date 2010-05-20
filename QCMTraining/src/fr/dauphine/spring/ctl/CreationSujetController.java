@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import fr.dauphine.spring.bo.Sujet;
+import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
@@ -24,7 +25,8 @@ public class CreationSujetController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {
 		ModelAndView mav = new ModelAndView(nameOfView);
-		Sujet s = new Sujet(1);
+		Sujet s = new Sujet();
+		s.addNewQuestion(Constants.PARAM_DEFAULT_NUMBER_QUESTION);
 		mav.addObject(nameOfObject, s);
 		return mav;
 	}

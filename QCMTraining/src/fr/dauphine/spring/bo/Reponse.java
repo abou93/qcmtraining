@@ -8,8 +8,13 @@ package fr.dauphine.spring.bo;
  *
  */
 public class Reponse extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3945370594167120554L;
 	private boolean goodResponse;
 	private String libelle;
+	private Question question;
 	/**
 	 * 
 	 */
@@ -20,7 +25,7 @@ public class Reponse extends BO {
 	/**
 	 * @param id
 	 */
-	public Reponse(String id) {
+	public Reponse(Long id) {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}
@@ -51,6 +56,20 @@ public class Reponse extends BO {
 	 */
 	public void setGoodResponse(boolean goodResponse) {
 		this.goodResponse = goodResponse;
+	}
+
+	/**
+	 * @return the question
+	 */
+	public Question getQuestion() {
+		return question;
+	}
+
+	/**
+	 * @param question the question to set
+	 */
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 }

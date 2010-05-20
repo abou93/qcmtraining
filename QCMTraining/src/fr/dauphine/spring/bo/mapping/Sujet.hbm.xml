@@ -5,10 +5,9 @@
 <hibernate-mapping package="fr.dauphine.spring.bo">
 	<class name="Sujet" table="SUJET">
 		<!-- Clé générée automatiquement par Hibernate -->
-		<id name="id" type="string">
-			<column name="ID_SUJET" sql-type="char(32)" not-null="true" />
-			<generator class="uuid.hex" />
-		</id>
+		<id name="id" type="long" column="ID_SUJET" unsaved-value="0">
+            <generator class="identity"/>
+        </id>
 		<timestamp name="version" column="VERSION" unsaved-value="null" />
 		<property name="titre">
 			<column name="TITRE" length="250" not-null="true" />
@@ -27,9 +26,9 @@
 				SELECT COUNT(ID) FROM 
 			</formula>
 		</property-->
-		<bag name="listQuestion" inverse="true" cascade="all">
-			<key column="ID_SUJET" />
-			<many-to-many class="fr.dauphine.spring.bo.Question" />
+		<bag name="listQuestion" inverse="true" lazy="true" cascade="all">
+			<key column="ID_SUJET" not-null="true" />
+			<one-to-many class="fr.dauphine.spring.bo.Question" />
 		</bag>
 	</class>
 </hibernate-mapping>

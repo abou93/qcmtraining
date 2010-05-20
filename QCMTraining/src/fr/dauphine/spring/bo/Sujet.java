@@ -14,6 +14,10 @@ import fr.dauphine.spring.util.Constants;
  *
  */
 public class Sujet extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4059193207764486862L;
 	private String titre;
 	private String description;
 	private List<Question> listQuestion;
@@ -26,12 +30,17 @@ public class Sujet extends BO {
 	public Sujet() {
 		// TODO Auto-generated constructor stub
 	}
-	public Sujet(int numberOfQuestion) {
-		this.listQuestion = new ArrayList<Question>(0);
-		while(numberOfQuestion != 0) {
-			Question q = new Question(Constants.PARAM_DEFAULT_NUMBER_REPONSE);
+	
+	public void addNewQuestion(short number) {
+		if(this.listQuestion == null) {
+			this.listQuestion = new ArrayList<Question>(0);
+		}
+		while(number != 0) {
+			Question q = new Question();
+			q.addReponse((short)Constants.PARAM_DEFAULT_NUMBER_REPONSE);
+			q.setSujet(this);
 			this.listQuestion.add(q);
-			numberOfQuestion --;
+			number --;
 		}
 	}
 	/**
@@ -65,7 +74,7 @@ public class Sujet extends BO {
 	/**
 	 * @param id
 	 */
-	public Sujet(String id) {
+	public Sujet(Long id) {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}

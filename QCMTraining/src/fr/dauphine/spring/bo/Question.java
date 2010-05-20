@@ -11,8 +11,13 @@ import java.util.List;
  *
  */
 public class Question extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5325396570270425519L;
 	private String libelle;
 	private List<Reponse> listResponse;
+	private Sujet sujet;
 	
 	/**
 	 * 
@@ -21,19 +26,21 @@ public class Question extends BO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Question(int numberOfReponse) {
-		this.listResponse = new ArrayList<Reponse>(0);
-		while(numberOfReponse != 0) {
-			Reponse r = new Reponse();
-			this.listResponse.add(r);
-			numberOfReponse--;
+	public void addReponse(short number) {
+		if(this.listResponse == null) {
+			this.listResponse = new ArrayList<Reponse>(0);
+		}
+		while(number != 0) {
+			Reponse rep = new Reponse();
+			rep.setQuestion(this);
+			this.listResponse.add(rep);
+			number --;
 		}
 	}
-
 	/**
 	 * @param id
 	 */
-	public Question(String id) {
+	public Question(Long id) {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}
@@ -64,6 +71,20 @@ public class Question extends BO {
 	 */
 	public void setListResponse(List<Reponse> listResponse) {
 		this.listResponse = listResponse;
+	}
+
+	/**
+	 * @return the sujet
+	 */
+	public Sujet getSujet() {
+		return sujet;
+	}
+
+	/**
+	 * @param sujet the sujet to set
+	 */
+	public void setSujet(Sujet sujet) {
+		this.sujet = sujet;
 	}
 
 }

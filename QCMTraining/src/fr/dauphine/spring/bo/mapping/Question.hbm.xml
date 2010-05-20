@@ -5,22 +5,23 @@
 <hibernate-mapping package="fr.dauphine.spring.bo">
 	<class name="Question" table="QUESTION">
 		<!-- Clé générée automatiquement par Hibernate -->
-		<id name="id" type="string">
-			<column name="ID_QUESTION" sql-type="char(32)" not-null="true" />
-			<generator class="uuid.hex" />
+		<id name="id" type="long" column="ID_QUESTION" unsaved-value="0">
+			<generator class="identity" />
 		</id>
 		<timestamp name="version" column="VERSION" unsaved-value="null" />
 		<property name="libelle">
 			<column name="LIBELLE" length="1000" not-null="true" />
 		</property>
-		<!-- property name="nombreDeParticipants">
-			<formula>
-				SELECT COUNT(ID) FROM 
-			</formula>
-		</property-->
-		<bag name="listResponse" lazy="true" inverse="true" cascade="all" >
+		<!--
+			property name="nombreDeParticipants"> <formula> SELECT COUNT(ID) FROM
+			</formula> </property
+		-->
+		<many-to-one name="sujet" column="ID_SUJET"
+			class="fr.dauphine.spring.bo.Sujet" cascade="none" />
+		<bag name="listResponse" lazy="true" inverse="true" cascade="all">
 			<key column="ID_QUESTION" />
-			<many-to-many class="fr.dauphine.spring.bo.Reponse" column="ID_REPONSE" />
+			<one-to-many class="fr.dauphine.spring.bo.Reponse" />
 		</bag>
+
 	</class>
 </hibernate-mapping>

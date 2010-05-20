@@ -1,10 +1,16 @@
 package fr.dauphine.spring.bo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-abstract public class BO {
+abstract public class BO implements Serializable{
 
-	protected String id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3647614335420874969L;
+
+	protected Long id;
 	
 	protected Timestamp version;
 
@@ -12,18 +18,25 @@ abstract public class BO {
 		
 	}
 	
-	public BO(String id) {
+	public BO(Long id) {
 		this.id = id;
 	}
 
-	public String getId() {
+	
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Timestamp getVersion() {
 		return version;
 	}

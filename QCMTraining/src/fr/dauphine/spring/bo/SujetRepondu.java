@@ -10,6 +10,10 @@ import java.util.Set;
  *
  */
 public class SujetRepondu extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3999767834284009842L;
 	private Sujet sujet;
 	private Set<Reponse> reponsesChoisies;
 	/**
@@ -22,7 +26,7 @@ public class SujetRepondu extends BO {
 	/**
 	 * @param id
 	 */
-	public SujetRepondu(String id) {
+	public SujetRepondu(Long id) {
 		super(id);
 		// TODO Auto-generated constructor stub
 	}

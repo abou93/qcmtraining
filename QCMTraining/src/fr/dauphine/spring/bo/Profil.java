@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class Profil extends BO {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8871151908986707520L;
 	String libelle;
 	int code;
 	

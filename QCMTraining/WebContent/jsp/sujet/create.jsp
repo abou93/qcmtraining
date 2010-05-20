@@ -37,11 +37,11 @@
 							</tr>
 							<tr>
 								<td><label for="dateStart" class="adroite">Date de lancement : </label></td>
-								<td><form:input path="dateStart" size="8" /></td>
+								<td><form:input path="dateStart" size="10" /></td>
 							</tr>
 							<tr>
 								<td><label for="dateEnd" class="adroite">Date de fin : </label></td>
-								<td><form:input path="dateStart" size="8" /></td>
+								<td><form:input path="dateEnd" size="10" /></td>
 							</tr>
 							<tr>
 								<td><label for="description" class="adroite">Description :</label></td>

@@ -1,6 +1,10 @@
 package fr.dauphine.spring.bo;
 
 public class Habilitation extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2196455803517145692L;
 	String libelle;
 	String code;
 	/**

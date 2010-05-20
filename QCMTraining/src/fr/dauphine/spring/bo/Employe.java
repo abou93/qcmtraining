@@ -2,6 +2,11 @@ package fr.dauphine.spring.bo;
 
 public class Employe extends BO {
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2176971034998003151L;
+
 	private String nom;
 	
 	private String prenom;
@@ -12,7 +17,7 @@ public class Employe extends BO {
 		
 	}
 	
-	public Employe(String id) {
+	public Employe(Long id) {
 		super(id);
 	}
 
@@ -22,7 +27,7 @@ public class Employe extends BO {
 
 	
 	
-	public Employe(String id, String nom, String prenom, Societe societe) {
+	public Employe(Long id, String nom, String prenom, Societe societe) {
 		super(id);
 		this.nom = nom;
 		this.prenom = prenom;

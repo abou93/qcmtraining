@@ -10,6 +10,10 @@ import java.util.Set;
  *
  */
 public class Utilisateur extends BO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3207586303169750748L;
 	private Profil profil;
 	private String nom;
 	private String prenom;
