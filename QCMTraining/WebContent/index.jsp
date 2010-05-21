@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
@@ -18,17 +19,12 @@
 </jsp:include>
 <div id="page">
 	<div id="bg">
-		<div id="content">
-			<div class="post" style="padding-top: 57px;">
-				<h2 class="title">Bienvenue sur QCM Training</h2>
-				<div class="entry">
-					Vous retrouvez ici un environnement d'entrainement aux QCM!
-				</div>
-			</div>
-		</div>
+		<jsp:include page="${sessionScope['pageContent']}"/>
 		<!-- end contentn -->
 		<div id="sidebar">
 			<div id="login">
+				<p>isAdmin : <c:out value="${sessionScope['isAdmin']}" /> / isLogged : <c:out value="${sessionScope['isLogged']}" /></p>
+				<h2>Connectez-vous</h2>
 				<jsp:include page="login.do"/>
 			</div>
 			
