@@ -1,6 +1,6 @@
-<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%> 
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <h2>Connectez-vous</h2>
 <form:form commandName="utilisateur" action="validationLogin.do"
 	method="post">
