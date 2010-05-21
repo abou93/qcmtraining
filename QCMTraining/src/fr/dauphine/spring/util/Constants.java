@@ -26,6 +26,11 @@ public final class Constants {
 	public static final String PARAM_CONTENT_INDEXADMIN = "/jsp/content/indexAdmin.jsp";
 	public static final String PARAM_CONTENT_INDEXUSER = "/jsp/content/indexUser.jsp";
 	public static final String PARAM_CONTENT_CREERUSER = "/jsp/content/creerUser.jsp";
+	public static final String PARAM_CONTENT_LISTEUSER = "/jsp/content/listeUser.jsp";
 	
+	public static final String PARAM_ACTIVEPAGE = "activePage";
+	public static final int PARAM_ACTIVEPAGE_ACCUEIL = 1;
+	public static final int PARAM_ACTIVEPAGE_ADMINISTRATION = 2;
+	public static final int PARAM_ACTIVEPAGE_QCM = 3;
 
 }
