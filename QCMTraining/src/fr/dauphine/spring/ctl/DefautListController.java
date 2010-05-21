@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import fr.dauphine.spring.bo.BO;
 import fr.dauphine.spring.manager.AbstractManager;
+import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
@@ -31,10 +32,11 @@ public class DefautListController<T extends BO> extends AbstractController {
 	 * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception {
+	protected ModelAndView handleRequestInternal(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView(nameOfView);
 		mav.addObject(nameOfList, manager.list());
+		request.getSession().setAttribute(Constants.PARAM_PAGE_CONTENT,Constants.PARAM_CONTENT_LISTEUSER);
 		return mav;
 	}
 
