@@ -13,8 +13,11 @@
 			<br />
 			<h3>Gestion des sujets</h3>
 				<div>
-					<a href="sujet/create.do" title="">Créer un sujet</a>
-				</div>	
+					<a href="listeSujet.do" title="">Liste des sujets</a>
+				</div>
+				<div>
+					<a href="creerSujet.do" title="">Créer un sujet</a>
+				</div>		
 			<br />
 			<h3>Gestion des QCM</h3>	
 				<div>Liste des scores</div>

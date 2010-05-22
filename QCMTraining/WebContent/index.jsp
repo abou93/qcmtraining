@@ -19,7 +19,7 @@
 </jsp:include>
 <div id="page">
 	<div id="bg">
-		<jsp:include page="${sessionScope['pageContent']}"/>
+		<jsp:include page="${pageContent}"/>
 		<!-- end contentn -->
 		<div id="sidebar">
 			<div id="login">

@@ -6,9 +6,9 @@
 
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
-		<h2 class="title">Création utilisateur</h2>
+		<h2 class="title">Créer un utilisateur</h2>
 		<div class="entry">
-			<form:form commandName="utilisateur" action="validationCreerUser.do" method="post">
+			<form:form commandName="userForm" action="validationCreerUser.do" method="post">
 				<form:errors path="*" />
 				<fieldset>
 					<legend>

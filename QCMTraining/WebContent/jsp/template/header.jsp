@@ -13,11 +13,11 @@
 		</c:if>
 		<c:if test="${sessionScope['utilisateur'] || sessionScope['isAdmin']}">
 			<li <c:if test="${sessionScope['activePage'] == 3}">class="active"</c:if>><a
-				href="sujet/list.do" accesskey="3" title="">Sujet</a></li>
+				href="listeSujet.do" accesskey="3" title="">Sujet</a></li>
 		</c:if>
 		<c:if test="${sessionScope['utilisateur'] || sessionScope['isAdmin']}">
 			<li <c:if test="${sessionScope['activePage'] == 3}">class="active"</c:if>><a
-				href="qcm/accueil.do" accesskey="3" title="">Liste des QCM</a></li>
+				href="qcm/accueil.do" accesskey="4" title="">Liste des QCM</a></li>
 		</c:if>
 	</ul>
 	</div>
