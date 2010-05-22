@@ -6,6 +6,7 @@ package fr.dauphine.spring.ctl;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.dauphine.spring.bo.BO;
+import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
@@ -15,6 +16,7 @@ abstract class DefaultController<TypeObject extends BO> {
 
 	protected String nameOfView;
 	protected String nameOfObject;
+	protected String nameOfPageContent;
 	protected Class<TypeObject> typeObjectClass;
 	
 	/**
@@ -25,6 +27,7 @@ abstract class DefaultController<TypeObject extends BO> {
 	}
 	public ModelAndView constructView() {
 		ModelAndView mav = new ModelAndView(nameOfView);
+		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		return mav;
 	}
 	public ModelAndView constructViewWithNewInstance() throws InstantiationException, IllegalAccessException {
@@ -71,6 +74,14 @@ abstract class DefaultController<TypeObject extends BO> {
 	 */
 	public void setTypeObjectClass(Class<TypeObject> typeObjectClass) {
 		this.typeObjectClass = typeObjectClass;
+	}
+	
+	public String getNameOfPageContent() {
+		return nameOfPageContent;
+	}
+	
+	public void setNameOfPageContent(String nameOfPageContent) {
+		this.nameOfPageContent = nameOfPageContent;
 	}
 	
 }

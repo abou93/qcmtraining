@@ -34,7 +34,7 @@ public class DefautListController<TypeObject extends BO> extends DefaultControll
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = constructView();
 		mav.addObject(nameOfObject, manager.list());
-		request.getSession().setAttribute(Constants.PARAM_PAGE_CONTENT,Constants.PARAM_CONTENT_LISTEUSER);
+		mav.addObject(Constants.PARAM_PAGE_CONTENT,nameOfPageContent);
 		return mav;
 	}
 

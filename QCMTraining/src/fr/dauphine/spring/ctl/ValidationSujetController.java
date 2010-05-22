@@ -73,11 +73,14 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		} else {
 			mav = this.onSubmit(command);
 		}
+		if(mav==null) {
+			constructView();
+		}
 		return mav;
 	}
 
 	private ModelAndView removeQuestion(Object command, int indexQuestion) {
-		ModelAndView mav = new ModelAndView(nameOfView);
+		ModelAndView mav = constructView();
 		Sujet sujet = (Sujet) command;
 		if (indexQuestion < sujet.getListQuestion().size()) {
 			sujet.getListQuestion().remove(indexQuestion);
@@ -87,7 +90,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 	}
 
 	private ModelAndView addQuestionToForm(Object command) {
-		ModelAndView mav = new ModelAndView(nameOfView);
+		ModelAndView mav = constructView();
 		Sujet sujet = (Sujet) command;
 		sujet.addOneNewQuestion();
 		mav.addObject(nameOfObject, sujet);
@@ -102,7 +105,8 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 			quest.getListResponse().get(quest.getIndexResponseTrue()).setGoodResponse(true);
 		}
 		manager.save(sujet);
-		ModelAndView mav = new ModelAndView("redirect:view.do?" + Constants.PARAM_REQUEST_ID +"="+ sujet.getId());
+		ModelAndView mav = constructView();
+		mav.setViewName("redirect:voirSujet.do?" + Constants.PARAM_REQUEST_ID +"="+ sujet.getId());
 		return mav;
 	}
 

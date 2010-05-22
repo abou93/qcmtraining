@@ -18,6 +18,9 @@ import fr.dauphine.spring.util.Constants;
  */
 public class LoginController implements Controller {
 
+	private String nameOfLoggedView;
+	private String nameOfNotLoggedView;
+	
 	/**
 	 * 
 	 */
@@ -34,12 +37,28 @@ public class LoginController implements Controller {
 		ModelAndView mav = null;
 		Utilisateur util = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
 		if(util != null && util.getId() != null) {
-			mav = new ModelAndView("jsp/template/logged");
+			mav = new ModelAndView(nameOfLoggedView);
 		} else {
-			mav = new ModelAndView("jsp/template/login");
+			mav = new ModelAndView(nameOfNotLoggedView);
 			mav.addObject("utilisateur", new Utilisateur());
 		}
 		return mav;
+	}
+
+	public String getNameOfLoggedView() {
+		return nameOfLoggedView;
+	}
+
+	public void setNameOfLoggedView(String nameOfLoggedView) {
+		this.nameOfLoggedView = nameOfLoggedView;
+	}
+
+	public String getNameOfNotLoggedView() {
+		return nameOfNotLoggedView;
+	}
+
+	public void setNameOfNotLoggedView(String nameOfNotLoggedView) {
+		this.nameOfNotLoggedView = nameOfNotLoggedView;
 	}
 
 }

@@ -19,7 +19,7 @@ import fr.dauphine.spring.util.Constants;
  */
 
 @SuppressWarnings("deprecation")
-public class AdminAccueilController extends SimpleFormController {
+public class AdminAccueilController extends DefaultSimpleFormController<Utilisateur> {
 	
 	/**
 	 * 
@@ -29,9 +29,24 @@ public class AdminAccueilController extends SimpleFormController {
 	}
 	
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("index");
-		request.getSession().setAttribute(Constants.PARAM_PAGE_CONTENT,Constants.PARAM_CONTENT_INDEXADMIN);
+		ModelAndView mav = constructView();
 		request.getSession().setAttribute(Constants.PARAM_ACTIVEPAGE,Constants.PARAM_ACTIVEPAGE_ADMINISTRATION);
 		return mav;
+	}
+
+	public String getNameOfView() {
+		return nameOfView;
+	}
+
+	public void setNameOfView(String nameOfView) {
+		this.nameOfView = nameOfView;
+	}
+
+	public String getNameOfPageContent() {
+		return nameOfPageContent;
+	}
+
+	public void setNameOfPageContent(String nameOfPageContent) {
+		this.nameOfPageContent = nameOfPageContent;
 	}
 }
