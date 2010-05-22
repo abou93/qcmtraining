@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.dauphine.spring.bo">
+	<class name="SujetInfo" table="SUJET">
+		<!-- Clé générée automatiquement par Hibernate -->
+		<id name="id" type="long" column="ID_SUJET" unsaved-value="0">
+            <generator class="increment"/>
+        </id>
+		<timestamp name="version" column="VERSION" unsaved-value="null" />
+		<property name="titre">
+			<column name="TITRE" length="250" not-null="true" />
+		</property>
+		<property name="description">
+			<column name="DESCRIPTION" length="1000" />
+		</property>
+		<property name="dateStart">
+			<column name="DATE_START" sql-type="DATE" not-null="true" />
+		</property>
+		<property name="dateEnd">
+			<column name="DATE_END" sql-type="DATE" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

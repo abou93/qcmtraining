@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import fr.dauphine.spring.bo.Sujet;
 import fr.dauphine.spring.util.Constants;
@@ -16,50 +15,14 @@ import fr.dauphine.spring.util.Constants;
  * @author Mathieu
  * 
  */
-public class CreationSujetController implements Controller {
-
-	private String nameOfView;
-	private String nameOfObject;
+public class CreationSujetController extends DefaultCreationController<Sujet> {
 
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception {
-		ModelAndView mav = new ModelAndView(nameOfView);
-		Sujet s = new Sujet();
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelAndView mav = super.handleRequest(request, response);
+		Sujet s = (Sujet)mav.getModel().get(nameOfObject);
 		s.addNewQuestion(Constants.PARAM_DEFAULT_NUMBER_QUESTION);
-		mav.addObject(nameOfObject, s);
 		return mav;
 	}
-
-
-	/**
-	 * @return the nameOfView
-	 */
-	public String getNameOfView() {
-		return nameOfView;
-	}
-
-	/**
-	 * @param nameOfView
-	 *            the nameOfView to set
-	 */
-	public void setNameOfView(String nameOfView) {
-		this.nameOfView = nameOfView;
-	}
-
-	/**
-	 * @return the nameOfObject
-	 */
-	public String getNameOfObject() {
-		return nameOfObject;
-	}
-
-	/**
-	 * @param nameOfObject
-	 *            the nameOfObject to set
-	 */
-	public void setNameOfObject(String nameOfObject) {
-		this.nameOfObject = nameOfObject;
-	}
-
 }

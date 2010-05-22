@@ -28,5 +28,7 @@
 		<mapping resource="fr/dauphine/spring/bo/mapping/Sujet.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Question.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Reponse.hbm.xml" />
+		<mapping resource="fr/dauphine/spring/bo/mapping/SujetInfo.hbm.xml" />
+		<mapping resource="fr/dauphine/spring/bo/mapping/Paticipation.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

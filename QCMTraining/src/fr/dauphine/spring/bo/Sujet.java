@@ -13,17 +13,13 @@ import fr.dauphine.spring.util.Constants;
  * @author Mathieu
  *
  */
-public class Sujet extends BO {
+public class Sujet extends SujetInfo {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4059193207764486862L;
-	private String titre;
-	private String description;
+	
 	private List<Question> listQuestion;
-	private int nombreDeParticipant;
-	private Date dateStart;
-	private Date dateEnd;
 	/**
 	 * 
 	 */
@@ -46,32 +42,12 @@ public class Sujet extends BO {
 	public void addOneNewQuestion() {
 		this.addNewQuestion((short)1);
 	}
-	/**
-	 * @return the dateStart
-	 */
-	public Date getDateStart() {
-		return dateStart;
-	}
-
-	/**
-	 * @param dateStart the dateStart to set
-	 */
-	public void setDateStart(Date dateStart) {
-		this.dateStart = dateStart;
-	}
-
-	/**
-	 * @return the dateEnd
-	 */
-	public Date getDateEnd() {
-		return dateEnd;
-	}
-
-	/**
-	 * @param dateEnd the dateEnd to set
-	 */
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
+	public boolean isActif() {
+		Date today = new Date();
+		if((this.dateStart.before(today) || this.dateStart.equals(today)) && this.dateEnd.after(today)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -80,34 +56,6 @@ public class Sujet extends BO {
 	public Sujet(Long id) {
 		super(id);
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @return the titre
-	 */
-	public String getTitre() {
-		return titre;
-	}
-
-	/**
-	 * @param titre the titre to set
-	 */
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	/**
@@ -124,18 +72,5 @@ public class Sujet extends BO {
 		this.listQuestion = listQuestion;
 	}
 
-	/**
-	 * @return the nombreDeParticipant
-	 */
-	public int getNombreDeParticipant() {
-		return nombreDeParticipant;
-	}
-
-	/**
-	 * @param nombreDeParticipant the nombreDeParticipant to set
-	 */
-	public void setNombreDeParticipant(int nombreDeParticipant) {
-		this.nombreDeParticipant = nombreDeParticipant;
-	}
 
 }

@@ -31,7 +31,7 @@
 							</tr>
 							<c:forEach var="aSujet" items="${sujetList}">
 								<tr>
-									<td><a href="<c:url value="/sujet/view.do?sujetId=${aUtilisateur.id}" />"><c:out
+									<td><a href="<c:url value="/sujet/view.do?idObject=${aSujet.id}" />"><c:out
 										value="${aSujet.titre}" /></a></td>
 									<td><c:out
 										value="${aSujet.description}" /></td>

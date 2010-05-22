@@ -43,6 +43,14 @@
 	<!-- Controllers -->
 	<bean name="AccueilController" class="fr.dauphine.spring.ctl.AccueilController" />
 	<bean name="AdminAccueilController" class="fr.dauphine.spring.ctl.AdminAccueilController" />
+	<bean name="ViewSujetController" class="fr.dauphine.spring.ctl.DefaultViewController" >
+		<property name="manager">
+			<ref bean="sujetManager" />
+		</property>
+		<property name="nameOfView" value="../jsp/sujet/view"/>
+		<property name="nameOfObject" value="sujet"/>
+		<property name="errorView" value="../jsp/errorView"/>
+	</bean>
 	<bean name="DeconnexionController" class="fr.dauphine.spring.ctl.DeconnexionController" />
 	<bean name="LoginController" class="fr.dauphine.spring.ctl.LoginController" />
 	<bean name="UtilisateurListController" class="fr.dauphine.spring.ctl.DefautListController">
@@ -50,14 +58,14 @@
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfView" value="index"/>
-		<property name="nameOfList" value="utilisateurList"/>
+		<property name="nameOfObject" value="utilisateurList"/>
 	</bean>
 	<bean name="SujetListController" class="fr.dauphine.spring.ctl.DefautListController">
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>
 		<property name="nameOfView" value="../jsp/sujet/list"/>
-		<property name="nameOfList" value="sujetList"/>
+		<property name="nameOfObject" value="sujetList"/>
 	</bean>
 	<bean name="CreerUserController" class="fr.dauphine.spring.ctl.CreerUserController">
 		<property name="utilisateurManager">
@@ -65,15 +73,10 @@
 		</property>
 	</bean>
 	
-	<!-- bean name="CreationSocieteController" class="fr.dauphine.spring.ctl.CreationSocieteController">
-		<property name="repertoireManager">
-			<ref bean="repertoireManager" />
-		</property>
-	</bean-->
-	
 	<bean name="CreationSujetController" class="fr.dauphine.spring.ctl.CreationSujetController" >
 		<property name="nameOfView" value="../jsp/sujet/create" />
-		<property name="nameOfObject" value="sujetForm"></property>
+		<property name="nameOfObject" value="sujetForm"/>
+		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Sujet"/>
 	</bean>
 	
 	<bean name="ValidationLoginController" class="fr.dauphine.spring.ctl.ValidationLoginController">
@@ -108,10 +111,7 @@
 			<value>../jsp/sujet/create</value>
 		</property>
 		<property name="successView">
-			<value>index</value>
-		</property>
-		<property name="validator">
-			<ref bean="sujetValidator" />
+			<value>../jsp/sujet/view_admin</value>
 		</property>
 		<property name="nameOfView" value="../jsp/sujet/create" />
 		<property name="nameOfObject" value="sujetForm" />
@@ -168,6 +168,7 @@
 				<prop key="/sujet/list.do">SujetListController</prop>
 				<prop key="/sujet/create.do">CreationSujetController</prop>
 				<prop key="/sujet/validationCreate.do">ValidationSujetController</prop>
+				<prop key="/sujet/view.do">ViewSujetController</prop>
 			</props>
 		</property>
 		<property name="interceptors">

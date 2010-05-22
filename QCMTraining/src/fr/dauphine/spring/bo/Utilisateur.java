@@ -20,7 +20,7 @@ public class Utilisateur extends BO {
 	private String email;
 	private byte[] photo;
 	private String password;
-	private Set<SujetRepondu> mesSujets;
+	private Set<Participation> mesSujets;
 	/**
 	 * @return the password
 	 */
@@ -102,13 +102,13 @@ public class Utilisateur extends BO {
 	/**
 	 * @return the mesSujets
 	 */
-	public Set<SujetRepondu> getMesSujets() {
+	public Set<Participation> getMesSujets() {
 		return mesSujets;
 	}
 	/**
 	 * @param mesSujets the mesSujets to set
 	 */
-	public void setMesSujets(Set<SujetRepondu> mesSujets) {
+	public void setMesSujets(Set<Participation> mesSujets) {
 		this.mesSujets = mesSujets;
 	}
 

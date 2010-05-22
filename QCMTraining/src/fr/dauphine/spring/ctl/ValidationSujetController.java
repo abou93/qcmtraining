@@ -13,25 +13,17 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import fr.dauphine.spring.bo.Question;
 import fr.dauphine.spring.bo.Reponse;
 import fr.dauphine.spring.bo.Sujet;
-import fr.dauphine.spring.manager.SujetManager;
 import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
  * 
  */
-@SuppressWarnings("deprecation")
-public class ValidationSujetController extends SimpleFormController {
-
-	SujetManager manager;
-	private String nameOfView;
-	private String nameOfObject;
-	
+public class ValidationSujetController extends DefaultSimpleFormController<Sujet> {
 
 	/**
 	 * 
@@ -39,7 +31,7 @@ public class ValidationSujetController extends SimpleFormController {
 	public ValidationSujetController() {
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
 	protected void initBinder(HttpServletRequest request,
 			ServletRequestDataBinder binder) throws Exception {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -104,15 +96,14 @@ public class ValidationSujetController extends SimpleFormController {
 
 	@Override
 	protected ModelAndView onSubmit(Object command) throws Exception {
-
 		Sujet sujet = (Sujet) command;
 		System.out.println(">> Sujet : " + sujet.getTitre());
 		for(Question quest : sujet.getListQuestion()) {
 			quest.getListResponse().get(quest.getIndexResponseTrue()).setGoodResponse(true);
 		}
 		manager.save(sujet);
-
-		return super.onSubmit(command);
+		ModelAndView mav = new ModelAndView("redirect:view.do?" + Constants.PARAM_REQUEST_ID +"="+ sujet.getId());
+		return mav;
 	}
 
 	/*
@@ -147,75 +138,31 @@ public class ValidationSujetController extends SimpleFormController {
 					errors.rejectValue("titre", "Valeur manquante!", null,
 							"Le titre du QCM est obligatoire.");
 				}
+				boolean errorQuestion = false;
+				boolean reponseErreur = false;
 				for (short i = 0; i < sujet.getListQuestion().size(); i++) {
 					Question question = sujet.getListQuestion().get(i);
-					if (question.getLibelle() == null
-							|| question.getLibelle().isEmpty()) {
+					if (!errorQuestion && (question.getLibelle() == null
+							|| question.getLibelle().isEmpty())) {
 						errors.rejectValue("listQuestion[" + i + "].libelle",
 								"Valeur manquante!", null,
-								"Le libellé de la question n°" + (i + 1)
-										+ " est obligatoire.");
+								"Le libellé des questions est obligatoire.");
+						errorQuestion = true;
 					}
-					for (short j = 0; j < question.getListResponse().size(); j++) {
+					
+					for (short j = 0;!reponseErreur && j < question.getListResponse().size(); j++) {
 						Reponse rep = question.getListResponse().get(j);
 						if (rep.getLibelle() == null
 								|| rep.getLibelle().isEmpty()) {
 							errors.rejectValue("listQuestion[" + i
 									+ "].listResponse[" + j + "].libelle",
 									"Valeur manquante!", null,
-									"Le libellé de la réponse n°" + (j + 1)
-											+ " à la question n°" + (i + 1)
-											+ " est obligatoire.");
+									"Le libellé des réponses est obligatoire.");
+							reponseErreur = true;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	/**
-	 * @return the manager
-	 */
-	public SujetManager getManager() {
-		return manager;
-	}
-
-	/**
-	 * @param manager
-	 *            the manager to set
-	 */
-	public void setManager(SujetManager manager) {
-		this.manager = manager;
-	}
-
-	/**
-	 * @return the nameOfView
-	 */
-	public String getNameOfView() {
-		return nameOfView;
-	}
-
-	/**
-	 * @param nameOfView
-	 *            the nameOfView to set
-	 */
-	public void setNameOfView(String nameOfView) {
-		this.nameOfView = nameOfView;
-	}
-
-	/**
-	 * @return the nameOfObject
-	 */
-	public String getNameOfObject() {
-		return nameOfObject;
-	}
-
-	/**
-	 * @param nameOfObject
-	 *            the nameOfObject to set
-	 */
-	public void setNameOfObject(String nameOfObject) {
-		this.nameOfObject = nameOfObject;
-	}
-
 }
