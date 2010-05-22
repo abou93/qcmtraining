@@ -24,7 +24,6 @@
 		<div id="sidebar">
 			<div id="login">
 				<p>isAdmin : <c:out value="${sessionScope['isAdmin']}" /> / isLogged : <c:out value="${sessionScope['isLogged']}" /></p>
-				<h2>Connectez-vous</h2>
 				<jsp:include page="login.do"/>
 			</div>
 			
