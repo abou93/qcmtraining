@@ -17,7 +17,7 @@ public class Participation extends BO {
 	 * 
 	 */
 	private static final long serialVersionUID = 3999767834284009842L;
-	private Sujet sujet;
+	private SujetInfo sujet;
 	private List<Reponse> reponsesChoisies;
 	private Utilisateur user;
 	private List<Question> listToDisplay;
@@ -36,17 +36,18 @@ public class Participation extends BO {
 	}
 
 
+
 	/**
 	 * @return the sujet
 	 */
-	public Sujet getSujet() {
+	public SujetInfo getSujet() {
 		return sujet;
 	}
 
 	/**
 	 * @param sujet the sujet to set
 	 */
-	public void setSujet(Sujet sujet) {
+	public void setSujet(SujetInfo sujet) {
 		this.sujet = sujet;
 	}
 

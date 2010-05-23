@@ -53,7 +53,7 @@ public class CreationParticipationController extends
 			}
 			Participation part = (Participation)mav.getModel().get(nameOfObject);
 			part.setSujet(sujet);
-			
+			part.setUser(util);
 			part.setListToDisplay(sujet.getRandomListOfQuestion());
 			mav.addObject(nameOfObject, part);
 		}

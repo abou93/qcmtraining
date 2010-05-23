@@ -88,10 +88,11 @@ public class Sujet extends SujetInfo {
 		this.nbQuestionDisplay = nbQuestionDisplay;
 	}
 	public List<Question> getRandomListOfQuestion() {
-		List<Question> listShuffle = getListQuestion();
+		List<Question> listShuffle = new ArrayList<Question>(0);
+		listShuffle.addAll(listQuestion);
 		Collections.shuffle(listShuffle);
 		if(nbQuestionDisplay < listShuffle.size()) {
-			listShuffle = listShuffle.subList(0, nbQuestionDisplay);
+			listShuffle.subList(0, nbQuestionDisplay).clear();
 		}
 		for(Question quest : listShuffle) {
 			Collections.shuffle(quest.getListResponse());

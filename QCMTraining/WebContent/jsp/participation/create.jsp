@@ -8,8 +8,11 @@
 <div id="content">
 <div class="post" style="padding-top: 57px;">
 <h2 class="title">Participation au sujet : <c:out value="${participationForm.sujet.titre}" /> </h2>
-<div class="entry"><form:form commandName="participationForm"
+<div class="entry"><form:form commandName="participationForm" 
 	action="validerCreerParticipation.do" method="post">
+	<form:hidden path="user.id" />
+	<form:hidden path="sujet.id" />
+	
 	<form:errors path="*" cssStyle="color:red;" />
 	<table width="100%">
 		<tr>
@@ -18,7 +21,7 @@
 		</tr>
 		<tr>
 			<td><label for="titre" class="adroite">Titre : </label></td>
-			<td><c:out value="${participationForm.sujet.titre}" /></td>
+			<td><form:hidden path="sujet.titre" /> <c:out value="${participationForm.sujet.titre}" /></td>
 		</tr>
 		<tr>
 			<td><label for="dateStart" class="adroite">Date de lancement : </label></td>
@@ -30,10 +33,11 @@
 		</tr>
 		<tr>
 			<td><label for="description" class="adroite">Description :</label></td>
-			<td><span id="titre"><c:out value="${participationForm.sujet.description}" /></span></td>
+			<td><span id="titre"><form:hidden path="sujet.description" /><c:out value="${participationForm.sujet.description}" /></span></td>
 		</tr>
-		<c:forEach var="aQuestion" items="${participationForm.sujet.listQuestion}"
+		<c:forEach var="aQuestion" items="${participationForm.listToDisplay}"
 			varStatus="questionStatut">
+				<input type="hidden" name="listToDisplay[${questionStatut.index}].id" value="${aQuestion.id}" />
 			<tr>
 				<td colspan="2" >
 				<fieldset> <legend>Question n°<c:out value="${questionStatut.index + 1}" /></legend>
@@ -45,15 +49,21 @@
 							</tr>
 							<tr>
 								<td>Libellé de la question :</td>
-								<td><c:out value="${aQuestion.libelle}" /></td>
+								<td>
+									<input type="hidden" name="listToDisplay[${questionStatut.index}].libelle" value="${aQuestion.libelle}" />
+									<c:out value="${aQuestion.libelle}" />
+								</td>
 							</tr>
 							<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
-							
+								<input type="hidden" name="listToDisplay[${questionStatut.index}].listResponse[${reponseStatut.index}].id" value="${aReponse.id}" />
 								<tr>
 										<td>Réponse n°<c:out value="${reponseStatut.index + 1}" />: </td>
-										<td><c:out value="${aReponse.libelle}" /></td>
+										<td>
+											<input type="hidden" name="listToDisplay[${questionStatut.index}].listResponse[${reponseStatut.index}].libelle" value="${aReponse.libelle}" />
+											<c:out value="${aReponse.libelle}" />
+										</td>
 										<spring:bind
-											path="sujet.listQuestion[${questionStatut.index}].indexResponse">
+											path="listToDisplay[${questionStatut.index}].indexResponse">
 											<td><input type="radio"
 												<c:if test="${aQuestion.indexResponse eq reponseStatut.index}">checked="checked"</c:if>
 												name="${status.expression}" id="${status.expression}"

@@ -3,6 +3,8 @@
  */
 package fr.dauphine.spring.ctl;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,9 @@ import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.dauphine.spring.bo.Participation;
+import fr.dauphine.spring.bo.Question;
+import fr.dauphine.spring.bo.Reponse;
+import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
@@ -34,6 +39,10 @@ public class ValidationParticipationController extends
 			throws Exception {
 		ModelAndView mav = constructView();
 		Participation part = (Participation) command;
+		part.setReponsesChoisies(new ArrayList<Reponse>(0));
+		for(Question quest : part.getListToDisplay()) {
+			part.getReponsesChoisies().add(quest.getListResponse().get(quest.getIndexResponse()));
+		}
 		manager.save(part);
 		return mav;
 	}

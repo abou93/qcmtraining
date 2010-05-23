@@ -5,19 +5,18 @@
 <hibernate-mapping package="fr.dauphine.spring.bo">
 	<class name="Participation" table="PARTICIPATION">
 		<!-- Clé générée automatiquement par Hibernate -->
-		<id name="id" type="long" column="ID_PARTICPATION" unsaved-value="0">
+		<id name="id" type="long" column="ID_PARTICIPATION" unsaved-value="0">
 			<generator class="increment" />
 		</id>
 		<timestamp name="version" column="VERSION" unsaved-value="null" />
 		<many-to-one name="sujet" column="ID_SUJET"
-			class="fr.dauphine.spring.bo.Sujet" not-null="true" update="false"
-			insert="false" cascade="none" />
+			class="fr.dauphine.spring.bo.Sujet" not-null="true" cascade="none" />
 		<many-to-one name="user" column="ID_UTILISATEUR"
-			class="fr.dauphine.spring.bo.Utilisateur" not-null="true" update="false"
-			insert="false" cascade="none" />
-		<bag name="reponsesChoisies" table="PARTICPATION_REPONSE" cascade="none">
+			class="fr.dauphine.spring.bo.Utilisateur" not-null="true" cascade="none" />
+			
+		<bag name="reponsesChoisies" table="PARTICPATION_REPONSE" inverse="false" cascade="none">
 			<key column="ID_PARTICIPATION" not-null="true" />
-			<many-to-many class="fr.dauphine.spring.bo.Reponse" />
+			<many-to-many class="fr.dauphine.spring.bo.Reponse" column="ID_REPONSE" />
 		</bag>
 	</class>
 </hibernate-mapping>
