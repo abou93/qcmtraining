@@ -29,6 +29,8 @@
 							Il n'y a aucun sujet!
 						</c:otherwise>
 		</c:choose>
+		<br /><br />
+		<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
 		</div>
 	</div>
 </div>

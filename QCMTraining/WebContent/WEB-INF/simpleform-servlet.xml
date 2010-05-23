@@ -66,6 +66,15 @@
 		<property name="nameOfPageContent" value="jsp/sujet/view.jsp"/>
 		<property name="activePage" value="3"/>
 	</bean>
+	<bean name="ViewUserController" class="fr.dauphine.spring.ctl.DefaultViewController" >
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="nameOfObject" value="utilisateur"/>
+		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
+		<property name="nameOfPageContent" value="jsp/utilisateur/view.jsp"/>
+		<property name="activePage" value="2"/>
+	</bean>
 	<bean name="DeconnexionController" class="fr.dauphine.spring.ctl.DeconnexionController">
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
 		<property name="activePage" value="1"/>
@@ -174,6 +183,40 @@
 		</property>
 		<property name="activePage" value="2"/>
 	</bean>
+
+	<bean name="ValidationUserController" class="fr.dauphine.spring.ctl.ValidationUserController">
+		<property name="commandClass">
+			<value>fr.dauphine.spring.bo.Utilisateur</value>
+		</property>
+		<property name="commandName">
+			<value>userForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="validator">
+			<ref bean="userValidator" />
+		</property>
+		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
+		<property name="nameOfObject" value="userForm" />
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="activePage" value="2"/>
+	</bean>
+	
+	<bean name="SupprimerUserController" class="fr.dauphine.spring.ctl.DefaultSuppressionController">
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="nameOfObject" value="utilisateur"/>
+		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
+		<property name="nameOfPageContent" value="jsp/utilisateur/list.jsp"/>
+		<property name="activePage" value="2"/>
+	</bean>
 	
 	<!-- bean name="ValidationSocieteController" class="fr.dauphine.spring.ctl.ValidationSocieteController">
 		<property name="commandClass">
@@ -206,6 +249,11 @@
 			<ref bean="utilisateurManager" />
 		</property>
 	</bean>
+	<bean id="userValidator" class="fr.dauphine.spring.bo.validator.UserValidator" >
+		<property name="utilisateurManager">
+			<ref bean="utilisateurManager" />
+		</property>
+	</bean>
 	
 	<!-- Spring: view -->
 	
@@ -215,15 +263,22 @@
 			<props>
 				<prop key="/accueil.do">AccueilController</prop>
 				<prop key="/adminAccueil.do">AdminAccueilController</prop>
+				
 				<prop key="/validationLogin.do">ValidationLoginController</prop>
 				<prop key="/login.do">LoginController</prop>
 				<prop key="/deconnexion.do">DeconnexionController</prop>
+				
 				<prop key="/listeUser.do">UtilisateurListController</prop>
 				<prop key="/creerUser.do">CreationUserController</prop>
+				<prop key="/validerCreerUser.do">ValidationUserController</prop>
+				<prop key="/voirUser.do">ViewUserController</prop>
+				<prop key="/supprimerUser.do">SupprimerUserController</prop>
+				
 				<prop key="/listeSujet.do">SujetListController</prop>
 				<prop key="/creerSujet.do">CreationSujetController</prop>
 				<prop key="/validerCreerSujet.do">ValidationSujetController</prop>
 				<prop key="/voirSujet.do">ViewSujetController</prop>
+				
 				<prop key="/creerParticipation.do">CreationParticipationController</prop>
 				<prop key="/validerCreerParticipation.do">ValidationParticipationController</prop>
 			</props>

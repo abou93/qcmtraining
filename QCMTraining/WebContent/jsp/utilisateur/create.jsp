@@ -8,15 +8,14 @@
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Créer un utilisateur</h2>
 		<div class="entry">
-			<form:form commandName="userForm" action="validationCreerUser.do" method="post">
-				<form:errors path="*" />
+			<form:form commandName="userForm" action="validerCreerUser.do" method="post">
 				<fieldset>
 					<legend>
 						Renseignements généraux
 					</legend>
 					<input type="hidden" name="id" value=""/>
+					<form:errors path="*" cssStyle="color:red;" />
 					<br/>
-
 					<label for="nom" class="agauche">Nom :</label>
 					<form:input path="nom" />
 					<br/>
@@ -27,12 +26,19 @@
 					<form:input path="email" />
 					<br/>
 					<label for="password" class="agauche">Password :</label>
-					<form:input path="password" />
+					<form:password path="password" />
+					<br/>
+					<label for="profil.id" class="agauche">Profil :</label>
+					<spring:bind path="profil.id">
+					<input type="radio" name="profil.id" checked="checked" value="2" />Utilisateur
+					<input type="radio" name="profil.id" value="1" />Admin
+					</spring:bind>
 					<br/>
 				</fieldset>
 				<br /><br />
 				<input type="submit" value="Valider" />
 				<input type="reset" value="Réinitialiser" />
+				<input type="button" value="Annuler" onclick="window.location.href='adminAccueil.do';" />
 			</form:form>
 		</div>
 	</div>

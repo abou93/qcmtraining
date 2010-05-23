@@ -67,6 +67,8 @@
 						</tr>
 					</c:if>
 				</table>
+				<br /><br />
+				<input type="button" value="Retour" onclick="window.location.href='accueil.do';" />
 		</div>
 	</div>
 </div>

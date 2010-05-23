@@ -14,7 +14,7 @@ public class Utilisateur extends BO {
 	 * 
 	 */
 	private static final long serialVersionUID = -3207586303169750748L;
-	private Profil profil;
+	private Profil profil = new Profil();
 	private String nom;
 	private String prenom;
 	private String email;

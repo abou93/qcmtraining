@@ -17,7 +17,7 @@
 					</tr>
 					<c:forEach var="aUtilisateur" items="${utilisateurList}">
 						<tr>
-							<td><a href="<c:url value="/utilisateur/view?utilisateurId=${aUtilisateur.id}" />"><c:out
+							<td><a href="<c:url value="/voirUser.do?idObject=${aUtilisateur.id}" />"><c:out
 								value="${aUtilisateur.prenom}" /> <c:out
 								value="${aUtilisateur.nom}" /></a></td>
 							<td><c:out
@@ -29,7 +29,9 @@
 			<c:otherwise>
 							Il n'y a aucun utilisateur!
 						</c:otherwise>
-		</c:choose>
+			</c:choose>
+			<br /><br />
+			<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
 		</div>
 	</div>
 </div>
