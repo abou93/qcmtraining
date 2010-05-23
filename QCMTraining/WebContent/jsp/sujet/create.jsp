@@ -69,9 +69,9 @@
 										id="${status.expression}" value="${aReponse.libelle}" /></td>
 								</spring:bind>
 								<spring:bind
-									path="listQuestion[${questionStatut.index}].indexResponseTrue">
+									path="listQuestion[${questionStatut.index}].indexResponse">
 									<td><input type="radio"
-										<c:if test="${aQuestion.indexResponseTrue eq reponseStatut.index}">checked="checked"</c:if>
+										<c:if test="${aQuestion.indexResponse eq reponseStatut.index}">checked="checked"</c:if>
 										name="${status.expression}" id="${status.expression}"
 										value="${reponseStatut.index}" /></td>
 								</spring:bind>

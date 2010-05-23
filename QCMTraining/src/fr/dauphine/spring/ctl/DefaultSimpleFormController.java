@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import fr.dauphine.spring.bo.BO;
-import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.manager.AbstractManager;
 import fr.dauphine.spring.util.Constants;
 
@@ -21,9 +20,9 @@ import fr.dauphine.spring.util.Constants;
 @SuppressWarnings("deprecation")
 public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFormController {
 	
-	protected String nameOfView;
-	protected String nameOfObject;
 	protected String nameOfPageContent;
+	protected String nameOfObject;
+	protected String activePage;
 	protected AbstractManager<TypeObject> manager;
 	
 	/**
@@ -35,25 +34,42 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = super.handleRequest(request, response);
-		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
+		mav = addStandardObjectToView(mav);
 		return mav;
 	}
 	public ModelAndView constructView() {
-		ModelAndView mav = new ModelAndView(nameOfView);
+		ModelAndView mav = new ModelAndView(Constants.PARAM_INDEX_VIEW);
+		mav = addStandardObjectToView(mav);
+		return mav;
+	}
+	protected ModelAndView addStandardObjectToView(ModelAndView mav) {
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
+		mav.addObject(Constants.PARAM_ACTIVEPAGE, activePage);
 		return mav;
 	}
 	/**
-	 * @return the nameOfView
+	 * @return the nameOfPageContent
 	 */
-	public String getNameOfView() {
-		return nameOfView;
+	public String getNameOfPageContent() {
+		return nameOfPageContent;
 	}
 	/**
-	 * @param nameOfView the nameOfView to set
+	 * @param nameOfPageContent the nameOfPageContent to set
 	 */
-	public void setNameOfView(String nameOfView) {
-		this.nameOfView = nameOfView;
+	public void setNameOfPageContent(String nameOfPageContent) {
+		this.nameOfPageContent = nameOfPageContent;
+	}
+	/**
+	 * @return the activePage
+	 */
+	public String getActivePage() {
+		return activePage;
+	}
+	/**
+	 * @param activePage the activePage to set
+	 */
+	public void setActivePage(String activePage) {
+		this.activePage = activePage;
 	}
 	/**
 	 * @return the nameOfObject
@@ -78,14 +94,6 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	 */
 	public void setManager(AbstractManager<TypeObject> manager) {
 		this.manager = manager;
-	}
-	
-	public String getNameOfPageContent() {
-		return nameOfPageContent;
-	}
-	
-	public void setNameOfPageContent(String nameOfPageContent) {
-		this.nameOfPageContent = nameOfPageContent;
 	}
 
 }

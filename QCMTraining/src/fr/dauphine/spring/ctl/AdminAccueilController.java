@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
-
-import fr.dauphine.spring.bo.Utilisateur;
-import fr.dauphine.spring.util.Constants;
+import org.springframework.web.servlet.mvc.Controller;
 
 
 /**
@@ -18,8 +15,7 @@ import fr.dauphine.spring.util.Constants;
  *
  */
 
-@SuppressWarnings("deprecation")
-public class AdminAccueilController extends DefaultSimpleFormController<Utilisateur> {
+public class AdminAccueilController extends DefaultController implements Controller {
 	
 	/**
 	 * 
@@ -27,26 +23,9 @@ public class AdminAccueilController extends DefaultSimpleFormController<Utilisat
 	public AdminAccueilController() {
 		// TODO Auto-generated constructor stub
 	}
-	
+	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = constructView();
-		request.getSession().setAttribute(Constants.PARAM_ACTIVEPAGE,Constants.PARAM_ACTIVEPAGE_ADMINISTRATION);
+		ModelAndView mav = constructSuccessView();
 		return mav;
-	}
-
-	public String getNameOfView() {
-		return nameOfView;
-	}
-
-	public void setNameOfView(String nameOfView) {
-		this.nameOfView = nameOfView;
-	}
-
-	public String getNameOfPageContent() {
-		return nameOfPageContent;
-	}
-
-	public void setNameOfPageContent(String nameOfPageContent) {
-		this.nameOfPageContent = nameOfPageContent;
 	}
 }

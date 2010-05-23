@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.manager.UtilisateurManager;
@@ -19,10 +18,9 @@ import fr.dauphine.spring.util.Constants;
  *
  */
 @SuppressWarnings("deprecation")
-public class ValidationLoginController extends SimpleFormController {
+public class ValidationLoginController extends DefaultSimpleFormController<Utilisateur> {
 
 	UtilisateurManager utilisateurManager;
-	private String nameOfPageContent;
 
 	/**
 	 * @return the utilisateurManager
@@ -64,12 +62,4 @@ public class ValidationLoginController extends SimpleFormController {
 		return mav;
 	}
 
-	public String getNameOfPageContent() {
-		return nameOfPageContent;
-	}
-
-	public void setNameOfPageContent(String nameOfPageContent) {
-		this.nameOfPageContent = nameOfPageContent;
-	}
-	
 }

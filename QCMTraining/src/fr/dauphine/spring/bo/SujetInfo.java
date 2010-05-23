@@ -3,6 +3,7 @@
  */
 package fr.dauphine.spring.bo;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -74,4 +75,11 @@ public class SujetInfo extends BO {
 		this.dateEnd = dateEnd;
 	}
 	
+	/**
+	 * @return true si le sujet est actif
+	 */
+	public boolean isActif() {
+		Date d = new Date();
+		return (d.after(dateStart) || d.equals(dateStart)) && (d.before(dateEnd) || d.equals(dateEnd));
+	}
 }

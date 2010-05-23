@@ -17,14 +17,14 @@ public class Participation extends BO {
 	 * 
 	 */
 	private static final long serialVersionUID = 3999767834284009842L;
-	private SujetInfo sujet;
+	private Sujet sujet;
 	private List<Reponse> reponsesChoisies;
 	private Utilisateur user;
+	private List<Question> listToDisplay;
 	/**
 	 * 
 	 */
 	public Participation() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -39,14 +39,14 @@ public class Participation extends BO {
 	/**
 	 * @return the sujet
 	 */
-	public SujetInfo getSujet() {
+	public Sujet getSujet() {
 		return sujet;
 	}
 
 	/**
 	 * @param sujet the sujet to set
 	 */
-	public void setSujet(SujetInfo sujet) {
+	public void setSujet(Sujet sujet) {
 		this.sujet = sujet;
 	}
 
@@ -84,4 +84,17 @@ public class Participation extends BO {
                 new BeanPropertyValueEqualsPredicate("goodResponse", true));
 	}
 
+	/**
+	 * @return the listToDisplay
+	 */
+	public List<Question> getListToDisplay() {
+		return listToDisplay;
+	}
+
+	/**
+	 * @param listToDisplay the listToDisplay to set
+	 */
+	public void setListToDisplay(List<Question> listToDisplay) {
+		this.listToDisplay = listToDisplay;
+	}
 }

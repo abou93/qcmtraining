@@ -3,11 +3,6 @@
  */
 package fr.dauphine.spring.ctl;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-
 import fr.dauphine.spring.bo.Sujet;
 
 /**

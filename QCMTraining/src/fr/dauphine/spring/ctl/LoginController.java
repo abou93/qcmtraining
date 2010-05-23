@@ -20,6 +20,7 @@ public class LoginController implements Controller {
 
 	private String nameOfLoggedView;
 	private String nameOfNotLoggedView;
+	private String activePage;
 	
 	/**
 	 * 
@@ -61,4 +62,18 @@ public class LoginController implements Controller {
 		this.nameOfNotLoggedView = nameOfNotLoggedView;
 	}
 
+	/**
+	 * @return the activePage
+	 */
+	public String getActivePage() {
+		return activePage;
+	}
+
+	/**
+	 * @param activePage the activePage to set
+	 */
+	public void setActivePage(String activePage) {
+		this.activePage = activePage;
+	}
+	
 }

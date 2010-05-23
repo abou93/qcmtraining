@@ -18,7 +18,7 @@ public class Question extends BO {
 	private String libelle;
 	private List<Reponse> listResponse;
 	private Sujet sujet;
-	private int indexResponseTrue;
+	private int indexResponse;
 	
 	/**
 	 * 
@@ -89,17 +89,18 @@ public class Question extends BO {
 	}
 
 	/**
-	 * @return the indexResponseTrue
+	 * @return the indexResponse
 	 */
-	public int getIndexResponseTrue() {
-		return indexResponseTrue;
+	public int getIndexResponse() {
+		return indexResponse;
 	}
 
 	/**
-	 * @param indexResponseTrue the indexResponseTrue to set
+	 * @param indexResponse the indexResponse to set
 	 */
-	public void setIndexResponseTrue(int indexResponseTrue) {
-		this.indexResponseTrue = indexResponseTrue;
+	public void setIndexResponse(int indexResponse) {
+		this.indexResponse = indexResponse;
 	}
+
 
 }

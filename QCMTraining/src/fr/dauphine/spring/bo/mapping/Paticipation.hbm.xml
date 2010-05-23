@@ -10,7 +10,7 @@
 		</id>
 		<timestamp name="version" column="VERSION" unsaved-value="null" />
 		<many-to-one name="sujet" column="ID_SUJET"
-			class="fr.dauphine.spring.bo.SujetInfo" not-null="true" update="false"
+			class="fr.dauphine.spring.bo.Sujet" not-null="true" update="false"
 			insert="false" cascade="none" />
 		<many-to-one name="user" column="ID_UTILISATEUR"
 			class="fr.dauphine.spring.bo.Utilisateur" not-null="true" update="false"

@@ -61,7 +61,8 @@
 					<c:if test="${sujet.actif}">
 						<tr>
 							<td colspan="2" style="text-align:right;" >
-								<input type="button" value="Modifier" onclick="window.location.href='/sujet/modifierSujet.do?idSujet=${sujet.id}';" /> 
+								<c:if test="isAdmin"><input type="button" value="Modifier" onclick="window.location.href='/sujet/modifierSujet.do?idSujet=${sujet.id}';" />&nbsp;</c:if> 
+								<input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" />
 							</td>
 						</tr>
 					</c:if>

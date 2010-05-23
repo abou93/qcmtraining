@@ -4,6 +4,7 @@
 package fr.dauphine.spring.bo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class Sujet extends SujetInfo {
 	private static final long serialVersionUID = 4059193207764486862L;
 	
 	private List<Question> listQuestion;
+	private int nbQuestionDisplay;
 	/**
 	 * 
 	 */
@@ -72,5 +74,28 @@ public class Sujet extends SujetInfo {
 		this.listQuestion = listQuestion;
 	}
 
+	/**
+	 * @return the nbQuestionDisplay
+	 */
+	public int getNbQuestionDisplay() {
+		return nbQuestionDisplay;
+	}
 
+	/**
+	 * @param nbQuestionDisplay the nbQuestionDisplay to set
+	 */
+	public void setNbQuestionDisplay(int nbQuestionDisplay) {
+		this.nbQuestionDisplay = nbQuestionDisplay;
+	}
+	public List<Question> getRandomListOfQuestion() {
+		List<Question> listShuffle = getListQuestion();
+		Collections.shuffle(listShuffle);
+		if(nbQuestionDisplay < listShuffle.size()) {
+			listShuffle = listShuffle.subList(0, nbQuestionDisplay);
+		}
+		for(Question quest : listShuffle) {
+			Collections.shuffle(quest.getListResponse());
+		}
+		return listShuffle;
+	}
 }

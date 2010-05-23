@@ -17,7 +17,7 @@ import fr.dauphine.spring.util.Constants;
  * @author Mathieu
  *
  */
-public class DefautListController<TypeObject extends BO> extends DefaultController<TypeObject> implements Controller {
+public class DefautListController<TypeObject extends BO> extends DefaultController implements Controller {
 	AbstractManager<TypeObject> manager;
 	/**
 	 * 
@@ -32,9 +32,9 @@ public class DefautListController<TypeObject extends BO> extends DefaultControll
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = constructView();
+		ModelAndView mav = constructSuccessView();
 		mav.addObject(nameOfObject, manager.list());
-		mav.addObject(Constants.PARAM_PAGE_CONTENT,nameOfPageContent);
+		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		return mav;
 	}
 

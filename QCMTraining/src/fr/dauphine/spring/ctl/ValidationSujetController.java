@@ -97,12 +97,11 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		return mav;
 	}
 
-	@Override
 	protected ModelAndView onSubmit(Object command) throws Exception {
 		Sujet sujet = (Sujet) command;
 		System.out.println(">> Sujet : " + sujet.getTitre());
 		for(Question quest : sujet.getListQuestion()) {
-			quest.getListResponse().get(quest.getIndexResponseTrue()).setGoodResponse(true);
+			quest.getListResponse().get(quest.getIndexResponse()).setGoodResponse(true);
 		}
 		manager.save(sujet);
 		ModelAndView mav = constructView();

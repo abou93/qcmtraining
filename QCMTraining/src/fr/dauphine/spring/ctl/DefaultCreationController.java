@@ -15,8 +15,8 @@ import fr.dauphine.spring.bo.BO;
  * @author Mathieu
  *
  */
-public class DefaultCreationController<TypeObject extends BO> extends DefaultController<TypeObject> implements Controller {
-	
+public class DefaultCreationController<TypeObject extends BO> extends DefaultController implements Controller {
+	protected Class<TypeObject> typeObjectClass;
 	/**
 	 * 
 	 */
@@ -30,7 +30,27 @@ public class DefaultCreationController<TypeObject extends BO> extends DefaultCon
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		return constructViewWithNewInstance();
+		return constructSuccessViewWithNewInstance();
+	}
+	public ModelAndView constructSuccessViewWithNewInstance() throws InstantiationException, IllegalAccessException {
+		ModelAndView mav = constructSuccessView();
+		TypeObject obj = typeObjectClass.newInstance();
+		mav.addObject(nameOfObject, obj);
+		return mav;
 	}
 
+	/**
+	 * @return the typeObjectClass
+	 */
+	public Class<TypeObject> getTypeObjectClass() {
+		return typeObjectClass;
+	}
+
+	/**
+	 * @param typeObjectClass the typeObjectClass to set
+	 */
+	public void setTypeObjectClass(Class<TypeObject> typeObjectClass) {
+		this.typeObjectClass = typeObjectClass;
+	}
+	
 }

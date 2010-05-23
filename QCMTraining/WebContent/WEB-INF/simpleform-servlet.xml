@@ -19,6 +19,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="participationDAO" class="fr.dauphine.spring.dao.impl.ParticipationDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	<bean id="habilitationDAO" class="fr.dauphine.spring.dao.impl.HabilitationDAOImpl">
 		<property name="sessionFactory">
@@ -39,65 +44,93 @@
 		<property name="dao" ref="sujetDAO" />
 	</bean>
 	
+	<bean id="participationManagerTarget" class="fr.dauphine.spring.manager.impl.ParticipationManagerImpl">
+		<property name="dao" ref="participationDAO" />
+	</bean>
 
 	<!-- Controllers -->
-	<bean name="DefaultSimpleFormController" class="fr.dauphine.spring.ctl.DefaultSimpleFormController" />
 	<bean name="AccueilController" class="fr.dauphine.spring.ctl.AccueilController">
-		<property name="nameOfView" value="index"/>
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
+		<property name="activePage" value="1"/>
 	</bean>
 	<bean name="AdminAccueilController" class="fr.dauphine.spring.ctl.AdminAccueilController">
-		<property name="nameOfView" value="index"/>
 		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
+		<property name="activePage" value="2"/>
 	</bean>
 	<bean name="ViewSujetController" class="fr.dauphine.spring.ctl.DefaultViewController" >
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>
 		<property name="nameOfObject" value="sujet"/>
-		<property name="errorView" value="index"/>
-		<property name="nameOfView" value="index"/>
+		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/sujet/view.jsp"/>
+		<property name="activePage" value="3"/>
 	</bean>
 	<bean name="DeconnexionController" class="fr.dauphine.spring.ctl.DeconnexionController">
-		<property name="nameOfView" value="index" />
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
-		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Utilisateur"/>
+		<property name="activePage" value="1"/>
 	</bean>
 	<bean name="LoginController" class="fr.dauphine.spring.ctl.LoginController">
 		<property name="nameOfLoggedView" value="jsp/template/logged"/>
 		<property name="nameOfNotLoggedView" value="jsp/template/login"/>
+		<property name="activePage" value="1"/>
 	</bean>
 	<bean name="UtilisateurListController" class="fr.dauphine.spring.ctl.DefautListController">
 		<property name="manager">
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfObject" value="utilisateurList"/>
-		<property name="nameOfView" value="index"/>
 		<property name="nameOfPageContent" value="jsp/utilisateur/list.jsp"/>
+		<property name="activePage" value="2"/>
 	</bean>
 	<bean name="SujetListController" class="fr.dauphine.spring.ctl.DefautListController">
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>
-		<property name="nameOfView" value="index"/>
 		<property name="nameOfObject" value="sujetList"/>
 		<property name="nameOfPageContent" value="jsp/sujet/list.jsp"/>
+		<property name="activePage" value="3"/>
 	</bean>
 	
 	<bean name="CreationUserController" class="fr.dauphine.spring.ctl.CreationUserController">
-		<property name="nameOfView" value="index" />
 		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
 		<property name="nameOfObject" value="userForm"/>
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Utilisateur"/>
+		<property name="activePage" value="2"/>
 	</bean>
 	<bean name="CreationSujetController" class="fr.dauphine.spring.ctl.CreationSujetController" >
-		<property name="nameOfView" value="index" />
 		<property name="nameOfPageContent" value="jsp/sujet/create.jsp"/>
 		<property name="nameOfObject" value="sujetForm"/>
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Sujet"/>
+		<property name="activePage" value="2"/>
 	</bean>
-	
+	<bean name="CreationParticipationController" class="fr.dauphine.spring.ctl.CreationParticipationController" >
+		<property name="nameOfPageContent" value="jsp/participation/create.jsp"/>
+		<property name="nameOfObject" value="participationForm"/>
+		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Participation"/>
+		<property name="sujetManager" ref="sujetManager"/>
+		<property name="activePage" value="3"/>
+	</bean>
+	<bean name="ValidationParticipationController" class="fr.dauphine.spring.ctl.ValidationParticipationController">
+		<property name="commandClass">
+			<value>fr.dauphine.spring.bo.Participation</value>
+		</property>
+		<property name="commandName">
+			<value>paticipationForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="manager">
+			<ref bean="participationManager" />
+		</property>
+		<property name="nameOfPageContent" value="jsp/participation/create.jsp"/>
+		<property name="nameOfObject" value="paticipationForm" />
+		<property name="activePage" value="3"/>
+	</bean>
 	<bean name="ValidationLoginController" class="fr.dauphine.spring.ctl.ValidationLoginController">
 		<property name="commandClass">
 			<value>fr.dauphine.spring.bo.Utilisateur</value>
@@ -118,6 +151,7 @@
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
+		<property name="activePage" value="1"/>
 	</bean>
 	
 	<bean name="ValidationSujetController" class="fr.dauphine.spring.ctl.ValidationSujetController">
@@ -133,12 +167,12 @@
 		<property name="successView">
 			<value>index</value>
 		</property>
-		<property name="nameOfView" value="index" />
 		<property name="nameOfPageContent" value="jsp/sujet/create.jsp"/>
 		<property name="nameOfObject" value="sujetForm" />
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>
+		<property name="activePage" value="2"/>
 	</bean>
 	
 	<!-- bean name="ValidationSocieteController" class="fr.dauphine.spring.ctl.ValidationSocieteController">
@@ -190,6 +224,8 @@
 				<prop key="/creerSujet.do">CreationSujetController</prop>
 				<prop key="/validerCreerSujet.do">ValidationSujetController</prop>
 				<prop key="/voirSujet.do">ViewSujetController</prop>
+				<prop key="/creerParticipation.do">CreationParticipationController</prop>
+				<prop key="/validerCreerParticipation.do">ValidationParticipationController</prop>
 			</props>
 		</property>
 		<property name="interceptors">
@@ -225,6 +261,23 @@
 		</property>
 		<property name="target">
 			<ref local="utilisateurManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="participationManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="participationManagerTarget" />
 		</property>
 		<property name="transactionAttributes">
 			<props>

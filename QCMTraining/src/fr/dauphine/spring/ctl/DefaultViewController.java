@@ -3,10 +3,6 @@
  */
 package fr.dauphine.spring.ctl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,10 +18,7 @@ import fr.dauphine.spring.util.Constants;
  * @author Mathieu
  *
  */
-public class DefaultViewController<TypeObject extends BO> extends DefaultController<TypeObject> implements Controller {
-	private static final String PARAM_ERROR_ID_NULL = "view.object.id.null";
-	private String errorView;
-	private ResourceBundle resource = ResourceBundle.getBundle(Constants.PARAM_NAME_PROPERTIES_FILE);
+public class DefaultViewController<TypeObject extends BO> extends DefaultController implements Controller {
 	private AbstractManager<TypeObject> manager;
 	/**
 	 * 
@@ -43,11 +36,11 @@ public class DefaultViewController<TypeObject extends BO> extends DefaultControl
 		ModelAndView mav = null;
 		String idString = request.getParameter(Constants.PARAM_REQUEST_ID);
 		if(StringUtils.isEmpty(idString)) {
-			mav = new ModelAndView(errorView);
+			mav = constructErrorView();
 			this.addError(request, resource.getString(PARAM_ERROR_ID_NULL));
 		} else {
 			Long id = Long.parseLong(idString);
-			mav = constructView();
+			mav = constructSuccessView();
 			TypeObject obj = manager.read(id);
 			mav.addObject(nameOfObject, obj);
 		}
@@ -55,30 +48,6 @@ public class DefaultViewController<TypeObject extends BO> extends DefaultControl
 		return mav;
 	}
 	
-	@SuppressWarnings("unchecked")
-	private void addError(HttpServletRequest request, String msg) {
-		List<String> listErrors = (List<String>) request.getAttribute(Constants.PARAM_NAME_LIST_ERRORS);
-		if(listErrors == null) {
-			listErrors = new ArrayList<String>(0);
-		}
-		listErrors.add(msg);
-		request.setAttribute(Constants.PARAM_NAME_LIST_ERRORS, listErrors);
-	}
-
-	/**
-	 * @return the errorView
-	 */
-	public String getErrorView() {
-		return errorView;
-	}
-
-	/**
-	 * @param errorView the errorView to set
-	 */
-	public void setErrorView(String errorView) {
-		this.errorView = errorView;
-	}
-
 	/**
 	 * @return the manager
 	 */

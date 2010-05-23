@@ -3,21 +3,27 @@
  */
 package fr.dauphine.spring.ctl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.dauphine.spring.bo.BO;
 import fr.dauphine.spring.util.Constants;
 
 /**
  * @author Mathieu
  *
  */
-abstract class DefaultController<TypeObject extends BO> {
-
-	protected String nameOfView;
-	protected String nameOfObject;
+abstract class DefaultController {
+	protected static final String PARAM_ERROR_ID_NULL = "view.object.id.null";
 	protected String nameOfPageContent;
-	protected Class<TypeObject> typeObjectClass;
+	protected String nameOfObject;
+	protected String nameOfErrorPage;
+	protected String activePage;
+	protected ResourceBundle resource = ResourceBundle.getBundle(Constants.PARAM_NAME_PROPERTIES_FILE);
 	
 	/**
 	 * 
@@ -25,29 +31,34 @@ abstract class DefaultController<TypeObject extends BO> {
 	public DefaultController() {
 		// TODO Auto-generated constructor stub
 	}
-	public ModelAndView constructView() {
-		ModelAndView mav = new ModelAndView(nameOfView);
+	public ModelAndView constructBasicIndexView() {
+		ModelAndView mav = new ModelAndView(Constants.PARAM_INDEX_VIEW);
+		addStandardObjectToView(mav);
+		return mav;
+	}
+	
+	public ModelAndView constructSuccessView() {
+		ModelAndView mav = constructBasicIndexView();
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		return mav;
 	}
-	public ModelAndView constructViewWithNewInstance() throws InstantiationException, IllegalAccessException {
-		ModelAndView mav = constructView();
-		TypeObject obj = typeObjectClass.newInstance();
-		mav.addObject(nameOfObject, obj);
+	public ModelAndView constructErrorView() {
+		ModelAndView mav = constructBasicIndexView();
+		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfErrorPage);
 		return mav;
 	}
-	/**
-	 * @return the nameOfView
-	 */
-	public String getNameOfView() {
-		return nameOfView;
+	protected ModelAndView addStandardObjectToView(ModelAndView mav) {
+		mav.addObject(Constants.PARAM_ACTIVEPAGE, activePage);
+		return mav;
 	}
-
-	/**
-	 * @param nameOfView the nameOfView to set
-	 */
-	public void setNameOfView(String nameOfView) {
-		this.nameOfView = nameOfView;
+	@SuppressWarnings("unchecked")
+	protected void addError(HttpServletRequest request, String msg) {
+		List<String> listErrors = (List<String>) request.getAttribute(Constants.PARAM_NAME_LIST_ERRORS);
+		if(listErrors == null) {
+			listErrors = new ArrayList<String>(0);
+		}
+		listErrors.add(msg);
+		request.setAttribute(Constants.PARAM_NAME_LIST_ERRORS, listErrors);
 	}
 
 	/**
@@ -63,25 +74,54 @@ abstract class DefaultController<TypeObject extends BO> {
 	public void setNameOfObject(String nameOfObject) {
 		this.nameOfObject = nameOfObject;
 	}
-	/**
-	 * @return the typeObjectClass
-	 */
-	public Class<TypeObject> getTypeObjectClass() {
-		return typeObjectClass;
-	}
-	/**
-	 * @param typeObjectClass the typeObjectClass to set
-	 */
-	public void setTypeObjectClass(Class<TypeObject> typeObjectClass) {
-		this.typeObjectClass = typeObjectClass;
-	}
 	
+	/**
+	 * @return the nameOfPageContent
+	 */
 	public String getNameOfPageContent() {
 		return nameOfPageContent;
 	}
-	
+	/**
+	 * @param nameOfPageContent the nameOfPageContent to set
+	 */
 	public void setNameOfPageContent(String nameOfPageContent) {
 		this.nameOfPageContent = nameOfPageContent;
+	}
+	/**
+	 * @return the nameOfErrorPage
+	 */
+	public String getNameOfErrorPage() {
+		return nameOfErrorPage;
+	}
+	/**
+	 * @param nameOfErrorPage the nameOfErrorPage to set
+	 */
+	public void setNameOfErrorPage(String nameOfErrorPage) {
+		this.nameOfErrorPage = nameOfErrorPage;
+	}
+	/**
+	 * @return the activePage
+	 */
+	public String getActivePage() {
+		return activePage;
+	}
+	/**
+	 * @param activePage the activePage to set
+	 */
+	public void setActivePage(String activePage) {
+		this.activePage = activePage;
+	}
+	/**
+	 * @return the resource
+	 */
+	public ResourceBundle getResource() {
+		return resource;
+	}
+	/**
+	 * @param resource the resource to set
+	 */
+	public void setResource(ResourceBundle resource) {
+		this.resource = resource;
 	}
 	
 }
