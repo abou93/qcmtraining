@@ -3,7 +3,6 @@
  */
 package fr.dauphine.spring.ctl;
 
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.dauphine.spring.bo.Participation;
-import fr.dauphine.spring.bo.Question;
-import fr.dauphine.spring.bo.Reponse;
-import fr.dauphine.spring.bo.Sujet;
 import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.manager.UtilisateurManager;
 import fr.dauphine.spring.util.Constants;
@@ -23,7 +18,6 @@ import fr.dauphine.spring.util.Constants;
  * @author Mathieu
  *
  */
-@SuppressWarnings("deprecation")
 public class ValidationUserController extends DefaultSimpleFormController<Utilisateur> {
 
 	UtilisateurManager utilisateurManager;
