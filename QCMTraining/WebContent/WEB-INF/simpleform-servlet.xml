@@ -117,6 +117,7 @@
 		<property name="utilisateurManager">
 			<ref bean="utilisateurManager" />
 		</property>
+		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
 	</bean>
 	
 	<bean name="ValidationSujetController" class="fr.dauphine.spring.ctl.ValidationSujetController">
