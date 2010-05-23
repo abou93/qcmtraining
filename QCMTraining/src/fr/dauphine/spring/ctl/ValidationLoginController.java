@@ -22,6 +22,7 @@ import fr.dauphine.spring.util.Constants;
 public class ValidationLoginController extends SimpleFormController {
 
 	UtilisateurManager utilisateurManager;
+	private String nameOfPageContent;
 
 	/**
 	 * @return the utilisateurManager
@@ -53,6 +54,22 @@ public class ValidationLoginController extends SimpleFormController {
 				request.getSession().setAttribute(Constants.PARAM_ISADMIN, true);
 		}
 		return super.onSubmit(request, response, command, errors);
+	}
+	
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		ModelAndView mav = super.handleRequest(request, response);
+		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
+		return mav;
+	}
+
+	public String getNameOfPageContent() {
+		return nameOfPageContent;
+	}
+
+	public void setNameOfPageContent(String nameOfPageContent) {
+		this.nameOfPageContent = nameOfPageContent;
 	}
 	
 }
