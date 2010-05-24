@@ -3,7 +3,7 @@
  */
 package fr.dauphine.spring.bo;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Mathieu
@@ -20,7 +20,7 @@ public class Utilisateur extends BO {
 	private String email;
 	private byte[] photo;
 	private String password;
-	private Set<Participation> mesSujets;
+	private List<Participation> mesParticipations;
 	/**
 	 * @return the password
 	 */
@@ -100,16 +100,16 @@ public class Utilisateur extends BO {
 		this.photo = photo;
 	}
 	/**
-	 * @return the mesSujets
+	 * @return the mesParticipations
 	 */
-	public Set<Participation> getMesSujets() {
-		return mesSujets;
+	public List<Participation> getMesParticipations() {
+		return mesParticipations;
 	}
 	/**
-	 * @param mesSujets the mesSujets to set
+	 * @param mesParticipations the mesParticipations to set
 	 */
-	public void setMesSujets(Set<Participation> mesSujets) {
-		this.mesSujets = mesSujets;
+	public void setMesParticipations(List<Participation> mesParticipations) {
+		this.mesParticipations = mesParticipations;
 	}
-
+	
 }

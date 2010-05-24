@@ -12,7 +12,7 @@
 		<many-to-one name="sujet" column="ID_SUJET"
 			class="fr.dauphine.spring.bo.Sujet" not-null="true" cascade="none" />
 		<many-to-one name="user" column="ID_UTILISATEUR"
-			class="fr.dauphine.spring.bo.Utilisateur" not-null="true" cascade="none" />
+			class="fr.dauphine.spring.bo.Utilisateur" cascade="none"/>
 			
 		<bag name="reponsesChoisies" table="PARTICPATION_REPONSE" inverse="false" cascade="none">
 			<key column="ID_PARTICIPATION" not-null="true" />

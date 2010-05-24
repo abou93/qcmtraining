@@ -23,5 +23,9 @@
 		</property>
 		<property name="photo" type="blob" column="PHOTO" />
 		<many-to-one name="profil" column="ID_PROFIL" class="fr.dauphine.spring.bo.Profil" cascade="none" lazy="false" />
+		<bag name="mesParticipations" inverse="true" cascade="all-delete-orphan">
+			<key column="ID_UTILISATEUR" not-null="true" />
+			<one-to-many class="fr.dauphine.spring.bo.Participation" />
+		</bag>
 	</class>
 </hibernate-mapping>
