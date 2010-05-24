@@ -11,14 +11,8 @@
 			<li <c:if test="${activePage == 2}">class="active"</c:if>><a
 				href="adminAccueil.do" accesskey="2" title="">Administration</a></li>
 		</c:if>
-		<c:if test="${sessionScope['isLogged']}">
 			<li <c:if test="${activePage == 3}">class="active"</c:if>><a
 				href="listeSujet.do" accesskey="3" title="">Sujet</a></li>
-		</c:if>
-		<c:if test="${sessionScope['isLogged']}">
-			<li <c:if test="${activePage == 4}">class="active"</c:if>><a
-				href="qcm/accueil.do" accesskey="4" title="">Liste des QCM</a></li>
-		</c:if>
 	</ul>
 	</div>
 </div>

@@ -53,10 +53,10 @@
 											<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
 												<c:choose>
 													<c:when test="${aReponse.goodResponse}">
-														<c:set property="class" value="goodReponse" />
+														<c:set var="class" value="goodReponse" />
 													</c:when>
 													<c:otherwise>
-														<c:set property="class" value="" />
+														<c:set var="class" value="" />
 													</c:otherwise>
 												</c:choose>
 												<tr class="<c:out value="${class}" />">
