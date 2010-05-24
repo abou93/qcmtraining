@@ -3,6 +3,8 @@
  */
 package fr.dauphine.spring.manager.impl;
 
+import java.util.List;
+
 import fr.dauphine.spring.bo.Participation;
 import fr.dauphine.spring.dao.ParticipationDAO;
 import fr.dauphine.spring.manager.ParticipationManager;
@@ -31,5 +33,9 @@ public class ParticipationManagerImpl extends AbstractManagerImpl<Participation>
 		return ((ParticipationDAO)dao).isParticiperAuSujet(idUser, idSujet);
 	}
 
+	@Override
+	public List<Participation> getParticipationSansFaute(Long idSujet, int nbQuestionDisplay) {
+		return ((ParticipationDAO)dao).getParticipationSansFaute(idSujet, nbQuestionDisplay);
+	}
 
 }

@@ -24,11 +24,13 @@
 		<property name="nbQuestionDisplay">
 			<column name="NB_QUESTION_DISPLAY" sql-type="int" not-null="true" />
 		</property>
-		<!-- property name="nombreDeParticipants">
+		<property name="nombreDeParticipants">
 			<formula>
-				SELECT COUNT(ID) FROM 
+				(SELECT count(part.ID_PARTICIPATION) FROM  
+					PARTICIPATION part
+					where part.ID_SUJET = ID_SUJET)
 			</formula>
-		</property-->
+		</property>
 		<bag name="listQuestion" inverse="false" cascade="all-delete-orphan">
 			<key column="ID_SUJET" not-null="true" />
 			<one-to-many class="fr.dauphine.spring.bo.Question" />

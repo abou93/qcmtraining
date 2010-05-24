@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class Profil extends BO {
 	
+	public static final int ADMIN_CODE = 1;
+	public static final int UTILISATEUR_CODE = 2;
 	/**
 	 * 
 	 */

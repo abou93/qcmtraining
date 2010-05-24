@@ -70,7 +70,15 @@ public class ParticipationDAOImpl extends AbstractDAOImpl<Participation>
 		crit.add(Restrictions.eq(ID_USER_PROPERTY, idUser));
 		return (Participation) crit.uniqueResult();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Participation> getParticipationSansFaute(Long idSujet, int nbQuestionDisplay) {
+		Criteria crit = getSession().createCriteria(Participation.class);
+		crit.add(Restrictions.eq(ID_SUJET_PROPERTY, idSujet));
+		crit.add(Restrictions.eq("nbReponseGood", nbQuestionDisplay));
+		return (List<Participation>)crit.list();
+	}
 
 	@Override
 	public boolean isParticiperAuSujet(Long idUser, Long idSujet) {

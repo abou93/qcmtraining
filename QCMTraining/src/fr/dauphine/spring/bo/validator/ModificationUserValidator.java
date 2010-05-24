@@ -3,9 +3,6 @@
  */
 package fr.dauphine.spring.bo.validator;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

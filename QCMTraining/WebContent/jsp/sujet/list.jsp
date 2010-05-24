@@ -14,6 +14,8 @@
 					<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
 				</display:column>
 				<display:column property="description" title="Description" />
+				<display:setProperty name="paging.banner.item_name" value="sujet" />
+				<display:setProperty name="paging.banner.items_name" value="sujets" />
 			</display:table>
 		<br /><br />
 		<input type="button" value="Retour" 

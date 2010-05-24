@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/tld/displaytag-11.tld" prefix="display" %>
 
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
@@ -35,7 +36,29 @@
 						<td><span id="titre"><c:out value="${sujet.description}" /></span></td>
 					</tr>
 					<c:if test="${isAdmin}">
-						
+						<tr>
+							<td><label for="nombreDeParticipants" class="adroite">Nombre de participants</label></td>
+							<td><span id="nombreDeParticipants"><c:out value="${sujet.nombreDeParticipants}" /></span></td>
+						</tr>
+						<tr>
+							<td colspan="2" >
+								<fieldset>
+									<legend>Liste des utilisateurs ayant fait un sans faute</legend>
+									<display:table cellspacing="0" cellpadding="0" name="partSansFaute" id="aPart"  pagesize="5" styleClass="displayTableList"  requestURI="voirSujet.do?idObject=${sujet.id}" >
+										<display:column title="Nom et prénom">
+											<a href="<c:url value="/voirUser.do?idObject=${aPart.user.id}" />"><c:out value="${aPart.user.nom}" /> <c:out value="${aPart.user.prenom}" /></a>
+										</display:column>
+										<display:column property="user.email" title="Email" />
+										
+										<display:column  title="Score Moyen Total" >
+											<c:out value="${aPart.user.scoreMoyenPct}%" />
+										</display:column>
+										<display:setProperty name="paging.banner.item_name" value="utilisateur" />
+										<display:setProperty name="paging.banner.items_name" value="utilisateurs" />
+									</display:table>							
+								</fieldset>
+							</td>
+						</tr>
 						<c:forEach var="aQuestion" items="${sujet.listQuestion}" varStatus="questionStatut" >
 							<tr>
 								<td colspan="2" >

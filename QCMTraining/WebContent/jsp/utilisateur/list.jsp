@@ -15,6 +15,11 @@
 					<a href="<c:url value="/voirUser.do?idObject=${aUser.id}" />"><c:out value="${aUser.nom}" /> <c:out value="${aUser.prenom}" /></a>
 				</display:column>
 				<display:column property="email" title="Email" />
+				<display:column  title="Score Moyen Total" >
+					<c:out value="${aUser.scoreMoyenPct}%" />
+				</display:column>
+				<display:setProperty name="paging.banner.item_name" value="utilisateur" />
+				<display:setProperty name="paging.banner.items_name" value="utilisateurs" />
 			</display:table>
 			<br /><br />
 			<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />

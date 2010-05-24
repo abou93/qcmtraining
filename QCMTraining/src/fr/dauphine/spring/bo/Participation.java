@@ -3,7 +3,6 @@
  */
 package fr.dauphine.spring.bo;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
@@ -22,6 +21,7 @@ public class Participation extends BO {
 	private List<Reponse> reponsesChoisies;
 	private Utilisateur user;
 	private List<Question> listToDisplay;
+	private int nbReponseGood;
 	/**
 	 * 
 	 */
@@ -100,10 +100,6 @@ public class Participation extends BO {
 		this.listToDisplay = listToDisplay;
 	}
 	
-	public int getNbReponseGood() {
-		return this.getGoodReponse().size();
-	}
-	
 	public String getScore() {
 		return this.getNbReponseGood() + "/" + sujet.getNbQuestionDisplay();
 	}
@@ -112,4 +108,19 @@ public class Participation extends BO {
 		float f = ((float)this.getNbReponseGood() / sujet.getNbQuestionDisplay()) * 100;
 		return (int)f;
 	}
+
+	/**
+	 * @return the nbReponseGood
+	 */
+	public int getNbReponseGood() {
+		return nbReponseGood;
+	}
+
+	/**
+	 * @param nbReponseGood the nbReponseGood to set
+	 */
+	public void setNbReponseGood(int nbReponseGood) {
+		this.nbReponseGood = nbReponseGood;
+	}
+	
 }
