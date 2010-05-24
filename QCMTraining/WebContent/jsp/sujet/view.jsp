@@ -75,8 +75,16 @@
 					
 						<tr>
 							<td colspan="2" style="text-align:right;" >
-								<c:if test="${isAdmin and sujet.actif eq false}"><input type="button" value="Modifier" onclick="window.location.href='/sujet/modifierSujet.do?idSujet=${sujet.id}';" />&nbsp;</c:if> 
-								<c:if test="${sujet.actif}"><input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" /></c:if>
+								<c:if test="${sujet.actif}">
+									<c:choose>
+									<c:when test="${isLogged}">
+										<input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" />
+									</c:when>
+									<c:otherwise>
+										<span class="info">Connectez vous pour répondre au sujet!</span>	
+									</c:otherwise>
+									</c:choose>
+								</c:if>
 							</td>
 						</tr>
 				</table>

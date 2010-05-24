@@ -44,11 +44,25 @@ public class ValidationModificationUserController extends DefaultSimpleFormContr
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
 		ModelAndView mav = constructView();
-		Utilisateur util = (Utilisateur) command;
-		System.out.println(">> Utilisateur : " + util.getEmail());
-		manager.update(util);
+		Utilisateur newUtil = (Utilisateur) command;
+		System.out.println(">> Utilisateur : " + newUtil.getEmail());
+		Utilisateur util = manager.read(newUtil.getId());
+		transferUtil(util, newUtil);
+		manager.save(util);
+		Utilisateur utilInSession = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
+		if( util.getId().compareTo(utilInSession.getId()) == 0 ) {
+			request.getSession().setAttribute(Constants.PARAM_USER_SESSION, util);
+		}
 		mav.setViewName("redirect:adminAccueil.do");
 		return mav;
+	}
+	
+	protected void transferUtil(Utilisateur util, Utilisateur nouveau) {
+		util.setEmail(nouveau.getEmail());
+		util.setNom(nouveau.getNom());
+		util.setPrenom(nouveau.getPrenom());
+		util.setPassword(nouveau.getPassword());
+		util.setProfil(nouveau.getProfil());
 	}
 	
 	@Override

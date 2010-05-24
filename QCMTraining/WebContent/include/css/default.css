@@ -323,3 +323,8 @@ tr.correctReponse td {
 .displayTableList thead tr {
 	background-color:#a7e3ff;
 }
+.info {
+	font-size: 11px;
+	color: purple;
+	font-style: italic;
+}

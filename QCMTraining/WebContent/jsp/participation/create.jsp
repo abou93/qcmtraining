@@ -80,7 +80,7 @@
 		<tr>
 			<td colspan="2" style="text-align: right;"><input type="submit"
 				value="Valider" /> <input type="button" value="Annuler"
-				onclick="window.location.href='adminAccueil.do';" />
+				onclick="window.location.href='listeSujet.do';" />
 			</td>
 		</tr>
 	</table>

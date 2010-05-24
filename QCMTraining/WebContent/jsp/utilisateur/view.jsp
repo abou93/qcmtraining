@@ -69,7 +69,9 @@
 				</table>
 			</fieldset>
 			<br /><br />
-			<input type="button" value="Retour" onclick="window.location.href='listeUser.do';" />
+			<c:if test="${isAdmin}">
+				<input type="button" value="Retour" onclick="window.location.href='listeUser.do';" />			
+			</c:if>
 		</div>
 	</div>
 </div>
