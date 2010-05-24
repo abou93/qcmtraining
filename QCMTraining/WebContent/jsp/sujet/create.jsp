@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 
+<jsp:include page="/jsp/general/securityAdmin.jsp" />
 <div id="content">
 <div class="post" style="padding-top: 57px;">
 <h2 class="title">Création d'un nouveau sujet</h2>

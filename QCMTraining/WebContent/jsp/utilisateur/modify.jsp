@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<jsp:include page="/jsp/general/securityAdmin.jsp" />
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Modification de l'utilisateur : ${userForm.nom }</h2>

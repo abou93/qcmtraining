@@ -23,7 +23,6 @@
 		<!-- end contentn -->
 		<div id="sidebar">
 			<div id="login">
-				<p>isAdmin : <c:out value="${sessionScope['isAdmin']}" /> / isLogged : <c:out value="${sessionScope['isLogged']}" /></p>
 				<jsp:include page="login.do"/>
 			</div>
 			

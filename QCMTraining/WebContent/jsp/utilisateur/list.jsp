@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="/WEB-INF/tld/displaytag-11.tld" prefix="display" %>
 
+<jsp:include page="/jsp/general/securityLogged.jsp" />
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Liste des utilisateurs</h2>

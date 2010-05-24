@@ -68,7 +68,6 @@
 		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/sujet/view.jsp"/>
 		<property name="activePage" value="3"/>
-		
 	</bean>
 	<bean name="ViewParticipationController" class="fr.dauphine.spring.ctl.DefaultViewController" >
 		<property name="manager">
@@ -246,7 +245,7 @@
 		<property name="activePage" value="2"/>
 	</bean>
 	
-	<bean name="SupprimerUserController" class="fr.dauphine.spring.ctl.DefaultSuppressionController">
+	<bean name="SupprimerUserController" class="fr.dauphine.spring.ctl.SuppressionUserController">
 		<property name="manager">
 			<ref bean="utilisateurManager" />
 		</property>
@@ -327,7 +326,6 @@
 				<prop key="/supprimerUser.do">SupprimerUserController</prop>
 				<prop key="/modifierUser.do">ModifierUserController</prop>
 				<prop key="/validerModifierUser.do">ValidationModificationUserController</prop>
-				
 				
 				<prop key="/listeSujet.do">SujetListController</prop>
 				<prop key="/creerSujet.do">CreationSujetController</prop>

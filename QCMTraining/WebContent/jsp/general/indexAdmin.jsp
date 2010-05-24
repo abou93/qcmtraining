@@ -9,7 +9,6 @@
 				<div>
 					<a href="creerUser.do" title="">Créer un utilisateur</a>
 				</div>
-				<div>Supprimer un utilisateur</div>	
 			<br />
 			<h3>Gestion des sujets</h3>
 				<div>
@@ -18,12 +17,6 @@
 				<div>
 					<a href="creerSujet.do" title="">Créer un sujet</a>
 				</div>		
-			<br />
-			<h3>Gestion des QCM</h3>	
-				<div>Liste des scores</div>
-				<div>Créer questionnaire</div>
-				<div>Modifier questionnaire</div>
-				<div>Supprimer questionnaire</div>
 			<br /><br />
 		</div>
 	</div>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<jsp:include page="/jsp/general/securityLogged.jsp" />
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Visualisation de l'utilisateur : ${utilisateur.nom}</h2>
@@ -21,15 +22,17 @@
 				<br/>
 				<label for="email" class="agauche">Email :</label>
 				<c:out value="${utilisateur.email}" />
-				<br/><br />
-				<label for="profil.id">Utilisateur </label>
-				<input type="radio" disabled="disabled" 
-							<c:if test="${utilisateur.profil.id==2}">checked="checked"</c:if> 
-							name="profil.id" />
-				<label for="profil.id">Admin </label>
-				<input type="radio" disabled="disabled" 
-							<c:if test="${utilisateur.profil.id==1}">checked="checked"</c:if> 
-							name="profil.id" />
+				<c:if test="${isAdmin }">
+					<br/><br />
+					<label for="profil.id">Utilisateur </label>
+					<input type="radio" disabled="disabled" 
+								<c:if test="${utilisateur.profil.id==2}">checked="checked"</c:if> 
+								name="profil.id" />
+					<label for="profil.id">Admin </label>
+					<input type="radio" disabled="disabled" 
+								<c:if test="${utilisateur.profil.id==1}">checked="checked"</c:if> 
+								name="profil.id" />
+				</c:if>
 				<br />
 			</fieldset>
 			<c:if test="${isAdmin}">
