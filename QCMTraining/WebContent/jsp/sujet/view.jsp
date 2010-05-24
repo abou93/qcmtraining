@@ -35,6 +35,7 @@
 						<td><span id="titre"><c:out value="${sujet.description}" /></span></td>
 					</tr>
 					<c:if test="${isAdmin}">
+						
 						<c:forEach var="aQuestion" items="${sujet.listQuestion}" varStatus="questionStatut" >
 							<tr>
 								<td colspan="2" >
@@ -50,8 +51,15 @@
 												<td><c:out value="${aQuestion.libelle}" /></td>
 											</tr>
 											<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
-											
-												<tr>
+												<c:choose>
+													<c:when test="${aReponse.goodResponse}">
+														<c:set property="class" value="goodReponse" />
+													</c:when>
+													<c:otherwise>
+														<c:set property="class" value="" />
+													</c:otherwise>
+												</c:choose>
+												<tr class="<c:out value="${class}" />">
 														<td>Réponse n°<c:out value="${reponseStatut.index + 1}" />: </td>
 														<td><c:out value="${aReponse.libelle}" /></td>
 														<td><input type="radio" disabled="disabled" <c:if test="${aReponse.goodResponse}">checked="checked"</c:if> 

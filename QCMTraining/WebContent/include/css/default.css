@@ -307,3 +307,10 @@ tr.goodReponse td {
 tr.correctReponse td {
 	color: red;
 }
+.displayTableList {
+	width: 100%;
+	border: 1px solid #a7e3ff;
+}
+.displayTableList thead tr {
+	background-color:#a7e3ff;
+}

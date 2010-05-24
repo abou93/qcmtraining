@@ -3,34 +3,20 @@
 	<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%> 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="/WEB-INF/tld/displaytag-11.tld" prefix="display" %>
 
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Liste des sujets</h2>
 		<div class="entry">
-			<c:choose>
-			<c:when test="${not empty sujetList}">
-				<table cellpadding="0" cellspacing="1" width="100%">
-					<tr>
-						<th>Titre</th>
-						<th>Description</th>
-					</tr>
-					<c:forEach var="aSujet" items="${sujetList}">
-						<tr>
-							<td><a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out
-								value="${aSujet.titre}" /></a></td>
-							<td><c:out
-								value="${aSujet.description}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:when>
-			<c:otherwise>
-							Il n'y a aucun sujet!
-						</c:otherwise>
-		</c:choose>
-		<br /><br />
-		<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
+			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="10" styleClass="displayTableList"  requestURI="listeSujet.do" >
+				<display:column title="Titre" media="html">
+					<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
+				</display:column>
+				<display:column property="description" title="Description" />
+			</display:table>
+			<br /><br />
+			<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
 		</div>
 	</div>
 </div>
