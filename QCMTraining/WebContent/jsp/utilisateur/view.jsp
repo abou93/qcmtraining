@@ -21,14 +21,50 @@
 				<br/>
 				<label for="email" class="agauche">Email :</label>
 				<c:out value="${utilisateur.email}" />
-				<br/>
+				<br/><br />
+				<label for="profil.id">Utilisateur </label>
+				<input type="radio" disabled="disabled" 
+							<c:if test="${utilisateur.profil.id==2}">checked="checked"</c:if> 
+							name="profil.id" />
+				<label for="profil.id">Admin </label>
+				<input type="radio" disabled="disabled" 
+							<c:if test="${utilisateur.profil.id==1}">checked="checked"</c:if> 
+							name="profil.id" />
+				<br />
 			</fieldset>
-			<div style="text-align:right">
-				<input type="button" 
-					value="Supprimer" 
-					onclick="if(!confirm('Confirmer la suppression?')) return false; 
-						window.location.href='supprimerUser.do?idObject=${utilisateur.id}';" />
-			</div>
+			<c:if test="${isAdmin}">
+				<div style="text-align:right">
+					<input type="button" 
+						value="Modifier" 
+						onclick="window.location.href='modifierUser.do?idObject=${utilisateur.id}';" />
+					<input type="button" 
+						value="Supprimer" 
+						onclick="if(!confirm('Confirmer la suppression?')) return false; 
+							window.location.href='supprimerUser.do?idObject=${utilisateur.id}';" />
+				</div>
+			</c:if>
+			<br /><br />
+			<fieldset>
+				<legend>
+					Participations
+				</legend>
+				<div class="recap">SCORE MOYEN : <c:out value="${utilisateur.scoreMoyenPct}" />%</div>
+				<br />
+				<table width="100%">
+					<tr>
+						<th style="width:20%;">Score</th>
+						<th style="width:80%;">Sujet</th>
+					</tr>
+					<c:forEach var="participation" items="${utilisateur.mesParticipations}" varStatus="stat" >
+					<tr>
+						<td <c:if test="${participation.scorePct==100}">class="sansFaute"</c:if>>
+							<c:out value="${participation.scorePct}" />%
+						</td>
+						<td><c:out value="${participation.sujet.titre}" /></td>
+					</tr>
+					</c:forEach>
+				</table>
+			</fieldset>
 			<br /><br />
 			<input type="button" value="Retour" onclick="window.location.href='listeUser.do';" />
 		</div>

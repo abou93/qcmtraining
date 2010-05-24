@@ -3,6 +3,7 @@
  */
 package fr.dauphine.spring.bo;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
@@ -102,7 +103,13 @@ public class Participation extends BO {
 	public int getNbReponseGood() {
 		return this.getGoodReponse().size();
 	}
+	
 	public String getScore() {
 		return this.getNbReponseGood() + "/" + sujet.getNbQuestionDisplay();
+	}
+	
+	public int getScorePct() {
+		float f = ((float)this.getNbReponseGood() / sujet.getNbQuestionDisplay()) * 100;
+		return (int)f;
 	}
 }

@@ -11,4 +11,6 @@ public interface AbstractDAO<T> {
 	T read(Long id);
 	
 	void delete(T entity);
+	
+	T update(T entity);
 }

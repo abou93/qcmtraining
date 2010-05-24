@@ -16,13 +16,13 @@ import fr.dauphine.spring.manager.UtilisateurManager;
  * @author Mathieu
  *
  */
-public class UserValidator implements Validator {
+public class ModificationUserValidator implements Validator {
 	
 	UtilisateurManager utilisateurManager;
 	/**
 	 * 
 	 */
-	public UserValidator() {
+	public ModificationUserValidator() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,15 +46,6 @@ public class UserValidator implements Validator {
 			}
 			if (util.getPassword() == null || util.getPassword().equals("")) {
 				errors.rejectValue("password", "Valeur manquante", null, "Il faut saisir un password.");
-			}
-		}
-		Collection<Utilisateur> col = utilisateurManager.loadAllUtilisateur();
-		Iterator<Utilisateur> it = col.iterator();
-		while(it.hasNext()) {
-			Utilisateur u = (Utilisateur)it.next();
-			if(util.getEmail().equals(u.getEmail())) {
-				errors.rejectValue("email", "Création impossible", null, "Il existe déjà un utilisateur portant le même email!");
-				break;
 			}
 		}
 	}

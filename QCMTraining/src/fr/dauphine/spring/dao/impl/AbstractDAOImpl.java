@@ -26,6 +26,12 @@ public abstract class AbstractDAOImpl<T> extends HibernateDaoSupport implements 
 		getHibernateTemplate().delete(entity);
 	}	
 	
+	@Override
+	public T update(T entity) {
+		getHibernateTemplate().update(entity);
+		return entity;
+	}	
+	
 	/* (non-Javadoc)
 	 * @see fr.dauphine.spring.dao.AbstractDAO#read(java.lang.String)
 	 */

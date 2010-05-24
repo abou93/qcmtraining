@@ -222,13 +222,46 @@
 		<property name="activePage" value="2"/>
 	</bean>
 	
+	<bean name="ValidationModificationUserController" class="fr.dauphine.spring.ctl.ValidationModificationUserController">
+		<property name="commandClass">
+			<value>fr.dauphine.spring.bo.Utilisateur</value>
+		</property>
+		<property name="commandName">
+			<value>userForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="validator">
+			<ref bean="modificationUserValidator" />
+		</property>
+		<property name="nameOfPageContent" value="jsp/utilisateur/modify.jsp"/>
+		<property name="nameOfObject" value="userForm" />
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="activePage" value="2"/>
+	</bean>
+	
 	<bean name="SupprimerUserController" class="fr.dauphine.spring.ctl.DefaultSuppressionController">
 		<property name="manager">
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfObject" value="utilisateur"/>
-		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
-		<property name="nameOfPageContent" value="jsp/utilisateur/list.jsp"/>
+		<property name="nameOfErrorPage" value="jsp/utilisateur/error.jsp"/>
+		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
+		<property name="activePage" value="2"/>
+	</bean>
+
+	<bean name="ModifierUserController" class="fr.dauphine.spring.ctl.DefaultViewController" >
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="nameOfPageContent" value="jsp/utilisateur/modify.jsp"/>
+		<property name="nameOfObject" value="userForm"/>
 		<property name="activePage" value="2"/>
 	</bean>
 	
@@ -268,7 +301,12 @@
 			<ref bean="utilisateurManager" />
 		</property>
 	</bean>
-	
+	<bean id="modificationUserValidator" class="fr.dauphine.spring.bo.validator.ModificationUserValidator" >
+		<property name="utilisateurManager">
+			<ref bean="utilisateurManager" />
+		</property>
+	</bean>
+		
 	<!-- Spring: view -->
 	
 	<bean id="urlMapping"
@@ -287,6 +325,9 @@
 				<prop key="/validerCreerUser.do">ValidationUserController</prop>
 				<prop key="/voirUser.do">ViewUserController</prop>
 				<prop key="/supprimerUser.do">SupprimerUserController</prop>
+				<prop key="/modifierUser.do">ModifierUserController</prop>
+				<prop key="/validerModifierUser.do">ValidationModificationUserController</prop>
+				
 				
 				<prop key="/listeSujet.do">SujetListController</prop>
 				<prop key="/creerSujet.do">CreationSujetController</prop>
@@ -340,6 +381,7 @@
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>
@@ -358,6 +400,7 @@
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>
@@ -377,6 +420,7 @@
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>

@@ -41,6 +41,11 @@ public class AbstractManagerImpl<T extends BO> implements AbstractManager<T> {
 		dao.delete(entity);
 	}
 	
+	@Override
+	public T update(T entity) {
+		return dao.update(entity);
+	}
+	
 	/**
 	 * @return the dao
 	 */

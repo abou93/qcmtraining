@@ -3,33 +3,18 @@
 	<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%> 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="/WEB-INF/tld/displaytag-11.tld" prefix="display" %>
 
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Liste des utilisateurs</h2>
 		<div class="entry">
-			<c:choose>
-			<c:when test="${not empty utilisateurList}">
-				<table cellpadding="0" cellspacing="1" width="100%">
-					<tr>
-						<th>Nom et prénom</th>
-						<th>Email</th>
-					</tr>
-					<c:forEach var="aUtilisateur" items="${utilisateurList}">
-						<tr>
-							<td><a href="<c:url value="/voirUser.do?idObject=${aUtilisateur.id}" />"><c:out
-								value="${aUtilisateur.prenom}" /> <c:out
-								value="${aUtilisateur.nom}" /></a></td>
-							<td><c:out
-								value="${aUtilisateur.email}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:when>
-			<c:otherwise>
-							Il n'y a aucun utilisateur!
-						</c:otherwise>
-			</c:choose>
+			<display:table cellspacing="0" cellpadding="0" name="utilisateurList" id="aUser"  pagesize="10" styleClass="displayTableList"  requestURI="listeUser.do" >
+				<display:column title="Nom et prénom" media="html">
+					<a href="<c:url value="/voirUser.do?idObject=${aUser.id}" />"><c:out value="${aUser.nom}" /> <c:out value="${aUser.prenom}" /></a>
+				</display:column>
+				<display:column property="email" title="Email" />
+			</display:table>
 			<br /><br />
 			<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
 		</div>

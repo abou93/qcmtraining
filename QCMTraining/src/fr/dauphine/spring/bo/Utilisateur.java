@@ -112,4 +112,13 @@ public class Utilisateur extends BO {
 		this.mesParticipations = mesParticipations;
 	}
 	
+	public int getScoreMoyenPct() {
+		float total = 0;
+		for(Participation p : getMesParticipations()) {
+			total += p.getScorePct();
+		}
+		total = total / getMesParticipations().size();
+		return (int)total;
+	}
+	
 }

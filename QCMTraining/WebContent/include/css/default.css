@@ -307,6 +307,15 @@ tr.goodReponse td {
 tr.correctReponse td {
 	color: red;
 }
+
+.recap {
+	color: purple;
+	font-size: bold;
+}
+
+.sansFaute {
+	color: green;
+}
 .displayTableList {
 	width: 100%;
 	border: 1px solid #a7e3ff;

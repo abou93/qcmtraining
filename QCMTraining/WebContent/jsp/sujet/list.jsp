@@ -15,8 +15,12 @@
 				</display:column>
 				<display:column property="description" title="Description" />
 			</display:table>
-			<br /><br />
-			<input type="button" value="Retour" onclick="window.location.href='adminAccueil.do';" />
+		<br /><br />
+		<input type="button" value="Retour" 
+			onclick=<c:choose>
+					<c:when test="${isAdmin}">"window.location.href='adminAccueil.do';"</c:when>
+					<c:otherwise>"window.location.href='accueil.do';"</c:otherwise>
+				</c:choose> />
 		</div>
 	</div>
 </div>

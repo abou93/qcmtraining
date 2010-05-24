@@ -81,7 +81,7 @@
 						</tr>
 				</table>
 				<br /><br />
-				<input type="button" value="Retour" onclick="window.location.href='accueil.do';" />
+				<input type="button" value="Retour" onclick="window.location.href='listeSujet.do';" />
 		</div>
 	</div>
 </div>

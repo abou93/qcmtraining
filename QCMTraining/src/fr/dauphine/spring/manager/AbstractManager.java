@@ -19,4 +19,5 @@ public interface AbstractManager<T extends BO> {
 	
 	void delete(T entity);
 	
+	T update(T entity);
 }

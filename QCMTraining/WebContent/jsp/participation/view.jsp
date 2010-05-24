@@ -28,7 +28,7 @@
 					</tr>
 					<tr class="score">
 						<td><label for="score">Votre score : </label></td>
-						<td><span id="score"><c:out value="${participation.score}" /></span></td>
+						<td><span id="score"><c:out value="${participation.score}" /> (<c:out value="${participation.scorePct}" />%)</span></td>
 					</tr>
 					<tr>
 						<td><label for="description" class="adroite">Description :</label></td>
@@ -95,7 +95,7 @@
 					</c:forEach>
 				</table>
 				<br /><br />
-				<input type="button" value="Retour" onclick="window.location.href='accueil.do';" />
+				<input type="button" value="Retour" onclick="window.location.href='listeSujet.do';" />
 		</div>
 	</div>
 </div>
