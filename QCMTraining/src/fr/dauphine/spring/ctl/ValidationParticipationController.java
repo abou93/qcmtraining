@@ -44,6 +44,7 @@ public class ValidationParticipationController extends
 			part.getReponsesChoisies().add(quest.getListResponse().get(quest.getIndexResponse()));
 		}
 		manager.save(part);
+		mav.setViewName("redirect:viewParticipation.do?" + Constants.PARAM_REQUEST_ID +"="+ part.getId());
 		return mav;
 	}
 	

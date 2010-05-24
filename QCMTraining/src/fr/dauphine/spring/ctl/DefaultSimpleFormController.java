@@ -3,6 +3,8 @@
  */
 package fr.dauphine.spring.ctl;
 
+import java.util.ResourceBundle;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,11 +21,12 @@ import fr.dauphine.spring.util.Constants;
  */
 @SuppressWarnings("deprecation")
 public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFormController {
-	
+	protected static final ResourceBundle resource = ResourceBundle.getBundle(Constants.PARAM_NAME_PROPERTIES_FILE);
 	protected String nameOfPageContent;
 	protected String nameOfObject;
 	protected String activePage;
 	protected AbstractManager<TypeObject> manager;
+	
 	
 	/**
 	 * 
@@ -95,5 +98,11 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	public void setManager(AbstractManager<TypeObject> manager) {
 		this.manager = manager;
 	}
-
+	/**
+	 * @return the resource
+	 */
+	public ResourceBundle getResource() {
+		return resource;
+	}
+	
 }

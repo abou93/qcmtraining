@@ -3,7 +3,6 @@
  */
 package fr.dauphine.spring.bo;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -19,6 +18,7 @@ public class SujetInfo extends BO {
 	protected String description;
 	protected Date dateStart;
 	protected Date dateEnd;
+	protected Integer nbQuestionDisplay;
 	
 	public SujetInfo() {
 		super();
@@ -82,4 +82,17 @@ public class SujetInfo extends BO {
 		Date d = new Date();
 		return (d.after(dateStart) || d.equals(dateStart)) && (d.before(dateEnd) || d.equals(dateEnd));
 	}
+	/**
+	 * @return the nbQuestionDisplay
+	 */
+	public Integer getNbQuestionDisplay() {
+		return nbQuestionDisplay;
+	}
+	/**
+	 * @param nbQuestionDisplay the nbQuestionDisplay to set
+	 */
+	public void setNbQuestionDisplay(Integer nbQuestionDisplay) {
+		this.nbQuestionDisplay = nbQuestionDisplay;
+	}
+	
 }

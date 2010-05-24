@@ -57,13 +57,26 @@
 		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
 		<property name="activePage" value="2"/>
 	</bean>
-	<bean name="ViewSujetController" class="fr.dauphine.spring.ctl.DefaultViewController" >
+	<bean name="ViewSujetController" class="fr.dauphine.spring.ctl.ViewSujetController" >
 		<property name="manager">
 			<ref bean="sujetManager" />
+		</property>
+		<property name="partManager">
+			<ref bean="participationManager" />
 		</property>
 		<property name="nameOfObject" value="sujet"/>
 		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/sujet/view.jsp"/>
+		<property name="activePage" value="3"/>
+		
+	</bean>
+	<bean name="ViewParticipationController" class="fr.dauphine.spring.ctl.DefaultViewController" >
+		<property name="manager">
+			<ref bean="participationManager" />
+		</property>
+		<property name="nameOfObject" value="participation"/>
+		<property name="nameOfErrorPage" value="jsp/participation/error.jsp"/>
+		<property name="nameOfPageContent" value="jsp/participation/view.jsp"/>
 		<property name="activePage" value="3"/>
 	</bean>
 	<bean name="ViewUserController" class="fr.dauphine.spring.ctl.DefaultViewController" >
@@ -118,6 +131,7 @@
 		<property name="nameOfObject" value="participationForm"/>
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Participation"/>
 		<property name="sujetManager" ref="sujetManager"/>
+		<property name="partManager" ref="participationManager"/>
 		<property name="activePage" value="3"/>
 	</bean>
 	<bean name="ValidationParticipationController" class="fr.dauphine.spring.ctl.ValidationParticipationController">
@@ -281,6 +295,8 @@
 				
 				<prop key="/creerParticipation.do">CreationParticipationController</prop>
 				<prop key="/validerCreerParticipation.do">ValidationParticipationController</prop>
+				<prop key="/viewParticipation.do">ViewParticipationController</prop>
+				
 			</props>
 		</property>
 		<property name="interceptors">

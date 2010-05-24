@@ -14,6 +14,7 @@ CREATE TABLE `SUJET` (
   `DESCRIPTION` varchar(1000) default NULL,
   `DATE_START` DATE NOT NULL,
   `DATE_END` DATE NOT NULL,
+  `NB_QUESTION_DISPLAY` int NOT NULL,
    Primary Key (ID_SUJET)
 )
 
@@ -87,6 +88,7 @@ CREATE TABLE `profil` (
   `CODE` int(11) NOT NULL,
   PRIMARY KEY  (`ID_PROFIL`)
 );
+
 
 --
 -- Contenu de la table `profil`

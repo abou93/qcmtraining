@@ -27,45 +27,50 @@
 						<td><span id="dateEnd"><fmt:formatDate value="${sujet.dateEnd}" pattern="dd/MM/yyyy" /></span></td>
 					</tr>
 					<tr>
+						<td><label for="nbQuestionDisplay" class="adroite">Nombre de question : </label></td>
+						<td><span id="nbQuestionDisplay"><c:out value="${sujet.nbQuestionDisplay}" /></span></td>
+					</tr>
+					<tr>
 						<td><label for="description" class="adroite">Description :</label></td>
 						<td><span id="titre"><c:out value="${sujet.description}" /></span></td>
 					</tr>
-					<c:forEach var="aQuestion" items="${sujet.listQuestion}" varStatus="questionStatut" >
-					<tr>
-						<td colspan="2" >
-						<fieldset> <legend>Question n°<c:out value="${questionStatut.index + 1}" /></legend>
-								<table width="100%">
-									<tr>
-										<td style="width:48%;" />
-										<td style="width:48%;" />
-										<td style="width:4%;" />
-									</tr>
-									<tr>
-										<td>Libellé de la question :</td>
-										<td><c:out value="${aQuestion.libelle}" /></td>
-									</tr>
-									<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
-									
-										<tr>
-												<td>Réponse n°<c:out value="${reponseStatut.index + 1}" />: </td>
-												<td><c:out value="${aReponse.libelle}" /></td>
-												<td><input type="radio" disabled="disabled" <c:if test="${aReponse.goodResponse}">checked="checked"</c:if> 
-													name="question${questionStatut.index}.reponse${reponseStatut.index}.goodResponse" /></td>
-										</tr>
-									</c:forEach>
-								</table>
-							</fieldset>
-						</td>
-					</tr>
-					</c:forEach>
-					<c:if test="${sujet.actif}">
+					<c:if test="${isAdmin}">
+						<c:forEach var="aQuestion" items="${sujet.listQuestion}" varStatus="questionStatut" >
+							<tr>
+								<td colspan="2" >
+								<fieldset> <legend>Question n°<c:out value="${questionStatut.index + 1}" /></legend>
+										<table width="100%">
+											<tr>
+												<td style="width:48%;" />
+												<td style="width:48%;" />
+												<td style="width:4%;" />
+											</tr>
+											<tr>
+												<td>Libellé de la question :</td>
+												<td><c:out value="${aQuestion.libelle}" /></td>
+											</tr>
+											<c:forEach var="aReponse" items="${aQuestion.listResponse}" varStatus="reponseStatut" >
+											
+												<tr>
+														<td>Réponse n°<c:out value="${reponseStatut.index + 1}" />: </td>
+														<td><c:out value="${aReponse.libelle}" /></td>
+														<td><input type="radio" disabled="disabled" <c:if test="${aReponse.goodResponse}">checked="checked"</c:if> 
+															name="question${questionStatut.index}.reponse${reponseStatut.index}.goodResponse" /></td>
+												</tr>
+											</c:forEach>
+										</table>
+									</fieldset>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					
 						<tr>
 							<td colspan="2" style="text-align:right;" >
-								<c:if test="isAdmin"><input type="button" value="Modifier" onclick="window.location.href='/sujet/modifierSujet.do?idSujet=${sujet.id}';" />&nbsp;</c:if> 
-								<input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" />
+								<c:if test="${isAdmin and sujet.actif eq false}"><input type="button" value="Modifier" onclick="window.location.href='/sujet/modifierSujet.do?idSujet=${sujet.id}';" />&nbsp;</c:if> 
+								<c:if test="${sujet.actif}"><input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" /></c:if>
 							</td>
 						</tr>
-					</c:if>
 				</table>
 				<br /><br />
 				<input type="button" value="Retour" onclick="window.location.href='accueil.do';" />

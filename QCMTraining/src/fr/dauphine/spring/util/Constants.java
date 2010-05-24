@@ -35,5 +35,14 @@ public final class Constants {
 	public static final int PARAM_ACTIVEPAGE_ADMINISTRATION = 2;
 	public static final int PARAM_ACTIVEPAGE_QCM = 3;
 	public static final String PARAM_INDEX_VIEW = "index";
+	
+	public static final String ERROR_SUJET_NULL = "sujet.form.null";
+	public static final String ERROR_SUJET_DATE_DEB = "sujet.form.date.deb.null";
+	public static final String ERROR_SUJET_DATE_FIN = "sujet.form.date.fin.null";
+	public static final String ERROR_SUJET_TITRE = "sujet.form.titre.null";
+	public static final String ERROR_SUJET_NBQUESTIONDISPLAY_NULL = "sujet.form.nbquestiondisplay.null";
+	public static final String ERROR_SUJET_NBQUESTIONDISPLAY_VALEUR = "sujet.form.nbquestiondisplay.valeur";
+	public static final String ERROR_SUJET_QUESTION_LIBELLE = "sujet.form.question.libelle.null";
+	public static final String ERROR_SUJET_QUESTION_REPONSE_LIBELLE = "sujet.form.question.reponse.libelle.null";
 
 }

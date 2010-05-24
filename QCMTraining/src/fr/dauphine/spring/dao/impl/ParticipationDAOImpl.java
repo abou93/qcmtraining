@@ -6,7 +6,10 @@ package fr.dauphine.spring.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.PropertyValueException;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import fr.dauphine.spring.bo.Participation;
 import fr.dauphine.spring.bo.Reponse;
@@ -20,7 +23,8 @@ import fr.dauphine.spring.dao.ParticipationDAO;
  */
 public class ParticipationDAOImpl extends AbstractDAOImpl<Participation>
 		implements ParticipationDAO {
-
+	private static final String ID_USER_PROPERTY = "user.id";
+	private static final String ID_SUJET_PROPERTY = "sujet.id";
 	/* (non-Javadoc)
 	 * @see fr.dauphine.spring.dao.impl.AbstractDAOImpl#getTemplateClass()
 	 */
@@ -28,6 +32,7 @@ public class ParticipationDAOImpl extends AbstractDAOImpl<Participation>
 	protected Class<Participation> getTemplateClass() {
 		return Participation.class;
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see fr.dauphine.spring.dao.impl.AbstractDAOImpl#save(java.lang.Object)
@@ -55,6 +60,25 @@ public class ParticipationDAOImpl extends AbstractDAOImpl<Participation>
 		}
 		entity.setReponsesChoisies(listFromBD);
 		return super.save(entity);
+	}
+
+
+	@Override
+	public Participation getParticipationByIdUserAndIdSujet(Long idUser, Long idSujet) {
+		Criteria crit = getSession().createCriteria(Participation.class);
+		crit.add(Restrictions.eq(ID_SUJET_PROPERTY, idSujet));
+		crit.add(Restrictions.eq(ID_USER_PROPERTY, idUser));
+		return (Participation) crit.uniqueResult();
+	}
+
+
+	@Override
+	public boolean isParticiperAuSujet(Long idUser, Long idSujet) {
+		Criteria crit = getSession().createCriteria(Participation.class);
+		crit.setProjection(Projections.count("id"));
+		crit.add(Restrictions.eq(ID_SUJET_PROPERTY, idSujet));
+		crit.add(Restrictions.eq(ID_USER_PROPERTY, idUser));
+		return ((Long)crit.uniqueResult()) > 0;
 	}
 
 }

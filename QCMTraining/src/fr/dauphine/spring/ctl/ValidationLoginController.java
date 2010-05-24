@@ -48,8 +48,9 @@ public class ValidationLoginController extends DefaultSimpleFormController<Utili
 		request.getSession().setAttribute(Constants.PARAM_USER_SESSION, utilisateur);
 		if(utilisateur != null && utilisateur.getId() != null) {
 			request.getSession().setAttribute(Constants.PARAM_ISLOGGED, true);
-			if(utilisateur.getProfil().getCode()==1)
+			if(utilisateur.getProfil().getCode()==1) {
 				request.getSession().setAttribute(Constants.PARAM_ISADMIN, true);
+			}
 		}
 		return super.onSubmit(request, response, command, errors);
 	}

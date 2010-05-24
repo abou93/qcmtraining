@@ -21,5 +21,8 @@
 		<property name="dateEnd">
 			<column name="DATE_END" sql-type="DATE" not-null="true" />
 		</property>
+		<property name="nbQuestionDisplay">
+			<column name="NB_QUESTION_DISPLAY" sql-type="int" not-null="true" />
+		</property>
 	</class>
 </hibernate-mapping>

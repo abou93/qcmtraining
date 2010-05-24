@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.dauphine.spring.bo.Participation;
 import fr.dauphine.spring.bo.Sujet;
 import fr.dauphine.spring.bo.Utilisateur;
+import fr.dauphine.spring.manager.ParticipationManager;
 import fr.dauphine.spring.manager.SujetManager;
 import fr.dauphine.spring.util.Constants;
 
@@ -23,7 +24,10 @@ public class CreationParticipationController extends
 		DefaultCreationController<Participation> {
 	public static final String PARAM_OBJECT_SUJET = "sujetObject";
 	public static final String PARAM_VIEW_NOT_ACTIF = "jsp/participation/notOpen.jsp";
+	public static final String ERROR_USER_NULL = "participation.user.null";
+	public static final String ERROR_PARTICIPATION_UNIQUE = "participation.unique";
 	SujetManager sujetManager;
+	ParticipationManager partManager;
 	
 	/* (non-Javadoc)
 	 * @see fr.dauphine.spring.ctl.DefaultController#constructViewWithNewInstance()
@@ -43,19 +47,25 @@ public class CreationParticipationController extends
 			this.addError(request, resource.getString(PARAM_ERROR_ID_NULL));
 		} else if(util == null || util.getId() == null) {
 			mav = constructErrorView();
+			this.addError(request, resource.getString(ERROR_USER_NULL));
 		} else {
 			Long id = Long.parseLong(idString);
 			Sujet sujet = this.sujetManager.read(id);
-			if(!sujet.isActif()) {
-				mav = constructViewWithNewInstance(PARAM_VIEW_NOT_ACTIF);
+			if(partManager.isParticiperAuSujet(util.getId(), sujet.getId())) {
+				mav = constructErrorView();
+				this.addError(request, resource.getString(ERROR_PARTICIPATION_UNIQUE));
 			} else {
-				mav = constructSuccessViewWithNewInstance();
+				if(!sujet.isActif()) {
+					mav = constructViewWithNewInstance(PARAM_VIEW_NOT_ACTIF);
+				} else {
+					mav = constructSuccessViewWithNewInstance();
+				}
+				Participation part = (Participation)mav.getModel().get(nameOfObject);
+				part.setSujet(sujet);
+				part.setUser(util);
+				part.setListToDisplay(sujet.getRandomListOfQuestion());
+				mav.addObject(nameOfObject, part);
 			}
-			Participation part = (Participation)mav.getModel().get(nameOfObject);
-			part.setSujet(sujet);
-			part.setUser(util);
-			part.setListToDisplay(sujet.getRandomListOfQuestion());
-			mav.addObject(nameOfObject, part);
 		}
 		return mav;
 	}
@@ -82,4 +92,19 @@ public class CreationParticipationController extends
 	public void setSujetManager(SujetManager sujetManager) {
 		this.sujetManager = sujetManager;
 	}
+
+	/**
+	 * @return the partManager
+	 */
+	public ParticipationManager getPartManager() {
+		return partManager;
+	}
+
+	/**
+	 * @param partManager the partManager to set
+	 */
+	public void setPartManager(ParticipationManager partManager) {
+		this.partManager = partManager;
+	}
+	
 }

@@ -298,3 +298,12 @@ label.agauche {
     display: block;
     float: left;
 }
+tr.score td, tr.goodReponse td, tr.falseReponse td {
+	font-weight: bold;
+}
+tr.goodReponse td {
+	color: green;
+}
+tr.correctReponse td {
+	color: red;
+}

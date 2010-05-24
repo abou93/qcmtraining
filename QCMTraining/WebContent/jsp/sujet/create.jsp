@@ -34,6 +34,11 @@
 				value="<fmt:formatDate value="${sujetForm.dateEnd}" pattern="dd/MM/yyyy" />" /></td>
 		</tr>
 		<tr>
+			<td><label for="nbQuestionDisplay" class="adroite">Nombre de question à afficher
+			:</label></td>
+			<td><form:input path="nbQuestionDisplay" /></td>
+		</tr>
+		<tr>
 			<td><label for="description" class="adroite">Description
 			:</label></td>
 			<td><form:textarea path="description" /></td>

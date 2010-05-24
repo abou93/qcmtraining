@@ -3,12 +3,14 @@
  */
 package fr.dauphine.spring.ctl;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -124,43 +126,43 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		String subAction = request
 				.getParameter(Constants.PARAM_SUB_ACTION_NAME);
 		Sujet sujet = (Sujet) command;
-		if (subAction == null || subAction.isEmpty()) {
+		if (StringUtils.isEmpty(subAction)) {
 			if (sujet == null) {
-				errors.rejectValue("sujetForm", "Erreur!", null,
-						"Le sujet de QCM est absent.");
+				errors.rejectValue("sujetForm", "Erreur!", null, resource.getString(Constants.ERROR_SUJET_NULL));
 			} else {
 				if (sujet.getDateStart() == null) {
-					errors.rejectValue("dateStart", "Valeur manquante!", null,
-							"La date de lancement est obligatoire.");
+					errors.rejectValue("dateStart", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_DEB));
 				}
 				if (sujet.getDateEnd() == null) {
-					errors.rejectValue("dateEnd", "Valeur manquante!", null,
-							"La date de fin est obligatoire.");
+					errors.rejectValue("dateEnd", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_FIN));
 				}
-				if (sujet.getTitre() == null || sujet.getTitre().isEmpty()) {
-					errors.rejectValue("titre", "Valeur manquante!", null,
-							"Le titre du QCM est obligatoire.");
+				if (StringUtils.isEmpty(sujet.getTitre())) {
+					errors.rejectValue("titre", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_TITRE));
+				}
+				if (sujet.getNbQuestionDisplay() == null) {
+					errors.rejectValue("nbQuestionDisplay", "Valeur manquante!", null, 
+							resource.getString(Constants.ERROR_SUJET_NBQUESTIONDISPLAY_NULL));
+				} else if(sujet.getNbQuestionDisplay() < 0 || sujet.getNbQuestionDisplay() > sujet.getListQuestion().size()) {
+					errors.rejectValue("nbQuestionDisplay", "Valeur incorrect", null, 
+							MessageFormat.format(resource.getString(Constants.ERROR_SUJET_NBQUESTIONDISPLAY_VALEUR),
+									sujet.getListQuestion().size()));
 				}
 				boolean errorQuestion = false;
 				boolean reponseErreur = false;
 				for (short i = 0; i < sujet.getListQuestion().size(); i++) {
 					Question question = sujet.getListQuestion().get(i);
-					if (!errorQuestion && (question.getLibelle() == null
-							|| question.getLibelle().isEmpty())) {
+					if (!errorQuestion && (StringUtils.isEmpty(question.getLibelle()))) {
 						errors.rejectValue("listQuestion[" + i + "].libelle",
-								"Valeur manquante!", null,
-								"Le libellé des questions est obligatoire.");
+								"Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_QUESTION_LIBELLE));
 						errorQuestion = true;
 					}
 					
 					for (short j = 0;!reponseErreur && j < question.getListResponse().size(); j++) {
 						Reponse rep = question.getListResponse().get(j);
-						if (rep.getLibelle() == null
-								|| rep.getLibelle().isEmpty()) {
+						if (StringUtils.isEmpty(rep.getLibelle())) {
 							errors.rejectValue("listQuestion[" + i
 									+ "].listResponse[" + j + "].libelle",
-									"Valeur manquante!", null,
-									"Le libellé des réponses est obligatoire.");
+									"Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_QUESTION_REPONSE_LIBELLE));
 							reponseErreur = true;
 						}
 					}

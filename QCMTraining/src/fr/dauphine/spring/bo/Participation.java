@@ -98,4 +98,11 @@ public class Participation extends BO {
 	public void setListToDisplay(List<Question> listToDisplay) {
 		this.listToDisplay = listToDisplay;
 	}
+	
+	public int getNbReponseGood() {
+		return this.getGoodReponse().size();
+	}
+	public String getScore() {
+		return this.getNbReponseGood() + "/" + sujet.getNbQuestionDisplay();
+	}
 }
