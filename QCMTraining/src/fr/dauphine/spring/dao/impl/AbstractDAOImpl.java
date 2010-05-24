@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.transaction.annotation.Transactional;
 
 import fr.dauphine.spring.dao.AbstractDAO;
 
@@ -23,7 +22,6 @@ public abstract class AbstractDAOImpl<T> extends HibernateDaoSupport implements 
 	}
 	
 	@Override
-	@Transactional(readOnly = false)
 	public void delete(T entity) {
 		getHibernateTemplate().delete(entity);
 	}	

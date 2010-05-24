@@ -5,8 +5,6 @@ package fr.dauphine.spring.manager.impl;
 
 import java.util.Collection;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import fr.dauphine.spring.bo.BO;
 import fr.dauphine.spring.dao.AbstractDAO;
 import fr.dauphine.spring.manager.AbstractManager;
@@ -38,7 +36,6 @@ public class AbstractManagerImpl<T extends BO> implements AbstractManager<T> {
 	}
 
 	@Override
-	@Transactional(readOnly = false)
 	public void delete(T entity) {
 		// TODO Auto-generated method stub
 		dao.delete(entity);
