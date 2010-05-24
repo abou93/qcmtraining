@@ -45,6 +45,18 @@ public class UtilisateurDAOImpl extends AbstractDAOImpl<Utilisateur> implements
 		}
 		return super.save(entity);
 	}
+	
+	@Override
+	public Utilisateur update(Utilisateur entity) {
+		if (entity.getProfil() != null && entity.getProfil().getId() != null) {
+			Profil p = getHibernateTemplate().load(Profil.class, entity.getProfil().getId());
+			entity.setProfil(p);
+		} else {
+			entity.setProfil(null);
+		}
+		return super.update(entity);
+	}	
+	
 	@Override
 	public boolean verifLoginAndPassword(String login, String password) {
 		boolean result = false;
