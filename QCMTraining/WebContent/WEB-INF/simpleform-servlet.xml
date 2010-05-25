@@ -48,6 +48,10 @@
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
 		<property name="activePage" value="1"/>
 	</bean>
+	<bean name="RegisterSuccessAccueilController" class="fr.dauphine.spring.ctl.AccueilController">
+		<property name="nameOfPageContent" value="jsp/general/registerSuccess.jsp"/>
+		<property name="activePage" value="1"/>
+	</bean>
 	<bean name="AdminAccueilController" class="fr.dauphine.spring.ctl.AdminAccueilController">
 		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
 		<property name="activePage" value="2"/>
@@ -135,7 +139,12 @@
 		<property name="typeObjectFormClass" value="fr.dauphine.spring.form.SujetSearchForm"/>
 		<property name="activePage" value="3"/>
 	</bean>
-	
+	<bean name="RegisterUserController" class="fr.dauphine.spring.ctl.CreationUserController">
+		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
+		<property name="nameOfObject" value="userForm"/>
+		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Utilisateur"/>
+		<property name="activePage" value="2"/>
+	</bean>	
 	<bean name="CreationUserController" class="fr.dauphine.spring.ctl.CreationUserController">
 		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
 		<property name="nameOfObject" value="userForm"/>
@@ -238,6 +247,32 @@
 			<ref bean="userValidator" />
 		</property>
 		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
+		<property name="nameOfRedirect" value="redirect:adminAccueil.do"/>		
+		<property name="nameOfObject" value="userForm" />
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="activePage" value="2"/>
+	</bean>
+	
+	<bean name="ValidationRegisterUserController" class="fr.dauphine.spring.ctl.ValidationUserController">
+		<property name="commandClass">
+			<value>fr.dauphine.spring.bo.Utilisateur</value>
+		</property>
+		<property name="commandName">
+			<value>userForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="validator">
+			<ref bean="userValidator" />
+		</property>
+		<property name="nameOfPageContent" value="jsp/utilisateur/create.jsp"/>
+		<property name="nameOfRedirect" value="redirect:registerSuccess.do"/>		
 		<property name="nameOfObject" value="userForm" />
 		<property name="manager">
 			<ref bean="utilisateurManager" />
@@ -342,6 +377,9 @@
 				<prop key="/validationLogin.do">ValidationLoginController</prop>
 				<prop key="/login.do">LoginController</prop>
 				<prop key="/deconnexion.do">DeconnexionController</prop>
+				<prop key="/register.do">RegisterUserController</prop>
+				<prop key="/validerRegister.do">ValidationRegisterUserController</prop>
+				<prop key="/registerSuccess.do">RegisterSuccessAccueilController</prop>
 				
 				<prop key="/listeUser.do">UtilisateurListController</prop>
 				<prop key="/creerUser.do">CreationUserController</prop>

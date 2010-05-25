@@ -1,7 +1,7 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c"%>
 <div id="header">
 	<div id="logo">
-	<h1><a href="#">QCM Training</a></h1>
+	<h1><img src="include/images/logo.gif" style="height:40px" alt="logo" /><a style="color:black" href="#"> QCM Training</a></h1>
 	</div>
 	<div id="menu">
 	<ul>

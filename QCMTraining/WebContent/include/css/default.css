@@ -327,3 +327,6 @@ tr.correctReponse td {
 	color: purple;
 	font-style: italic;
 }
+.register a {
+	font-size:12px;
+}

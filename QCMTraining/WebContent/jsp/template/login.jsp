@@ -11,3 +11,4 @@
 	<form:errors path="*" cssStyle="color:red;" />
 	<input type="submit" value="Se connecter" />
 </form:form>
+<div class="register"><a href="register.do">Enregistrez-vous</a></div>

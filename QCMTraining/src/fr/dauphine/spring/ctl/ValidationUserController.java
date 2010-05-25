@@ -21,6 +21,7 @@ import fr.dauphine.spring.util.Constants;
 public class ValidationUserController extends DefaultSimpleFormController<Utilisateur> {
 
 	UtilisateurManager utilisateurManager;
+	private String nameOfRedirect;
 
 	/**
 	 * @return the utilisateurManager
@@ -47,7 +48,7 @@ public class ValidationUserController extends DefaultSimpleFormController<Utilis
 		Utilisateur util = (Utilisateur) command;
 		System.out.println(">> Utilisateur : " + util.getEmail());
 		manager.save(util);
-		mav.setViewName("redirect:adminAccueil.do");
+		mav.setViewName(nameOfRedirect);
 		return mav;
 	}
 	
@@ -57,6 +58,14 @@ public class ValidationUserController extends DefaultSimpleFormController<Utilis
 		ModelAndView mav = super.handleRequest(request, response);
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		return mav;
+	}
+
+	public String getNameOfRedirect() {
+		return nameOfRedirect;
+	}
+
+	public void setNameOfRedirect(String nameOfRedirect) {
+		this.nameOfRedirect = nameOfRedirect;
 	}
 
 }
