@@ -315,12 +315,8 @@ tr.correctReponse td {
 .sansFaute {
 	color: green;
 }
-.displayTableList {
-	width: 100%;
-	border: 1px solid #a7e3ff;
-}
-.displayTableList thead tr {
-	background-color:#a7e3ff;
+.resultats tr.odd {
+	background-color: transparent;
 }
 .info {
 	font-size: 11px;
@@ -329,4 +325,53 @@ tr.correctReponse td {
 }
 .register a {
 	font-size:12px;
+}
+.resultats {
+	width: 100%;
+	table-layout: auto;
+	border-bottom: 1px solid grey;
+	margin-bottom: 3px;
+	empty-cells: show;
+}
+
+
+.resultats thead, .resultats tfoot {
+	text-align: left;
+	background-color: WhiteSmoke;
+}
+
+
+.resultats td, .resultats th {
+	padding: 1px 5px;
+	padding-right: 10px;
+	cursor: default;
+}
+.resultats th {
+	padding-left: 15px;
+	background-image: none;
+	background-position: top left;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid grey;
+}
+
+.resultats-footer {
+	padding: 1px 5px;
+	background-color: #EDE4DB;
+	border-color: #8D073A;
+	border-style: solid;
+	border-width: 1px;
+	margin-left: 10px;
+	width: auto;
+}
+.resultats-footer td {
+	padding: 1px 10px;
+}
+
+.resultats tr.even {
+	background-color: MintCream;
+}
+
+
+.resultats th.empty {
+	padding: 0;
 }

@@ -22,7 +22,7 @@ public class Sujet extends SujetInfo {
 	
 	private List<Question> listQuestion;
 	
-	private int nombreDeParticipants;
+	
 	/**
 	 * 
 	 */
@@ -86,20 +86,6 @@ public class Sujet extends SujetInfo {
 			Collections.shuffle(quest.getListResponse());
 		}
 		return listShuffle;
-	}
-
-	/**
-	 * @return the nombreDeParticipants
-	 */
-	public int getNombreDeParticipants() {
-		return nombreDeParticipants;
-	}
-
-	/**
-	 * @param nombreDeParticipants the nombreDeParticipants to set
-	 */
-	public void setNombreDeParticipants(int nombreDeParticipants) {
-		this.nombreDeParticipants = nombreDeParticipants;
 	}
 
 }

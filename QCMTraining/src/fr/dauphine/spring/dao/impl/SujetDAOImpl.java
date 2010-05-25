@@ -3,11 +3,13 @@
  */
 package fr.dauphine.spring.dao.impl;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import fr.dauphine.spring.bo.Category;
@@ -64,6 +66,13 @@ public class SujetDAOImpl extends AbstractSearchDAOImpl<Sujet, SujetSearchForm> 
 				crit.add(Restrictions.ge("dateEnd", today));
 			}
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Collection<Sujet> getListOrderBy(Order order) {
+		Criteria crit = getSession().createCriteria(getTemplateClass());
+		crit.addOrder(order);
+		return (Collection<Sujet>)crit.list();
 	}
 
 }

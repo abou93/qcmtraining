@@ -20,6 +20,7 @@ public class SujetInfo extends BO {
 	protected Date dateEnd;
 	protected Integer nbQuestionDisplay;
 	protected Category category;
+	protected int nombreDeParticipants;
 	
 	public SujetInfo() {
 		super();
@@ -106,6 +107,20 @@ public class SujetInfo extends BO {
 	 */
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+	/**
+	 * @return the nombreDeParticipants
+	 */
+	public int getNombreDeParticipants() {
+		return nombreDeParticipants;
+	}
+
+	/**
+	 * @param nombreDeParticipants the nombreDeParticipants to set
+	 */
+	public void setNombreDeParticipants(int nombreDeParticipants) {
+		this.nombreDeParticipants = nombreDeParticipants;
 	}
 	
 }

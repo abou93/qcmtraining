@@ -14,4 +14,5 @@ import fr.dauphine.spring.bo.Sujet;
  */
 public interface SujetManager extends AbstractManager<Sujet> {
 	Collection<Category> listeCategory();
+	Collection<Sujet> getListOrderByDesc(String sortedProperty);
 }

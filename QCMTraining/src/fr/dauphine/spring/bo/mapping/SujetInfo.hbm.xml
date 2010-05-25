@@ -24,6 +24,13 @@
 		<property name="nbQuestionDisplay">
 			<column name="NB_QUESTION_DISPLAY" sql-type="int" not-null="true" />
 		</property>
+		<property name="nombreDeParticipants">
+			<formula>
+				(SELECT count(part.ID_PARTICIPATION) FROM  
+					PARTICIPATION part
+					where part.ID_SUJET = ID_SUJET)
+			</formula>
+		</property>
 		<many-to-one name="category" column="ID_CATEGORY" class="fr.dauphine.spring.bo.Category" not-null="true" cascade="none"/>
 	</class>
 </hibernate-mapping>

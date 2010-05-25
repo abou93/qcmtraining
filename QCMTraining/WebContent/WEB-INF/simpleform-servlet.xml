@@ -46,6 +46,7 @@
 	<!-- Controllers -->
 	<bean name="AccueilController" class="fr.dauphine.spring.ctl.AccueilController">
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
+		<property name="sujetManager" ref="sujetManager" />
 		<property name="activePage" value="1"/>
 	</bean>
 	<bean name="RegisterSuccessAccueilController" class="fr.dauphine.spring.ctl.AccueilController">

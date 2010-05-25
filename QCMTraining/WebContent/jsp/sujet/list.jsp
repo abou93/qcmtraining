@@ -42,11 +42,21 @@
 				</form:form>
 			</fieldset>
 			
-			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="10" styleClass="displayTableList"  requestURI="listeSujet.do" >
+			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="10" styleClass="resultats"  requestURI="listeSujet.do" >
 				<display:column title="Titre" media="html">
 					<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
 				</display:column>
-				<display:column property="description" title="Description" />
+				<display:column property="category.libelle" title="Catégorie" />
+				<display:column title="Ouvert">
+					<c:choose>
+						<c:when test="${aSujet.actif}">
+							<img src="<c:url value="/include/images/tick.gif" />" />
+						</c:when>
+						<c:otherwise>
+							<img src="<c:url value="/include/images/desactivate.png" />" />
+						</c:otherwise>
+					</c:choose>
+				</display:column>
 				<display:setProperty name="paging.banner.item_name" value="sujet" />
 				<display:setProperty name="paging.banner.items_name" value="sujets" />
 			</display:table>

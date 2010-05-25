@@ -30,7 +30,7 @@
 				</table>
 				</form:form>
 			</fieldset>
-			<display:table cellspacing="0" cellpadding="0" name="utilisateurList" id="aUser"  pagesize="10" styleClass="displayTableList"  requestURI="listeUser.do" >
+			<display:table cellspacing="0" cellpadding="0" name="utilisateurList" id="aUser"  pagesize="10" styleClass="resultats"  requestURI="listeUser.do" >
 				<display:column title="Nom et prénom" media="html">
 					<a href="<c:url value="/voirUser.do?idObject=${aUser.id}" />"><c:out value="${aUser.nom}" /> <c:out value="${aUser.prenom}" /></a>
 				</display:column>

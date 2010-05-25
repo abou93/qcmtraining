@@ -48,7 +48,7 @@
 							<td colspan="2" >
 								<fieldset>
 									<legend>Liste des utilisateurs ayant fait un sans faute</legend>
-									<display:table cellspacing="0" cellpadding="0" name="partSansFaute" id="aPart"  pagesize="5" styleClass="displayTableList"  requestURI="voirSujet.do?idObject=${sujet.id}" >
+									<display:table cellspacing="0" cellpadding="0" name="partSansFaute" id="aPart"  pagesize="5" styleClass="resultats"  requestURI="voirSujet.do?idObject=${sujet.id}" >
 										<display:column title="Nom et prénom">
 											<a href="<c:url value="/voirUser.do?idObject=${aPart.user.id}" />"><c:out value="${aPart.user.nom}" /> <c:out value="${aPart.user.prenom}" /></a>
 										</display:column>
