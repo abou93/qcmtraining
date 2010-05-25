@@ -20,6 +20,10 @@
 						<td><span id="titre"><c:out value="${sujet.titre}" /></span></td>
 					</tr>
 					<tr>
+						<td><label for="category" class="adroite">Catégorie : </label></td>
+						<td><span id="category"><c:out value="${sujet.category.libelle}" /></span></td>
+					</tr>
+					<tr>
 						<td><label for="dateStart" class="adroite">Date de lancement : </label></td>
 						<td><span id="dateStart"><fmt:formatDate value="${sujet.dateStart}" pattern="dd/MM/yyyy" /></span></td>
 					</tr>
@@ -33,7 +37,7 @@
 					</tr>
 					<tr>
 						<td><label for="description" class="adroite">Description :</label></td>
-						<td><span id="titre"><c:out value="${sujet.description}" /></span></td>
+						<td><span id="description"><c:out value="${sujet.description}" /></span></td>
 					</tr>
 					<c:if test="${isAdmin}">
 						<tr>
@@ -100,8 +104,11 @@
 							<td colspan="2" style="text-align:right;" >
 								<c:if test="${sujet.actif}">
 									<c:choose>
-									<c:when test="${isLogged}">
+									<c:when test="${isLogged and not isAdmin}">
 										<input type="button" value="Participer" onclick="window.location.href='creerParticipation.do?idObject=${sujet.id}';" />
+									</c:when>
+									<c:when test="${isAdmin}">
+										
 									</c:when>
 									<c:otherwise>
 										<span class="info">Connectez vous pour répondre au sujet!</span>	

@@ -3,22 +3,17 @@
  */
 package fr.dauphine.spring.manager.impl;
 
-import java.util.Collection;
-
 import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.dao.UtilisateurDAO;
+import fr.dauphine.spring.form.UtilisateurSearchForm;
 import fr.dauphine.spring.manager.UtilisateurManager;
 
 /**
  * @author Mathieu
  *
  */
-public class UtilisateurManagerImpl extends AbstractManagerImpl<Utilisateur> implements UtilisateurManager {
+public class UtilisateurManagerImpl extends AbstractSearchManagerImpl<Utilisateur, UtilisateurSearchForm> implements UtilisateurManager {
 
-	/**
-	 * 
-	 */
-	private UtilisateurDAO utilisateurDAO;
 	
 	public UtilisateurManagerImpl() {
 		// TODO Auto-generated constructor stub
@@ -33,19 +28,4 @@ public class UtilisateurManagerImpl extends AbstractManagerImpl<Utilisateur> imp
 	public Utilisateur readByEmail(String email) {
 		return ((UtilisateurDAO)dao).readByEmail(email);
 	}
-
-	@Override
-	public Collection<Utilisateur> loadAllUtilisateur() {
-		return utilisateurDAO.loadAll();
-	}
-
-	@Override
-	public Utilisateur saveUtilisateur(Utilisateur u) {
-		return utilisateurDAO.save(u);
-	}
-	
-	public void setUtilisateurDAO(UtilisateurDAO utilisateurDAO) {
-		this.utilisateurDAO = utilisateurDAO;
-	}
-	
 }

@@ -44,4 +44,5 @@ public final class Constants {
 	public static final String ERROR_SUJET_NBQUESTIONDISPLAY_VALEUR = "sujet.form.nbquestiondisplay.valeur";
 	public static final String ERROR_SUJET_QUESTION_LIBELLE = "sujet.form.question.libelle.null";
 	public static final String ERROR_SUJET_QUESTION_REPONSE_LIBELLE = "sujet.form.question.reponse.libelle.null";
+	public static final String ERROR_SUJET_DATE_DEB_AFTER_DATE_END = "sujet.form.date.deb.after.date.end";
 }

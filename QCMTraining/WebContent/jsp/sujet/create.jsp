@@ -24,6 +24,14 @@
 			<td><form:input path="titre" /></td>
 		</tr>
 		<tr>
+			<td><label for="category" class="adroite">Catégorie : </label></td>
+			<td>
+				<form:select path="category.id" >
+					<form:options items="${categories}" itemValue="id" itemLabel="libelle" />
+				</form:select>
+			</td>
+		</tr>
+		<tr>
 			<td><label for="dateStart" class="adroite">Date de
 			lancement : </label></td>
 			<td><input type="text" name="dateStart" size="10" id="dateStart"

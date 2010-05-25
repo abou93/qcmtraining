@@ -35,5 +35,6 @@
 			<key column="ID_SUJET" not-null="true" />
 			<one-to-many class="fr.dauphine.spring.bo.Question" />
 		</bag>
+		<many-to-one name="category" column="ID_CATEGORY" class="fr.dauphine.spring.bo.Category" not-null="true" cascade="none"/>
 	</class>
 </hibernate-mapping>

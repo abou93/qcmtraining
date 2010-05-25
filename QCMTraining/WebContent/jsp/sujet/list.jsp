@@ -9,6 +9,39 @@
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Liste des sujets</h2>
 		<div class="entry">
+		
+			<fieldset>
+			<form:form commandName="sujetSearchForm"
+			action="listeSujet.do" method="post">
+				<table width="100%">
+					<tr>
+						<td><label for="searchTitre" class="adroite">Titre : </label></td>
+						<td><form:input path="searchTitre" /></td>
+					</tr>
+					<tr>
+						<td><label for="searchInIdCategory" class="adroite">Catégorie : </label></td>
+						<td>
+							<form:select path="searchInIdCategory" >
+								<form:option value="0" label="-- Choisir une catégorie --" />
+								<form:options items="${categories}" itemValue="id" itemLabel="libelle" />
+							</form:select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="searchActif" class="adroite">Sujets actifs : </label></td>
+						<td>
+							<form:checkbox path="searchActif"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right;">
+							<input type="submit" value="Rechercher" />
+						</td>
+					</tr>
+				</table>
+				</form:form>
+			</fieldset>
+			
 			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="10" styleClass="displayTableList"  requestURI="listeSujet.do" >
 				<display:column title="Titre" media="html">
 					<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>

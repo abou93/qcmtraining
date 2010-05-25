@@ -10,7 +10,8 @@ import fr.dauphine.spring.dao.AbstractDAO;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractDAOImpl<T> extends HibernateDaoSupport implements AbstractDAO<T> {
-
+	
+	
 	public Collection<T> loadAll() {
 		return getHibernateTemplate().loadAll(getTemplateClass());
 	}
@@ -41,6 +42,6 @@ public abstract class AbstractDAOImpl<T> extends HibernateDaoSupport implements 
 		crit.add(Restrictions.eq("id", id));
 		return (T)crit.uniqueResult();
 	}
-
+	
 	abstract protected Class getTemplateClass();
 }

@@ -48,12 +48,12 @@ public class UserValidator implements Validator {
 				errors.rejectValue("password", "Valeur manquante", null, "Il faut saisir un password.");
 			}
 		}
-		Collection<Utilisateur> col = utilisateurManager.loadAllUtilisateur();
+		Collection<Utilisateur> col = utilisateurManager.list();
 		Iterator<Utilisateur> it = col.iterator();
 		while(it.hasNext()) {
 			Utilisateur u = (Utilisateur)it.next();
 			if(util.getEmail().equals(u.getEmail())) {
-				errors.rejectValue("email", "Création impossible", null, "Il existe déjà un utilisateur portant le même email!");
+				errors.rejectValue("email", "CrÈation impossible", null, "Il existe dÈj‡ un utilisateur portant le mÍme email!");
 				break;
 			}
 		}

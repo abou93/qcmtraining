@@ -10,6 +10,26 @@
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Liste des utilisateurs</h2>
 		<div class="entry">
+			<fieldset>
+			<form:form commandName="utilisateurSearchForm"
+			action="listeUser.do" method="post">
+				<table width="100%">
+					<tr>
+						<td><label for="searchNameOrSurname" class="adroite">Nom, prénom : </label></td>
+						<td><form:input path="searchNameOrSurname" /></td>
+					</tr>
+					<tr>
+						<td><label for="searchEmail" class="adroite">E-mail : </label></td>
+						<td><form:input path="searchEmail" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right;">
+							<input type="submit" value="Rechercher" />
+						</td>
+					</tr>
+				</table>
+				</form:form>
+			</fieldset>
 			<display:table cellspacing="0" cellpadding="0" name="utilisateurList" id="aUser"  pagesize="10" styleClass="displayTableList"  requestURI="listeUser.do" >
 				<display:column title="Nom et prénom" media="html">
 					<a href="<c:url value="/voirUser.do?idObject=${aUser.id}" />"><c:out value="${aUser.nom}" /> <c:out value="${aUser.prenom}" /></a>

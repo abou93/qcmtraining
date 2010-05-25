@@ -22,11 +22,11 @@
 		<!-- fichiers de mapping -->
 		<mapping resource="fr/dauphine/spring/bo/mapping/Utilisateur.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Profil.hbm.xml" />
-		<mapping resource="fr/dauphine/spring/bo/mapping/Habilitation.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Sujet.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Question.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Reponse.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/SujetInfo.hbm.xml" />
 		<mapping resource="fr/dauphine/spring/bo/mapping/Paticipation.hbm.xml" />
+		<mapping resource="fr/dauphine/spring/bo/mapping/Category.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

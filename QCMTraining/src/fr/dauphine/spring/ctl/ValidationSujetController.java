@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.dauphine.spring.bo.Question;
 import fr.dauphine.spring.bo.Reponse;
 import fr.dauphine.spring.bo.Sujet;
+import fr.dauphine.spring.manager.SujetManager;
 import fr.dauphine.spring.util.Constants;
 
 /**
@@ -26,7 +27,7 @@ import fr.dauphine.spring.util.Constants;
  * 
  */
 public class ValidationSujetController extends DefaultSimpleFormController<Sujet> {
-
+	SujetManager sujetManager;
 	/**
 	 * 
 	 */
@@ -98,6 +99,10 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		mav.addObject(nameOfObject, sujet);
 		return mav;
 	}
+	
+	private void addCategoriesToForm(HttpServletRequest request) {
+		request.setAttribute(CreationSujetController.PARAM_LIST_CATEGORY, ((SujetManager)manager).listeCategory());
+	}
 
 	protected ModelAndView onSubmit(Object command) throws Exception {
 		Sujet sujet = (Sujet) command;
@@ -126,15 +131,22 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		String subAction = request
 				.getParameter(Constants.PARAM_SUB_ACTION_NAME);
 		Sujet sujet = (Sujet) command;
+		addCategoriesToForm(request);
 		if (StringUtils.isEmpty(subAction)) {
 			if (sujet == null) {
 				errors.rejectValue("sujetForm", "Erreur!", null, resource.getString(Constants.ERROR_SUJET_NULL));
 			} else {
-				if (sujet.getDateStart() == null) {
-					errors.rejectValue("dateStart", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_DEB));
-				}
-				if (sujet.getDateEnd() == null) {
-					errors.rejectValue("dateEnd", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_FIN));
+				if (sujet.getDateStart() != null && sujet.getDateEnd() != null) {
+					if(sujet.getDateEnd().before(sujet.getDateStart()) || sujet.getDateEnd().equals(sujet.getDateStart())) {
+						errors.rejectValue("dateStart", "Date invalide!", null, resource.getString(Constants.ERROR_SUJET_DATE_DEB_AFTER_DATE_END));
+					}
+				} else {
+					if (sujet.getDateStart() == null) {
+						errors.rejectValue("dateStart", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_DEB));
+					}
+					if (sujet.getDateEnd() == null) {
+						errors.rejectValue("dateEnd", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_DATE_FIN));
+					}
 				}
 				if (StringUtils.isEmpty(sujet.getTitre())) {
 					errors.rejectValue("titre", "Valeur manquante!", null, resource.getString(Constants.ERROR_SUJET_TITRE));
@@ -170,4 +182,17 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 			}
 		}
 	}
+	/**
+	 * @return the sujetManager
+	 */
+	public SujetManager getSujetManager() {
+		return sujetManager;
+	}
+	/**
+	 * @param sujetManager the sujetManager to set
+	 */
+	public void setSujetManager(SujetManager sujetManager) {
+		this.sujetManager = sujetManager;
+	}
+	
 }

@@ -3,18 +3,21 @@
  */
 package fr.dauphine.spring.dao.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import fr.dauphine.spring.bo.Profil;
 import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.dao.UtilisateurDAO;
+import fr.dauphine.spring.form.UtilisateurSearchForm;
 
 /**
  * @author Mathieu
  *
  */
-public class UtilisateurDAOImpl extends AbstractDAOImpl<Utilisateur> implements
+public class UtilisateurDAOImpl extends AbstractSearchDAOImpl<Utilisateur, UtilisateurSearchForm> implements
 		UtilisateurDAO {
 
 	/**
@@ -74,6 +77,19 @@ public class UtilisateurDAOImpl extends AbstractDAOImpl<Utilisateur> implements
 		Criteria crit = getSession().createCriteria(Utilisateur.class);
 		crit.add(Restrictions.eq("email", email));
 		return (Utilisateur)crit.uniqueResult();
+	}
+
+	@Override
+	protected void constructCriteria(Criteria crit, UtilisateurSearchForm form) {
+		if(form != null) {
+			if(!StringUtils.isEmpty(form.getSearchNameOrSurname())) {
+				String searchTrim = form.getSearchNameOrSurname().replaceAll(" ", "");
+				crit.add(Restrictions.ilike("nomPrenom", searchTrim, MatchMode.ANYWHERE)); 
+			}
+			if(!StringUtils.isEmpty(form.getSearchEmail())) {
+				crit.add(Restrictions.ilike("email", form.getSearchEmail(), MatchMode.ANYWHERE));
+			}
+		}
 	}
 
 }

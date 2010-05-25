@@ -24,24 +24,19 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
-	<bean id="habilitationDAO" class="fr.dauphine.spring.dao.impl.HabilitationDAOImpl">
+	<bean id="categoryDAO" class="fr.dauphine.spring.dao.impl.CategoryDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-
 	<bean id="utilisateurManagerTarget" class="fr.dauphine.spring.manager.impl.UtilisateurManagerImpl">
 		<property name="dao">
 			<ref bean="utilisateurDAO" />
 		</property>
-		<property name="utilisateurDAO">
-			<ref bean="utilisateurDAO" />
-		</property>
 	</bean>
-	
 	<bean id="sujetManagerTarget" class="fr.dauphine.spring.manager.impl.SujetManagerImpl">
 		<property name="dao" ref="sujetDAO" />
+		<property name="categoryDao" ref="categoryDAO" />
 	</bean>
 	
 	<bean id="participationManagerTarget" class="fr.dauphine.spring.manager.impl.ParticipationManagerImpl">
@@ -100,16 +95,44 @@
 		<property name="manager">
 			<ref bean="utilisateurManager" />
 		</property>
-		<property name="nameOfObject" value="utilisateurList"/>
+		<property name="commandClass">
+			<value>fr.dauphine.spring.form.UtilisateurSearchForm</value>
+		</property>
+		<property name="commandName">
+			<value>utilisateurSearchForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="nameOfList" value="utilisateurList"/>
+		<property name="nameOfObject" value="utilisateurSearchForm"/>
 		<property name="nameOfPageContent" value="jsp/utilisateur/list.jsp"/>
+		<property name="typeObjectFormClass" value="fr.dauphine.spring.form.UtilisateurSearchForm"/>
 		<property name="activePage" value="2"/>
 	</bean>
-	<bean name="SujetListController" class="fr.dauphine.spring.ctl.DefautListController">
+	<bean name="SujetListController" class="fr.dauphine.spring.ctl.SujetListController">
 		<property name="manager">
 			<ref bean="sujetManager" />
 		</property>
-		<property name="nameOfObject" value="sujetList"/>
+		<property name="commandClass">
+			<value>fr.dauphine.spring.form.SujetSearchForm</value>
+		</property>
+		<property name="commandName">
+			<value>sujetSearchForm</value>
+		</property>
+		<property name="formView">
+			<value>index</value>
+		</property>
+		<property name="successView">
+			<value>index</value>
+		</property>
+		<property name="nameOfList" value="sujetList"/>
+		<property name="nameOfObject" value="sujetSearchForm"/>
 		<property name="nameOfPageContent" value="jsp/sujet/list.jsp"/>
+		<property name="typeObjectFormClass" value="fr.dauphine.spring.form.SujetSearchForm"/>
 		<property name="activePage" value="3"/>
 	</bean>
 	
@@ -124,6 +147,7 @@
 		<property name="nameOfObject" value="sujetForm"/>
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Sujet"/>
 		<property name="activePage" value="2"/>
+		<property name="sujetManager" ref="sujetManager" />
 	</bean>
 	<bean name="CreationParticipationController" class="fr.dauphine.spring.ctl.CreationParticipationController" >
 		<property name="nameOfPageContent" value="jsp/participation/create.jsp"/>

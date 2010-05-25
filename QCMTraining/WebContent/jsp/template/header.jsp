@@ -12,7 +12,7 @@
 				href="adminAccueil.do" accesskey="2" title="">Administration</a></li>
 		</c:if>
 			<li <c:if test="${activePage == 3}">class="active"</c:if>><a
-				href="listeSujet.do" accesskey="3" title="">Liste des sujets</a></li>
+				href="listeSujet.do" accesskey="3" title="">Sujet QCM</a></li>
 	</ul>
 	</div>
 </div>

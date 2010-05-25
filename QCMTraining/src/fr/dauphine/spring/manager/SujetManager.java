@@ -3,6 +3,9 @@
  */
 package fr.dauphine.spring.manager;
 
+import java.util.Collection;
+
+import fr.dauphine.spring.bo.Category;
 import fr.dauphine.spring.bo.Sujet;
 
 /**
@@ -10,5 +13,5 @@ import fr.dauphine.spring.bo.Sujet;
  *
  */
 public interface SujetManager extends AbstractManager<Sujet> {
-
+	Collection<Category> listeCategory();
 }

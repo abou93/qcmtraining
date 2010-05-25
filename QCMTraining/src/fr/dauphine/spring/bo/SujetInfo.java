@@ -19,6 +19,7 @@ public class SujetInfo extends BO {
 	protected Date dateStart;
 	protected Date dateEnd;
 	protected Integer nbQuestionDisplay;
+	protected Category category;
 	
 	public SujetInfo() {
 		super();
@@ -93,6 +94,18 @@ public class SujetInfo extends BO {
 	 */
 	public void setNbQuestionDisplay(Integer nbQuestionDisplay) {
 		this.nbQuestionDisplay = nbQuestionDisplay;
+	}
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 }

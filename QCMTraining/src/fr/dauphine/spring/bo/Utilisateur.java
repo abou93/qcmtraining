@@ -18,6 +18,7 @@ public class Utilisateur extends BO {
 	private String nom;
 	private String prenom;
 	private String email;
+	private String nomPrenom;
 	private byte[] photo;
 	private String password;
 	private List<Participation> mesParticipations;
@@ -112,6 +113,18 @@ public class Utilisateur extends BO {
 		this.mesParticipations = mesParticipations;
 	}
 	
+	/**
+	 * @return the nomPrenom
+	 */
+	public String getNomPrenom() {
+		return nomPrenom;
+	}
+	/**
+	 * @param nomPrenom the nomPrenom to set
+	 */
+	public void setNomPrenom(String nomPrenom) {
+		this.nomPrenom = nomPrenom;
+	}
 	public int getScoreMoyenPct() {
 		float total = 0;
 		for(Participation p : getMesParticipations()) {

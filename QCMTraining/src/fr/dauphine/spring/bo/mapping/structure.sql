@@ -15,7 +15,9 @@ CREATE TABLE `SUJET` (
   `DATE_START` DATE NOT NULL,
   `DATE_END` DATE NOT NULL,
   `NB_QUESTION_DISPLAY` int NOT NULL,
-   Primary Key (ID_SUJET)
+  `ID_CATEGORY` BIGINT(8) NOT NULL default 1,
+   Primary Key (ID_SUJET),
+   Foreign Key (ID_CATEGORY) references CATEGORY(ID_QUESTION)
 )
 
 CREATE TABLE `QUESTION` (
@@ -36,6 +38,14 @@ CREATE TABLE `REPONSE` (
    Primary Key (ID_REPONSE),
    Foreign Key (ID_QUESTION) references QUESTION(ID_QUESTION)
 )
+
+CREATE TABLE `CATEGORY` (
+  `ID_CATEGORY` BIGINT(8) NOT NULL,
+  `VERSION` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `LIBELLE` varchar(50) NOT NULL,
+   Primary Key (ID_CATEGORY)
+)
+
 -- phpMyAdmin SQL Dump
 -- version 2.11.6
 -- http://www.phpmyadmin.net

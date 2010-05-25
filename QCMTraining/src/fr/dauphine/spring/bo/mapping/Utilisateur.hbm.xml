@@ -15,6 +15,11 @@
 		<property name="prenom">
 			<column name="PRENOM" length="50" not-null="true" />
 		</property>
+		<property name="nomPrenom">
+			<formula>
+				(SELECT TRIM(CONCAT(u.NOM, u.PRENOM)) FROM UTILISATEUR u where u.ID_UTILISATEUR = ID_UTILISATEUR)
+			</formula>
+		</property>
 		<property name="password">
 			<column name="PASSWORD" length="8" not-null="true" />
 		</property>
@@ -22,7 +27,7 @@
 			<column name="EMAIL" length="100" not-null="true" />
 		</property>
 		<property name="photo" type="blob" column="PHOTO" />
-		<many-to-one name="profil" column="ID_PROFIL" class="fr.dauphine.spring.bo.Profil" cascade="none" lazy="false" />
+		<many-to-one name="profil" column="ID_PROFIL" class="fr.dauphine.spring.bo.Profil" cascade="none" not-null="true"/>
 		<bag name="mesParticipations" inverse="true" cascade="all-delete-orphan">
 			<key column="ID_UTILISATEUR" not-null="true" />
 			<one-to-many class="fr.dauphine.spring.bo.Participation" />

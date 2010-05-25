@@ -13,9 +13,5 @@
 			<column name="LIBELLE" length="50" not-null="true" />
 		</property>
 		<property name="code" type="int" column="CODE"  />
-		<bag name="habilitations" table="PROFIL_HABILITATION" lazy="false" >
-			<key column="ID_PROFIL" />
-			<many-to-many class="fr.dauphine.spring.bo.Habilitation" column="ID_HABILITATION" />
-		</bag>
 	</class>
 </hibernate-mapping>
