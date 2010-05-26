@@ -59,7 +59,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 				.getParameter(Constants.PARAM_SUB_ACTION_NAME);
 		if (subAction != null) {
 			if (subAction.equals(Constants.PARAM_SUB_ACTION_ADD_QUESTION)) {
-				mav = this.addQuestionToForm(command);
+				mav = this.addQuestionToForm(command, request);
 			} else if (subAction
 					.equals(Constants.PARAM_SUB_ACTION_REMOVE_QUESTION)) {
 				String indexQuestionString = request
@@ -68,13 +68,13 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 						&& !indexQuestionString.isEmpty()) {
 					Integer indexQuestion = Integer
 							.parseInt(indexQuestionString);
-					mav = this.removeQuestion(command, indexQuestion);
+					mav = this.removeQuestion(command, indexQuestion, request);
 				}
 			} else {
-				mav = this.onSubmit(command);
+				mav = this.onSubmit(command, request);
 			}
 		} else {
-			mav = this.onSubmit(command);
+			mav = this.onSubmit(command, request);
 		}
 		if(mav==null) {
 			constructView();
@@ -82,7 +82,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		return mav;
 	}
 
-	private ModelAndView removeQuestion(Object command, int indexQuestion) {
+	private ModelAndView removeQuestion(Object command, int indexQuestion, HttpServletRequest request) {
 		ModelAndView mav = constructView();
 		Sujet sujet = (Sujet) command;
 		if (indexQuestion < sujet.getListQuestion().size()) {
@@ -92,7 +92,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		return mav;
 	}
 
-	private ModelAndView addQuestionToForm(Object command) {
+	private ModelAndView addQuestionToForm(Object command, HttpServletRequest request) {
 		ModelAndView mav = constructView();
 		Sujet sujet = (Sujet) command;
 		sujet.addOneNewQuestion();
@@ -104,7 +104,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 		request.setAttribute(CreationSujetController.PARAM_LIST_CATEGORY, ((SujetManager)manager).listeCategory());
 	}
 
-	protected ModelAndView onSubmit(Object command) throws Exception {
+	protected ModelAndView onSubmit(Object command, HttpServletRequest request) throws Exception {
 		Sujet sujet = (Sujet) command;
 		System.out.println(">> Sujet : " + sujet.getTitre());
 		for(Question quest : sujet.getListQuestion()) {

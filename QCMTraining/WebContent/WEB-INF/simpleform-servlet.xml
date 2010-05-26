@@ -51,11 +51,13 @@
 	</bean>
 	<bean name="RegisterSuccessAccueilController" class="fr.dauphine.spring.ctl.AccueilController">
 		<property name="nameOfPageContent" value="jsp/general/registerSuccess.jsp"/>
+		<property name="sujetManager" ref="sujetManager" />
 		<property name="activePage" value="1"/>
 	</bean>
 	<bean name="AdminAccueilController" class="fr.dauphine.spring.ctl.AdminAccueilController">
 		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
-		<property name="activePage" value="2"/>
+		<property name="activePage" value="2" />
+		<property name="codeSecure" value="1" />
 	</bean>
 	<bean name="ViewSujetController" class="fr.dauphine.spring.ctl.ViewSujetController" >
 		<property name="manager">
@@ -65,7 +67,7 @@
 			<ref bean="participationManager" />
 		</property>
 		<property name="nameOfObject" value="sujet"/>
-		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
+		<property name="nameOfErrorPage" value="jsp/general/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/sujet/view.jsp"/>
 		<property name="activePage" value="3"/>
 	</bean>
@@ -74,22 +76,35 @@
 			<ref bean="participationManager" />
 		</property>
 		<property name="nameOfObject" value="participation"/>
-		<property name="nameOfErrorPage" value="jsp/participation/error.jsp"/>
+		<property name="nameOfErrorPage" value="jsp/general/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/participation/view.jsp"/>
 		<property name="activePage" value="3"/>
+		<property name="codeSecure" value="2" />
 	</bean>
 	<bean name="ViewUserController" class="fr.dauphine.spring.ctl.DefaultViewController" >
 		<property name="manager">
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfObject" value="utilisateur"/>
-		<property name="nameOfErrorPage" value="jsp/sujet/error.jsp"/>
+		<property name="nameOfErrorPage" value="jsp/general/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/utilisateur/view.jsp"/>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
+	</bean>
+	<bean name="ViewMyProfilController" class="fr.dauphine.spring.ctl.ViewMyProfilController" >
+		<property name="manager">
+			<ref bean="utilisateurManager" />
+		</property>
+		<property name="nameOfObject" value="utilisateur"/>
+		<property name="nameOfErrorPage" value="jsp/general/error.jsp"/>
+		<property name="nameOfPageContent" value="jsp/utilisateur/view.jsp"/>
+		<property name="activePage" value="1"/>
+		<property name="codeSecure" value="2" />
 	</bean>
 	<bean name="DeconnexionController" class="fr.dauphine.spring.ctl.DeconnexionController">
 		<property name="nameOfPageContent" value="jsp/general/index.jsp"/>
 		<property name="activePage" value="1"/>
+		<property name="codeSecure" value="2" />
 	</bean>
 	<bean name="LoginController" class="fr.dauphine.spring.ctl.LoginController">
 		<property name="nameOfLoggedView" value="jsp/template/logged"/>
@@ -117,6 +132,7 @@
 		<property name="nameOfPageContent" value="jsp/utilisateur/list.jsp"/>
 		<property name="typeObjectFormClass" value="fr.dauphine.spring.form.UtilisateurSearchForm"/>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 	<bean name="SujetListController" class="fr.dauphine.spring.ctl.SujetListController">
 		<property name="manager">
@@ -151,6 +167,7 @@
 		<property name="nameOfObject" value="userForm"/>
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Utilisateur"/>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 	<bean name="CreationSujetController" class="fr.dauphine.spring.ctl.CreationSujetController" >
 		<property name="nameOfPageContent" value="jsp/sujet/create.jsp"/>
@@ -158,6 +175,7 @@
 		<property name="typeObjectClass" value="fr.dauphine.spring.bo.Sujet"/>
 		<property name="activePage" value="2"/>
 		<property name="sujetManager" ref="sujetManager" />
+		<property name="codeSecure" value="1" />
 	</bean>
 	<bean name="CreationParticipationController" class="fr.dauphine.spring.ctl.CreationParticipationController" >
 		<property name="nameOfPageContent" value="jsp/participation/create.jsp"/>
@@ -166,6 +184,7 @@
 		<property name="sujetManager" ref="sujetManager"/>
 		<property name="partManager" ref="participationManager"/>
 		<property name="activePage" value="3"/>
+		<property name="codeSecure" value="2" />
 	</bean>
 	<bean name="ValidationParticipationController" class="fr.dauphine.spring.ctl.ValidationParticipationController">
 		<property name="commandClass">
@@ -186,6 +205,7 @@
 		<property name="nameOfPageContent" value="jsp/participation/create.jsp"/>
 		<property name="nameOfObject" value="paticipationForm" />
 		<property name="activePage" value="3"/>
+		<property name="codeSecure" value="2" />
 	</bean>
 	<bean name="ValidationLoginController" class="fr.dauphine.spring.ctl.ValidationLoginController">
 		<property name="commandClass">
@@ -198,7 +218,7 @@
 			<value>index</value>
 		</property>
 		<property name="successView">
-			<value>index</value>
+			<value>redirect:accueil.do</value>
 		</property>
 		<property name="validator">
 			<ref bean="loginValidator" />
@@ -229,6 +249,7 @@
 			<ref bean="sujetManager" />
 		</property>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 
 	<bean name="ValidationUserController" class="fr.dauphine.spring.ctl.ValidationUserController">
@@ -254,6 +275,7 @@
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 	
 	<bean name="ValidationRegisterUserController" class="fr.dauphine.spring.ctl.ValidationUserController">
@@ -303,6 +325,7 @@
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 	
 	<bean name="SupprimerUserController" class="fr.dauphine.spring.ctl.SuppressionUserController">
@@ -310,9 +333,10 @@
 			<ref bean="utilisateurManager" />
 		</property>
 		<property name="nameOfObject" value="utilisateur"/>
-		<property name="nameOfErrorPage" value="jsp/utilisateur/error.jsp"/>
+		<property name="nameOfErrorPage" value="jsp/general/error.jsp"/>
 		<property name="nameOfPageContent" value="jsp/general/indexAdmin.jsp"/>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 
 	<bean name="ModifierUserController" class="fr.dauphine.spring.ctl.DefaultViewController" >
@@ -322,6 +346,7 @@
 		<property name="nameOfPageContent" value="jsp/utilisateur/modify.jsp"/>
 		<property name="nameOfObject" value="userForm"/>
 		<property name="activePage" value="2"/>
+		<property name="codeSecure" value="1" />
 	</bean>
 	
 	<!-- bean name="ValidationSocieteController" class="fr.dauphine.spring.ctl.ValidationSocieteController">
@@ -347,8 +372,6 @@
 	
 	<!-- Validators -->
 	
-	<bean id="employeValidator" class="fr.dauphine.spring.bo.validator.EmployeValidator" />
-	<bean id="societeValidator" class="fr.dauphine.spring.bo.validator.SocieteValidator" />
 	<bean id="sujetValidator" class="fr.dauphine.spring.bo.validator.SujetValidator" />
 	<bean id="loginValidator" class="fr.dauphine.spring.bo.validator.LoginValidator" >
 		<property name="utilisateurManager">
@@ -386,6 +409,7 @@
 				<prop key="/creerUser.do">CreationUserController</prop>
 				<prop key="/validerCreerUser.do">ValidationUserController</prop>
 				<prop key="/voirUser.do">ViewUserController</prop>
+				<prop key="/monProfil.do">ViewMyProfilController</prop>
 				<prop key="/supprimerUser.do">SupprimerUserController</prop>
 				<prop key="/modifierUser.do">ModifierUserController</prop>
 				<prop key="/validerModifierUser.do">ValidationModificationUserController</prop>

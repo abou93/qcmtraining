@@ -30,7 +30,7 @@ public class DeconnexionController extends DefaultController implements Controll
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = constructSuccessView();
+		ModelAndView mav = new ModelAndView(Constants.REDIRECT_ACCUEIL_VIEW);
 		request.getSession().removeAttribute(Constants.PARAM_USER_SESSION);
 		request.getSession().setAttribute(Constants.PARAM_ISLOGGED, false);
 		request.getSession().setAttribute(Constants.PARAM_ISADMIN, false);

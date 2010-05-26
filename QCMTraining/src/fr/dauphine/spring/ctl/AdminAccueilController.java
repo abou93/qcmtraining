@@ -25,7 +25,7 @@ public class AdminAccueilController extends DefaultController implements Control
 	}
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = constructSuccessView();
+		ModelAndView mav = constructSuccessView(request);
 		return mav;
 	}
 }

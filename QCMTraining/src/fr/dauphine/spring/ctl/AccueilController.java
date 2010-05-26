@@ -25,7 +25,7 @@ public class AccueilController extends DefaultController implements Controller {
 	}
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = constructSuccessView();
+		ModelAndView mav = constructSuccessView(request);
 		mav.addObject(PARAM_LIST_TOP_SUJET, sujetManager.getListOrderByDesc("nombreDeParticipants"));
 		return mav;
 	}

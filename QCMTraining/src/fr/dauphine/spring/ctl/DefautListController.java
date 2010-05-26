@@ -46,14 +46,16 @@ public class DefautListController<TypeObject extends BO, TypeObjectForm extends 
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = super.handleRequest(request, response);
-		if(mav.getModel().get(nameOfList) == null) {
-			mav = getListView(null);
+		if(secureAccess(request)) {
+			if(mav.getModel().get(nameOfList) == null) {
+				mav = getListView(null, request);
+			}
 		}
 		return mav;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private ModelAndView getListView(TypeObjectForm form) throws InstantiationException, IllegalAccessException {
+	private ModelAndView getListView(TypeObjectForm form, HttpServletRequest request) throws InstantiationException, IllegalAccessException {
 		if(form == null) {
 			form = typeObjectFormClass.newInstance();
 		}
@@ -73,7 +75,7 @@ public class DefautListController<TypeObject extends BO, TypeObjectForm extends 
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
-		return getListView((TypeObjectForm) command);
+		return getListView((TypeObjectForm) command, request);
 	}
 
 

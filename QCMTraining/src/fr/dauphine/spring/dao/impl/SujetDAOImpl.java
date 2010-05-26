@@ -48,6 +48,9 @@ public class SujetDAOImpl extends AbstractSearchDAOImpl<Sujet, SujetSearchForm> 
 		} else {
 			entity.setCategory(null);
 		}
+		if(entity.getNbQuestionDisplay() < entity.getListQuestion().size()) {
+			entity.setNbQuestionDisplay(entity.getListQuestion().size());
+		}
 		return super.save(entity);
 	}
 

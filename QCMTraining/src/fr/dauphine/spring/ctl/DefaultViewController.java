@@ -19,7 +19,7 @@ import fr.dauphine.spring.util.Constants;
  *
  */
 public class DefaultViewController<TypeObject extends BO> extends DefaultController implements Controller {
-	private AbstractManager<TypeObject> manager;
+	protected AbstractManager<TypeObject> manager;
 	/**
 	 * 
 	 */
@@ -36,11 +36,11 @@ public class DefaultViewController<TypeObject extends BO> extends DefaultControl
 		ModelAndView mav = null;
 		String idString = request.getParameter(Constants.PARAM_REQUEST_ID);
 		if(StringUtils.isEmpty(idString)) {
-			mav = constructErrorView();
+			mav = constructErrorView(request);
 			this.addError(request, resource.getString(PARAM_ERROR_ID_NULL));
 		} else {
 			Long id = Long.parseLong(idString);
-			mav = constructSuccessView();
+			mav = constructSuccessView(request);
 			TypeObject obj = manager.read(id);
 			mav.addObject(nameOfObject, obj);
 		}

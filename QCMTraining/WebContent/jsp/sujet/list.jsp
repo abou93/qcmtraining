@@ -30,7 +30,7 @@
 					<tr>
 						<td><label for="searchActif" class="adroite">Sujets actifs : </label></td>
 						<td>
-							<form:checkbox path="searchActif"/>
+							<form:checkbox path="searchActif" id="searchActif"/>
 						</td>
 					</tr>
 					<tr>
@@ -50,10 +50,10 @@
 				<display:column title="Ouvert">
 					<c:choose>
 						<c:when test="${aSujet.actif}">
-							<img src="<c:url value="/include/images/tick.gif" />" />
+							<img src="<c:url value="/include/images/tick.gif" />" alt="Actif" />
 						</c:when>
 						<c:otherwise>
-							<img src="<c:url value="/include/images/desactivate.png" />" />
+							<img src="<c:url value="/include/images/desactivate.png" />" alt="Inactif"/>
 						</c:otherwise>
 					</c:choose>
 				</display:column>

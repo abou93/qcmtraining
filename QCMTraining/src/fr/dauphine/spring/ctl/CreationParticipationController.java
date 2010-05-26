@@ -43,22 +43,22 @@ public class CreationParticipationController extends
 		String idString = request.getParameter(Constants.PARAM_REQUEST_ID);
 		Utilisateur util = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
 		if(StringUtils.isEmpty(idString)) {
-			mav = constructErrorView();
+			mav = constructErrorView(request);
 			this.addError(request, resource.getString(PARAM_ERROR_ID_NULL));
 		} else if(util == null || util.getId() == null) {
-			mav = constructErrorView();
+			mav = constructErrorView(request);
 			this.addError(request, resource.getString(ERROR_USER_NULL));
 		} else {
 			Long id = Long.parseLong(idString);
 			Sujet sujet = this.sujetManager.read(id);
 			if(partManager.isParticiperAuSujet(util.getId(), sujet.getId())) {
-				mav = constructErrorView();
+				mav = constructErrorView(request);
 				this.addError(request, resource.getString(ERROR_PARTICIPATION_UNIQUE));
 			} else {
 				if(!sujet.isActif()) {
-					mav = constructViewWithNewInstance(PARAM_VIEW_NOT_ACTIF);
+					mav = constructViewWithNewInstance(PARAM_VIEW_NOT_ACTIF, request);
 				} else {
-					mav = constructSuccessViewWithNewInstance();
+					mav = constructSuccessViewWithNewInstance(request);
 				}
 				Participation part = (Participation)mav.getModel().get(nameOfObject);
 				part.setSujet(sujet);
@@ -73,9 +73,9 @@ public class CreationParticipationController extends
 	/* (non-Javadoc)
 	 * @see fr.dauphine.spring.ctl.DefaultController#constructViewWithNewInstance()
 	 */
-	public ModelAndView constructViewWithNewInstance(String nameOfView)
+	public ModelAndView constructViewWithNewInstance(String nameOfView, HttpServletRequest request)
 			throws InstantiationException, IllegalAccessException {
-		ModelAndView mav = super.constructSuccessViewWithNewInstance();
+		ModelAndView mav = super.constructSuccessViewWithNewInstance(request);
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfView);
 		return mav;
 	}

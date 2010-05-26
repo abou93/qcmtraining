@@ -3,6 +3,7 @@
  */
 package fr.dauphine.spring.util;
 
+
 /**
  * @author Mathieu
  *
@@ -45,4 +46,5 @@ public final class Constants {
 	public static final String ERROR_SUJET_QUESTION_LIBELLE = "sujet.form.question.libelle.null";
 	public static final String ERROR_SUJET_QUESTION_REPONSE_LIBELLE = "sujet.form.question.reponse.libelle.null";
 	public static final String ERROR_SUJET_DATE_DEB_AFTER_DATE_END = "sujet.form.date.deb.after.date.end";
+	public static final String REDIRECT_ACCUEIL_VIEW = "redirect:accueil.do";
 }

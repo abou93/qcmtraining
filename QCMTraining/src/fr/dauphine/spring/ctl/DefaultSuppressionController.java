@@ -36,13 +36,16 @@ public class DefaultSuppressionController<TypeObject extends BO> extends Default
 		ModelAndView mav = null;
 		String idString = request.getParameter(Constants.PARAM_REQUEST_ID);
 		if(StringUtils.isEmpty(idString)) {
-			mav = constructErrorView();
+			mav = constructErrorView(request);
 			this.addError(request, resource.getString(PARAM_ERROR_ID_NULL));
 		} else {
+			
 			Long id = Long.parseLong(idString);
-			mav = constructSuccessView();
-			TypeObject obj = manager.read(id);
-			manager.delete(obj);
+			mav = constructSuccessView(request);
+			if(secureAccess(request)) {
+				TypeObject obj = manager.read(id);
+				manager.delete(obj);
+			}
 		}
 		
 		return mav;

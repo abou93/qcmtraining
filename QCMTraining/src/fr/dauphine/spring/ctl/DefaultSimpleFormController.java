@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import fr.dauphine.spring.bo.BO;
+import fr.dauphine.spring.bo.Profil;
+import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.manager.AbstractManager;
 import fr.dauphine.spring.util.Constants;
 
@@ -24,7 +26,8 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	protected static final ResourceBundle resource = ResourceBundle.getBundle(Constants.PARAM_NAME_PROPERTIES_FILE);
 	protected String nameOfPageContent;
 	protected String nameOfObject;
-	protected String activePage;
+	protected int activePage;
+	protected int codeSecure;
 	protected AbstractManager<TypeObject> manager;
 	
 	
@@ -36,7 +39,12 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	}
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mav = super.handleRequest(request, response);
+		ModelAndView mav = null;
+		if(!secureAccess(request)) {
+			mav = new ModelAndView(Constants.REDIRECT_ACCUEIL_VIEW);
+		} else {
+			mav = super.handleRequest(request, response);
+		}
 		mav = addStandardObjectToView(mav);
 		return mav;
 	}
@@ -49,6 +57,28 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		mav.addObject(Constants.PARAM_ACTIVEPAGE, activePage);
 		return mav;
+	}
+	protected boolean secureAccess(HttpServletRequest request) {
+		boolean isAuthorized = true;
+		if(codeSecure != 0) {
+			Utilisateur user = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
+			if(codeSecure == Profil.ADMIN_CODE) {
+				if(!isAuthorized(user, Profil.ADMIN_CODE)) {
+					isAuthorized = false;
+				}
+			} else if(codeSecure == Profil.UTILISATEUR_CODE) {
+				if(!isAuthorized(user, Profil.UTILISATEUR_CODE) && !isAuthorized(user, Profil.ADMIN_CODE)) {
+					isAuthorized=false;
+				}
+			}
+		}
+		return isAuthorized;
+	}
+	private boolean isAuthorized(Utilisateur user, int codeProfil) {
+		if(user != null && user.getProfil() != null && user.getProfil().getCode() == codeProfil) {
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * @return the nameOfPageContent
@@ -65,13 +95,13 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	/**
 	 * @return the activePage
 	 */
-	public String getActivePage() {
+	public int getActivePage() {
 		return activePage;
 	}
 	/**
 	 * @param activePage the activePage to set
 	 */
-	public void setActivePage(String activePage) {
+	public void setActivePage(int activePage) {
 		this.activePage = activePage;
 	}
 	/**
@@ -103,6 +133,18 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 	 */
 	public ResourceBundle getResource() {
 		return resource;
+	}
+	/**
+	 * @return the codeSecure
+	 */
+	public int getCodeSecure() {
+		return codeSecure;
+	}
+	/**
+	 * @param codeSecure the codeSecure to set
+	 */
+	public void setCodeSecure(int codeSecure) {
+		this.codeSecure = codeSecure;
 	}
 	
 }

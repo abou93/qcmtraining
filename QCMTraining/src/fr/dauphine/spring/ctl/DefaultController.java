@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.dauphine.spring.bo.Profil;
+import fr.dauphine.spring.bo.Utilisateur;
 import fr.dauphine.spring.util.Constants;
 
 /**
@@ -22,7 +24,8 @@ abstract class DefaultController {
 	protected String nameOfPageContent;
 	protected String nameOfObject;
 	protected String nameOfErrorPage;
-	protected String activePage;
+	protected int activePage;
+	protected int codeSecure;
 	protected ResourceBundle resource = ResourceBundle.getBundle(Constants.PARAM_NAME_PROPERTIES_FILE);
 	
 	/**
@@ -31,19 +34,45 @@ abstract class DefaultController {
 	public DefaultController() {
 		// TODO Auto-generated constructor stub
 	}
-	public ModelAndView constructBasicIndexView() {
+	public ModelAndView constructBasicIndexView(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView(Constants.PARAM_INDEX_VIEW);
-		addStandardObjectToView(mav);
+		if(secureAccess(request)) {
+			addStandardObjectToView(mav);
+		} else {
+			mav.setViewName(Constants.REDIRECT_ACCUEIL_VIEW);
+		}
 		return mav;
 	}
 	
-	public ModelAndView constructSuccessView() {
-		ModelAndView mav = constructBasicIndexView();
+	protected boolean secureAccess(HttpServletRequest request) {
+		boolean isAuthorized = true;
+		if(codeSecure != 0) {
+			Utilisateur user = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
+			if(codeSecure == Profil.ADMIN_CODE) {
+				if(!isAuthorized(user, Profil.ADMIN_CODE)) {
+					isAuthorized = false;
+				}
+			} else if(codeSecure == Profil.UTILISATEUR_CODE) {
+				if(!isAuthorized(user, Profil.UTILISATEUR_CODE) && !isAuthorized(user, Profil.ADMIN_CODE)) {
+					isAuthorized = false;
+				}
+			}
+		}
+		return isAuthorized;
+	}
+	private boolean isAuthorized(Utilisateur user, int codeProfil) {
+		if(user != null && user.getProfil() != null && user.getProfil().getCode() == codeProfil) {
+			return true;
+		}
+		return false;
+	}
+	public ModelAndView constructSuccessView(HttpServletRequest request) {
+		ModelAndView mav = constructBasicIndexView(request);
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfPageContent);
 		return mav;
 	}
-	public ModelAndView constructErrorView() {
-		ModelAndView mav = constructBasicIndexView();
+	public ModelAndView constructErrorView(HttpServletRequest request) {
+		ModelAndView mav = constructBasicIndexView(request);
 		mav.addObject(Constants.PARAM_PAGE_CONTENT, nameOfErrorPage);
 		return mav;
 	}
@@ -99,16 +128,17 @@ abstract class DefaultController {
 	public void setNameOfErrorPage(String nameOfErrorPage) {
 		this.nameOfErrorPage = nameOfErrorPage;
 	}
+	
 	/**
 	 * @return the activePage
 	 */
-	public String getActivePage() {
+	public int getActivePage() {
 		return activePage;
 	}
 	/**
 	 * @param activePage the activePage to set
 	 */
-	public void setActivePage(String activePage) {
+	public void setActivePage(int activePage) {
 		this.activePage = activePage;
 	}
 	/**
@@ -123,5 +153,18 @@ abstract class DefaultController {
 	public void setResource(ResourceBundle resource) {
 		this.resource = resource;
 	}
+	/**
+	 * @return the codeSecure
+	 */
+	public int getCodeSecure() {
+		return codeSecure;
+	}
+	/**
+	 * @param codeSecure the codeSecure to set
+	 */
+	public void setCodeSecure(int codeSecure) {
+		this.codeSecure = codeSecure;
+	}
+	
 	
 }

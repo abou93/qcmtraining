@@ -18,31 +18,32 @@
 			QCMTraining a été bâti afin de vous permettre d'évoluer progressivement 
 			sur le périlleux chemin de la connaissance universelle.
 			<br /><br />
-			<fieldset>
-				<legend>Voici la liste des sujets les plus répondus</legend>
-				<display:table cellspacing="0" cellpadding="0" name="listTopSujet" id="aSujet"  pagesize="10" styleClass="resultats"  requestURI="listeSujet.do" >
-					<display:column title="Titre">
-						<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
-					</display:column>
-					<display:column title="Participation">
-						<c:out value="${aSujet.nombreDeParticipants} Hits" />
-					</display:column>
-					<display:column property="category.libelle" title="Catégorie" />
-					<display:column title="Ouvert">
-						<c:choose>
-							<c:when test="${aSujet.actif}">
-								<img src="<c:url value="/include/images/tick.gif" />" />
-							</c:when>
-							<c:otherwise>
-								<img src="<c:url value="/include/images/desactivate.png" />" />
-							</c:otherwise>
-						</c:choose>
-					</display:column>
-					<display:setProperty name="paging.banner.item_name" value="sujet" />
-					<display:setProperty name="paging.banner.items_name" value="sujets" />
-				</display:table>
-			</fieldset>
-			
+			<c:if test="${not empty listTopSujet}">
+				<fieldset>
+					<legend>Voici la liste des sujets les plus répondus</legend>
+					<display:table cellspacing="0" cellpadding="0" name="listTopSujet" id="aSujet"  pagesize="10" styleClass="resultats"  requestURI="listeSujet.do" >
+						<display:column title="Titre">
+							<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
+						</display:column>
+						<display:column title="Participation">
+							<c:out value="${aSujet.nombreDeParticipants} Hits" />
+						</display:column>
+						<display:column property="category.libelle" title="Catégorie" />
+						<display:column title="Ouvert">
+							<c:choose>
+								<c:when test="${aSujet.actif}">
+									<img src="<c:url value="/include/images/tick.gif" />" alt="Actif" />
+								</c:when>
+								<c:otherwise>
+									<img src="<c:url value="/include/images/desactivate.png" />" alt="Inactif" />
+								</c:otherwise>
+							</c:choose>
+						</display:column>
+						<display:setProperty name="paging.banner.item_name" value="sujet" />
+						<display:setProperty name="paging.banner.items_name" value="sujets" />
+					</display:table>
+				</fieldset>
+			</c:if>
 			
 		</div>
 	</div>

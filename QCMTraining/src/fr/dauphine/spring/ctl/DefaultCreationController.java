@@ -30,10 +30,10 @@ public class DefaultCreationController<TypeObject extends BO> extends DefaultCon
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		return constructSuccessViewWithNewInstance();
+		return constructSuccessViewWithNewInstance(request);
 	}
-	public ModelAndView constructSuccessViewWithNewInstance() throws InstantiationException, IllegalAccessException {
-		ModelAndView mav = constructSuccessView();
+	public ModelAndView constructSuccessViewWithNewInstance(HttpServletRequest request) throws InstantiationException, IllegalAccessException {
+		ModelAndView mav = constructSuccessView(request);
 		TypeObject obj = typeObjectClass.newInstance();
 		mav.addObject(nameOfObject, obj);
 		return mav;
