@@ -48,6 +48,20 @@ public class DefaultSimpleFormController<TypeObject extends BO> extends SimpleFo
 		mav = addStandardObjectToView(mav);
 		return mav;
 	}
+	protected void populateUserInSession(Utilisateur utilisateur,
+			HttpServletRequest request) {
+		Profil profil = new Profil();
+		profil.setCode(utilisateur.getProfil().getCode());
+		profil.setId(utilisateur.getProfil().getId());
+		profil.setLibelle(utilisateur.getProfil().getLibelle());
+		Utilisateur util = new Utilisateur();
+		util.setId(utilisateur.getId());
+		util.setEmail(utilisateur.getEmail());
+		util.setNom(utilisateur.getNom());
+		util.setPrenom(utilisateur.getPrenom());
+		util.setProfil(profil);
+		request.getSession().setAttribute(Constants.PARAM_USER_SESSION, util);
+	}
 	public ModelAndView constructView() {
 		ModelAndView mav = new ModelAndView(Constants.PARAM_INDEX_VIEW);
 		mav = addStandardObjectToView(mav);

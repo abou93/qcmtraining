@@ -45,7 +45,7 @@ public class ValidationLoginController extends DefaultSimpleFormController<Utili
 			throws Exception {
 		Utilisateur utilisateur = (Utilisateur) command;
 		utilisateur = utilisateurManager.readByEmail(utilisateur.getEmail());
-		request.getSession().setAttribute(Constants.PARAM_USER_SESSION, utilisateur);
+		populateUserInSession(utilisateur, request);
 		if(utilisateur != null && utilisateur.getId() != null) {
 			request.getSession().setAttribute(Constants.PARAM_ISLOGGED, true);
 			if(utilisateur.getProfil().getCode()==1) {

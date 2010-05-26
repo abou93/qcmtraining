@@ -51,7 +51,10 @@ public class ValidationModificationUserController extends DefaultSimpleFormContr
 		manager.save(util);
 		Utilisateur utilInSession = (Utilisateur)request.getSession().getAttribute(Constants.PARAM_USER_SESSION);
 		if( util.getId().compareTo(utilInSession.getId()) == 0 ) {
-			request.getSession().setAttribute(Constants.PARAM_USER_SESSION, util);
+			populateUserInSession(util, request);
+			if(util.getProfil().getCode()!=1) {
+				request.getSession().removeAttribute(Constants.PARAM_ISADMIN);
+			}
 		}
 		mav.setViewName("redirect:adminAccueil.do");
 		return mav;
