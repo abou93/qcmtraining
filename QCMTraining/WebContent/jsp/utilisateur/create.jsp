@@ -52,12 +52,13 @@
 							<input type="hidden" name="profil.id" value="2"/>
 						</c:otherwise>
 					</c:choose>
-					<br/>
 				</fieldset>
-				<br /><br />
+				<p></p>
+				<div>
 				<input type="submit" value="Valider" />
 				<input type="reset" value="Réinitialiser" />
 				<input type="button" value="Annuler" onclick="window.location.href='adminAccueil.do';" />
+				</div>
 			</form:form>
 		</div>
 	</div>

@@ -4,11 +4,13 @@
 <h2>Connectez-vous</h2>
 <form:form commandName="utilisateur" action="validationLogin.do"
 	method="post">
+	<fieldset style="border:0">
 	<label for="email" class="adroite">Email : </label>
-	<form:input path="email" />
+	<form:input id="emailLogin" path="email" />
 	<label for="password" class="adroite">Password :</label>
-	<form:password path="password" /><br />
+	<form:password id="passwordLogin" path="password" /><br />
 	<form:errors path="*" cssStyle="color:red;" />
 	<input type="submit" value="Se connecter" />
+	</fieldset>
 </form:form>
 <div class="register"><a href="register.do">Enregistrez-vous</a></div>

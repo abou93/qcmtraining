@@ -39,10 +39,11 @@
 								name="profil.id" value="1" />Admin
 					</spring:bind>
 				</fieldset>
-				<br /><br />
+				<p></p>
+				<div>
 				<input type="submit" value="Modifier" />
-				<input type="reset" value="Réinitialiser" />
 				<input type="button" value="Annuler" onclick="window.location.href='adminAccueil.do';" />
+				</div>
 			</form:form>
 		</div>
 	</div>
