@@ -337,7 +337,7 @@ tr.correctReponse td {
 
 .resultats thead, .resultats tfoot {
 	text-align: left;
-	background-color: WhiteSmoke;
+	background-color: #F5F5F5;
 }
 
 
@@ -368,10 +368,14 @@ tr.correctReponse td {
 }
 
 .resultats tr.even {
-	background-color: MintCream;
+	background-color:#F5FFFA;
 }
 
 
 .resultats th.empty {
 	padding: 0;
+}
+
+#error p {
+	color:red;
 }

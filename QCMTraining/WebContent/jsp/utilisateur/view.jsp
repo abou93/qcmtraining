@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="/jsp/general/securityLogged.jsp" />
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Visualisation de l'utilisateur : ${utilisateur.nom}</h2>

@@ -5,7 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 
-<jsp:include page="/jsp/general/securityLogged.jsp" />
 <div id="content">
 	<div class="post" style="padding-top: 57px;">
 		<h2 class="title">Participation au sujet : ${participationForm.sujet.titre}</h2>

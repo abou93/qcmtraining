@@ -80,7 +80,7 @@ public class Sujet extends SujetInfo {
 		listShuffle.addAll(listQuestion);
 		Collections.shuffle(listShuffle);
 		if(nbQuestionDisplay < listShuffle.size()) {
-			listShuffle.subList(0, nbQuestionDisplay).clear();
+			listShuffle.subList(0, listShuffle.size() - nbQuestionDisplay).clear();
 		}
 		for(Question quest : listShuffle) {
 			Collections.shuffle(quest.getListResponse());
