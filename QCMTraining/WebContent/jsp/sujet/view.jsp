@@ -86,7 +86,7 @@
 														<c:set var="class" value="" />
 													</c:otherwise>
 												</c:choose>
-												<tr class="<c:out value="${class}" />">
+												<tr <c:if test="${aReponse.goodResponse}" >class="goodReponse" </c:if>>
 														<td>Réponse n°<c:out value="${reponseStatut.index + 1}" />: </td>
 														<td><c:out value="${aReponse.libelle}" /></td>
 														<td><input type="radio" disabled="disabled" <c:if test="${aReponse.goodResponse}">checked="checked"</c:if> 
