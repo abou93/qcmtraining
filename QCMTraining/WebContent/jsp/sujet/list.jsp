@@ -42,7 +42,7 @@
 				</form:form>
 			</fieldset>
 			
-			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="10" styleClass="resultats"  requestURI="listeSujet.do" >
+			<display:table cellspacing="0" cellpadding="0" name="sujetList" id="aSujet"  pagesize="5" styleClass="resultats"  requestURI="listeSujet.do" >
 				<display:column title="Titre" media="html">
 					<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
 				</display:column>

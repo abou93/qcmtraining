@@ -154,7 +154,7 @@ public class ValidationSujetController extends DefaultSimpleFormController<Sujet
 				if (sujet.getNbQuestionDisplay() == null) {
 					errors.rejectValue("nbQuestionDisplay", "Valeur manquante!", null, 
 							resource.getString(Constants.ERROR_SUJET_NBQUESTIONDISPLAY_NULL));
-				} else if(sujet.getNbQuestionDisplay() < 0 || sujet.getNbQuestionDisplay() > sujet.getListQuestion().size()) {
+				} else if(sujet.getNbQuestionDisplay() <= 0 || sujet.getNbQuestionDisplay() > sujet.getListQuestion().size()) {
 					errors.rejectValue("nbQuestionDisplay", "Valeur incorrect", null, 
 							MessageFormat.format(resource.getString(Constants.ERROR_SUJET_NBQUESTIONDISPLAY_VALEUR),
 									sujet.getListQuestion().size()));

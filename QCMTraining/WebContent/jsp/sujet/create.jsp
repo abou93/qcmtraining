@@ -31,14 +31,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td><label for="dateStart" class="adroite">Date de
+			<td><label for="dateStart" class="adroite" >Date de
 			lancement : </label></td>
-			<td><input type="text" name="dateStart" size="10" id="dateStart"
+			<td><input type="text" name="dateStart" maxlength="10"  size="10" id="dateStart" onkeypress="return dateKeyPress(this,event);"
 				value="<fmt:formatDate value="${sujetForm.dateStart}" pattern="dd/MM/yyyy" />" /></td>
 		</tr>
 		<tr>
-			<td><label for="dateEnd" class="adroite">Date de fin : </label></td>
-			<td><input type="text" name="dateEnd" id="dateEnd" size="10"
+			<td><label for="dateEnd" class="adroite" >Date de fin : </label></td>
+			<td><input type="text" name="dateEnd" id="dateEnd" maxlength="10" size="10" onkeypress="return dateKeyPress(this,event);"
 				value="<fmt:formatDate value="${sujetForm.dateEnd}" pattern="dd/MM/yyyy" />" /></td>
 		</tr>
 		<tr>

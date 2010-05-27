@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
 <link href="include/css/default.css" rel="stylesheet" type="text/css" />
 <link rel="icon" type="image/gif" href="include/images/logo.gif" />
+<script type="text/javascript" src="include/js/date.js" ></script>
 </head>
 <body>
 <jsp:include page="/jsp/template/header.jsp" >

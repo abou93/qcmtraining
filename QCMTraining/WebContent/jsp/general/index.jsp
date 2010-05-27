@@ -6,8 +6,7 @@
 		<h2 class="title">Bienvenue sur QCM Training</h2>
 		<div class="entry">
 			<div style="text-align:center" >Bienvenue sur notre site d'entrainement aux QCM</div> <br />
-			Vous retrouverez ici un environnement d'entrainement aux QCM! <br />
-			<br /><br />
+			<br />
 			<strong>Damien Renaud</strong> disait 
 			<i>"Il n'y a pas d'homme cultivé, il n'y a que des hommes qui se cultivent"</i>.
 			<br />
@@ -21,7 +20,7 @@
 			<c:if test="${not empty listTopSujet}">
 				<fieldset>
 					<legend>Voici la liste des sujets les plus répondus</legend>
-					<display:table cellspacing="0" cellpadding="0" name="listTopSujet" id="aSujet"  pagesize="10" styleClass="resultats"  requestURI="listeSujet.do" >
+					<display:table cellspacing="0" cellpadding="0" name="listTopSujet" id="aSujet"  pagesize="5" styleClass="resultats"  requestURI="accueil.do" >
 						<display:column title="Titre">
 							<a href="<c:url value="/voirSujet.do?idObject=${aSujet.id}" />"><c:out value="${aSujet.titre}" /></a>
 						</display:column>
