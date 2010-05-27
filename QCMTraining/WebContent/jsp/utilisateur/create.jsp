@@ -55,7 +55,6 @@
 				<p></p>
 				<div>
 				<input type="submit" value="Valider" />
-				<input type="reset" value="Réinitialiser" />
 				<input type="button" value="Annuler" onclick="window.location.href='adminAccueil.do';" />
 				</div>
 			</form:form>

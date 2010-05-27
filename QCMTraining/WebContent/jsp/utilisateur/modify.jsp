@@ -26,7 +26,7 @@
 					<form:input path="email" />
 					<br/>
 					<label for="password" class="agauche">Password :</label>
-					<form:password path="password" />
+					<input type="password" id="password" name="password" value="<c:out value="${userForm.password}" />" />
 					<br/>
 					<label for="profil.id" class="agauche">Profil :</label>
 					<spring:bind path="profil.id">

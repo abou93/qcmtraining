@@ -32,7 +32,7 @@
 						<td><span id="dateEnd"><fmt:formatDate value="${sujet.dateEnd}" pattern="dd/MM/yyyy" /></span></td>
 					</tr>
 					<tr>
-						<td><label for="nbQuestionDisplay" class="adroite">Nombre de question : </label></td>
+						<td><label for="nbQuestionDisplay" class="adroite">Nombre de question(s) : </label></td>
 						<td><span id="nbQuestionDisplay"><c:out value="${sujet.nbQuestionDisplay}" /></span></td>
 					</tr>
 					<tr>
