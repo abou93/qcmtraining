@@ -1,0 +1,1 @@
+Projet d'étudiant réalisé dans le cadre du cours OPEN SOURCE J2EE!
